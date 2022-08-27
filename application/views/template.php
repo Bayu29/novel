@@ -121,8 +121,8 @@
 							<span>Data Nasabah</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>bangunan">Nasabah Aktif</a></li>
-							<li><a href="<?= base_url() ?>tanah">Nasabah Blacklist</a></li>
+							<li><a href="<?= base_url() ?>nasabah">Nasabah Aktif</a></li>
+							<li><a href="<?= base_url() ?>nasabah/non">Nasabah Blacklist</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -143,8 +143,8 @@
 							<span>Master Data</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>bangunan">Jenis Barang</a></li>
-							<li><a href="<?= base_url() ?>tanah">COA</a></li>
+							<li><a href="<?= base_url() ?>jenis_barang">Jenis Barang</a></li>
+							<li><a href="<?= base_url() ?>coa">COA</a></li>
 						</ul>
 					</li>
 					<!-- <li><a href="<?= base_url() ?>pemeliharaan"><i class="fa fa-file"></i> <span>Data Pemeliharaan</span></a></li> -->

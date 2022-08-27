@@ -81,7 +81,7 @@
 
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-green">
-				<div class="stats-icon"><i class="fa fa-users"></i></div>
+				<div class="stats-icon"><i class="fa fa-money"></i></div>
 				<div class="stats-info">
 					<h4>DATA TRANSAKSI</h4>
 					<p>1 Data</p>
@@ -93,7 +93,7 @@
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-red">
-				<div class="stats-icon"><i class="fa fa-list"></i></div>
+				<div class="stats-icon"><i class="fa fa-check"></i></div>
 				<div class="stats-info">
 					<h4>DATA NASABAH</h4>
 					<p>1 Data</p>
@@ -105,9 +105,9 @@
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-blue">
-				<div class="stats-icon"><i class="fa fa-list"></i></div>
+				<div class="stats-icon"><i class="fa fa-times"></i></div>
 				<div class="stats-info">
-					<h4>ASET KENDARAAN</h4>
+					<h4>DATA NASABAH BLACKLIST</h4>
 					<p>1 Data</p>
 				</div>
 				<div class="stats-link">
