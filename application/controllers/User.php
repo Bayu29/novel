@@ -47,6 +47,8 @@ class User extends CI_Controller
 			'user_id' => set_value('user_id'),
 			'username' => set_value('username'),
 			'password' => set_value('password'),
+			'nama_lengkap' => set_value('nama_lengkap'),
+			'no_hp' => set_value('no_hp'),
 			'level_id' => set_value('level_id'),
 		);
 		$this->template->load('template', 'user/user_form', $data);
@@ -54,14 +56,16 @@ class User extends CI_Controller
 
 	public function create_action()
 	{
-		$this->_rules();
+		$this->_rules(null);
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->create();
 		} else {
 			$data = array(
 				'username' => $this->input->post('username', TRUE),
-				'password' => $this->input->post('password', TRUE),
+				'password' => sha1($this->input->post('password', TRUE)),
+				'nama_lengkap' => $this->input->post('nama_lengkap', TRUE),
+				'no_hp' => $this->input->post('no_hp', TRUE),
 				'level_id' => $this->input->post('level_id', TRUE),
 			);
 
@@ -82,6 +86,8 @@ class User extends CI_Controller
 				'user_id' => set_value('user_id', $row->user_id),
 				'username' => set_value('username', $row->username),
 				'password' => set_value('password', $row->password),
+				'nama_lengkap' => set_value('nama_lengkap', $row->nama_lengkap),
+				'no_hp' => set_value('no_hp', $row->no_hp),
 				'level_id' => set_value('level_id', $row->level_id),
 			);
 			$this->template->load('template', 'user/user_form', $data);
@@ -93,16 +99,27 @@ class User extends CI_Controller
 
 	public function update_action()
 	{
-		$this->_rules();
+		$this->_rules('update');
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->update($this->input->post('user_id', TRUE));
+			$this->update(encrypt_url($this->input->post('user_id', TRUE)));
 		} else {
-			$data = array(
-				'username' => $this->input->post('username', TRUE),
-				'password' => $this->input->post('password', TRUE),
-				'level_id' => $this->input->post('level_id', TRUE),
-			);
+			if ($this->input->post('password') == '' || $this->input->post('password') == null) {
+				$data = array(
+					'username' => $this->input->post('username', TRUE),
+					'level_id' => $this->input->post('level_id', TRUE),
+					'nama_lengkap' => $this->input->post('nama_lengkap', TRUE),
+					'no_hp' => $this->input->post('no_hp', TRUE),
+				);
+			} else {
+				$data = array(
+					'username' => $this->input->post('username', TRUE),
+					'password' => sha1($this->input->post('password', TRUE)),
+					'level_id' => $this->input->post('level_id', TRUE),
+					'nama_lengkap' => $this->input->post('nama_lengkap', TRUE),
+					'no_hp' => $this->input->post('no_hp', TRUE),
+				);
+			}
 
 			$this->User_model->update($this->input->post('user_id', TRUE), $data);
 			$this->session->set_flashdata('message', 'Update Record Success');
@@ -124,11 +141,16 @@ class User extends CI_Controller
 		}
 	}
 
-	public function _rules()
+	public function _rules($type)
 	{
+		if ($type != null) {
+		} else {
+			$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		}
 		$this->form_validation->set_rules('username', 'username', 'trim|required');
-		$this->form_validation->set_rules('password', 'password', 'trim|required');
 		$this->form_validation->set_rules('level_id', 'level id', 'trim|required');
+		$this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('no_hp', 'No HP', 'trim|required');
 
 		$this->form_validation->set_rules('user_id', 'user_id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -146,8 +168,7 @@ class User extends CI_Controller
 		$this->session->unset_userdata($params);
 		echo "<script>
         alert('Update password berhasil, Silahkan login kembali !');
-        window.location='".site_url('auth')."'</script>";
-
+        window.location='" . site_url('auth') . "'</script>";
 	}
 }
 

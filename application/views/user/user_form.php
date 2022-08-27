@@ -21,14 +21,41 @@
 						<thead>
 							<table id="data-table-default" class="table  table-bordered table-hover table-td-valign-middle">
 								<tr>
+									<td>Nama Lengkap <?php echo form_error('nama_lengkap') ?></td>
+									<td><input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" value="<?php echo $nama_lengkap; ?>" /></td>
+								</tr>
+								<tr>
 									<td>Username <?php echo form_error('username') ?></td>
 									<td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" /></td>
 								</tr>
+								<?php if ($this->uri->segment(2) == "create" || $this->uri->segment(2) == "create_action") { ?>
+									<tr>
+										<td>Password <?php echo form_error('password') ?></td>
+										<td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" /></td>
+									</tr>
+								<?php } else { ?>
+									<tr>
+										<td>Password <?php echo form_error('password') ?></td>
+										<td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" />
+											<small style="color: red">(Biarkan kosong jika tidak diganti)</small>
+										</td>
+									</tr>
+								<?php } ?>
 								<tr>
-									<td>Password <?php echo form_error('password') ?></td>
-									<td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" /></td>
+									<td>No HP <?php echo form_error('no_hp') ?></td>
+									<td><input type="text" class="form-control" name="no_hp" id="no_hp" placeholder="No Hp" value="<?php echo $no_hp; ?>" /></td>
 								</tr>
-								<input type="hidden" class="form-control" name="level_id" id="level_id" placeholder="Level Id" value="1" />
+								<tr>
+									<td>Level User <?php echo form_error('level_id') ?></td>
+									<td><select name="level_id" class="form-control theSelect" value="<?= $level_id ?>">
+											<option value="">-- Pilih --</option>
+											<option value="1" <?php echo $level_id == '1' ? 'selected' : 'null' ?>>Super Admin</option>
+											<option value="2" <?php echo $level_id == '2' ? 'selected' : 'null' ?>>Pimpinan</option>
+											<option value="3" <?php echo $level_id == '3' ? 'selected' : 'null' ?>>Keuangan</option>
+											<option value="4" <?php echo $level_id == '4' ? 'selected' : 'null' ?>>Karyawan</option>
+										</select>
+									</td>
+								</tr>
 								<tr>
 									<td></td>
 									<td><input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />

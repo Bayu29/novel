@@ -32,7 +32,9 @@
 											<thead>
 												<tr>
 													<th>No</th>
+													<th>Nama Lengkap</th>
 													<th>Username</th>
+													<th>No Hp</th>
 													<th>Level</th>
 													<th>Action</th>
 												</tr>
@@ -42,7 +44,9 @@
 													?>
 													<tr>
 														<td><?= $no++ ?></td>
+														<td><?php echo $user->nama_lengkap ?></td>
 														<td><?php echo $user->username ?></td>
+														<td><?php echo $user->no_hp ?></td>
 														<?php if ($user->level_id == 1) { ?>
 															<td>Admin</td>
 														<?php } else if ($user->level_id == 2) { ?>
@@ -54,7 +58,7 @@
 															<?php
 															echo anchor(site_url('user/update/' . encrypt_url($user->user_id)), '<i class="fa fa-pencil" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
 															echo '  ';
-															echo anchor(site_url('user/delete/' . encrypt_url($user->user_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+															echo anchor(site_url('user/delete/' . encrypt_url($user->user_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 															?>
 														</td>
 													</tr>

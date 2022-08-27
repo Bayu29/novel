@@ -6,12 +6,10 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Aplikasi KPI</title>
+	<title>Aplikasi Gadai</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-
-	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 	<link href="<?= base_url() ?>temp/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>temp/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -20,20 +18,13 @@
 	<link href="<?= base_url() ?>temp/assets/css/style.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>temp/assets/css/style-responsive.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>temp/assets/css/theme/default.css" rel="stylesheet" id="theme" />
-	<!-- ================== END BASE CSS STYLE ================== -->
-
-	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
 	<link href="<?= base_url() ?>temp/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>temp/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-	<!-- ================== END PAGE LEVEL STYLE ================== -->
-
-	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?= base_url() ?>temp/assets/plugins/pace/pace.min.js"></script>
-	<!-- ================== END BASE JS ================== -->
+	<script src="<?= base_url() ?>temp/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 </head>
 
 <body>
-	<!-- #modal-dialog -->
 	<div class="modal fade" id="modal-dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -73,58 +64,91 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="<?= base_url() ?>dashboard" class="navbar-brand"><span class="navbar-logo"></span> Aplikasi KPI</a>
+					<a href="<?= base_url() ?>dashboard" class="navbar-brand"><span class="navbar-logo"></span> Aplikasi Pegadaian</a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<!-- end mobile sidebar expand / collapse button -->
-
-				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="<?= base_url() ?>temp/assets/img/user/admin.png" alt="" />
-							<span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->username) ?></span> <b class="caret"></b>
+							<img src="<?= base_url() ?>temp/assets/img/user/admins.png" alt="" />
+							<span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?></span>
+							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
 							<li><a href="#modal-dialog" data-toggle="modal">Ganti Password</a></li>
-							<li><a href="<?= base_url() ?>auth/logout">Log Out</a></li>
+							<li><a href="<?= base_url() ?>auth/logout" onclick="return confirm('Anda Yakin Logout ?')">Log Out</a></li>
 						</ul>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div id="sidebar" class="sidebar">
-			<!-- begin sidebar scrollbar -->
 			<div data-scrollbar="true" data-height="100%">
-				<!-- begin sidebar user -->
 				<ul class="nav">
 					<li class="nav-profile">
 						<div class="image">
-							<a href="javascript:;"><img src="<?= base_url() ?>temp/assets/img/user/admin.png" alt="" /></a>
+							<a href="javascript:;"><img src="<?= base_url() ?>temp/assets/img/user/admins.png" alt="" /></a>
 						</div>
 						<div class="info">
-							<?= ucfirst($this->fungsi->user_login()->username) ?>
-							<small></small>
+							<?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?>
 						</div>
 					</li>
 				</ul>
-				<!-- end sidebar user -->
-				<!-- begin sidebar nav -->
+
 				<ul class="nav">
 					<li class="nav-header">Main Menu</li>
+					<li><a href="<?= base_url() ?>dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret pull-right"></b>
+							<i class="fa fa-money"></i>
+							<span>Transaksi</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="<?= base_url() ?>bangunan">Transaksi Gadai</a></li>
+							<li><a href="<?= base_url() ?>tanah">Jurnal</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret pull-right"></b>
+							<i class="fa fa-users"></i>
+							<span>Data Nasabah</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="<?= base_url() ?>bangunan">Nasabah Aktif</a></li>
+							<li><a href="<?= base_url() ?>tanah">Nasabah Blacklist</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret pull-right"></b>
+							<i class="fa fa-book"></i>
+							<span>Laporan</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="<?= base_url() ?>bangunan">Laporan Buku Besar</a></li>
+							<li><a href="<?= base_url() ?>tanah">Laporan Kas Saldo</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+							<b class="caret pull-right"></b>
+							<i class="fa fa-cube"></i>
+							<span>Master Data</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="<?= base_url() ?>bangunan">Jenis Barang</a></li>
+							<li><a href="<?= base_url() ?>tanah">COA</a></li>
+						</ul>
+					</li>
+					<!-- <li><a href="<?= base_url() ?>pemeliharaan"><i class="fa fa-file"></i> <span>Data Pemeliharaan</span></a></li> -->
 					<?php if ($this->fungsi->user_login()->level_id == 1) { ?>
-						<li><a href="<?= base_url() ?>dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-						<li><a href="<?= base_url() ?>karyawan"><i class="fa fa-users"></i> <span>Karyawan</span></a></li>
-						<li><a href="<?= base_url() ?>jabatan"><i class="fa fa-list"></i> <span>Jabatan</span></a></li>
-						<li><a href="<?= base_url() ?>departemen"><i class="fa fa-list"></i> <span>Departemen</span></a></li>
-						<li><a href="<?= base_url() ?>kategori"><i class="fa fa-list"></i> <span>Kategori</span></a></li>
-						<li><a href="<?= base_url() ?>penilaian"><i class="fa fa-wpforms"></i> <span>Penilaian</span></a></li>
-						<li><a href="<?= base_url() ?>laporan"><i class="fa fa-book"></i> <span>Laporan</span></a></li>
 						<li class="has-sub">
 							<a href="javascript:;">
 								<b class="caret pull-right"></b>
@@ -137,17 +161,7 @@
 								<li><a href="<?= base_url() ?>backup">Backup Database</a></li>
 							</ul>
 						</li>
-
-					<?php } else if ($this->fungsi->user_login()->level_id == 2) { ?>
-						<li><a href="<?= base_url() ?>dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-						<li><a href="<?= base_url() ?>karyawan"><i class="fa fa-users"></i> <span>Karyawan</span></a></li>
-						<li><a href="<?= base_url() ?>penilaian"><i class="fa fa-wpforms"></i> <span>Penilaian</span></a></li>
-						<li><a href="<?= base_url() ?>laporan"><i class="fa fa-book"></i> <span>Laporan</span></a></li>
-					<?php } else { ?>
-
 					<?php } ?>
-
-
 					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 				</ul>
 			</div>
@@ -161,16 +175,11 @@
 		<?php if ($this->session->flashdata('error')) : ?>
 		<?php endif; ?>
 		<?php echo $contents ?>
-		<!-- end #content -->
-
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 
 
 	</div>
-	<!-- end page container -->
 
-	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="<?= base_url() ?>temp/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 	<script src="<?= base_url() ?>temp/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 	<script src="<?= base_url() ?>temp/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 	<script src="<?= base_url() ?>temp/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -180,15 +189,11 @@
 	<script type="text/javascript" src="<?php echo base_url(); ?>temp/assets/js/sweetalert.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="<?= base_url(); ?>temp/assets/js/dataflash.js"></script>
-	<!-- ================== END BASE JS ================== -->
-
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<script src="<?= base_url() ?>temp/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 	<script src="<?= base_url() ?>temp/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 	<script src="<?= base_url() ?>temp/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 	<script src="<?= base_url() ?>temp/assets/js/table-manage-default.demo.min.js"></script>
 	<script src="<?= base_url() ?>temp/assets/js/apps.min.js"></script>
-	<!-- ================== END PAGE LEVEL JS ================== -->
 	<script>
 		$(document).ready(function() {
 			App.init();
