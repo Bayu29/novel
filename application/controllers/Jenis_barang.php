@@ -8,7 +8,7 @@ class Jenis_barang extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        // is_login();
+        is_login();
         $this->load->model('Jenis_barang_model');
         $this->load->library('form_validation');
     }
@@ -92,7 +92,7 @@ class Jenis_barang extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('jenis_barang_id', TRUE));
+            $this->update(encrypt_url($this->input->post('jenis_barang_id', TRUE)));
         } else {
             $data = array(
 		'kode_jenis_barang' => $this->input->post('kode_jenis_barang',TRUE),

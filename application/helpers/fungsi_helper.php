@@ -28,3 +28,12 @@ function check_admin()
 	}
 }
 
+function cekChecked($barang_id , $nama_acc)
+{
+	$ci = &get_instance();
+	$data = $ci->db->query("SELECT * FROM barang_acc  where nama_acc='$nama_acc' and barang_id='$barang_id'");
+	if($data->num_rows() > 0){
+		return 'checked';
+	}
+} 
+

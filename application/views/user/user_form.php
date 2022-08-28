@@ -50,9 +50,7 @@
 									<td><select name="level_id" class="form-control theSelect" value="<?= $level_id ?>">
 											<option value="">-- Pilih --</option>
 											<option value="1" <?php echo $level_id == '1' ? 'selected' : 'null' ?>>Super Admin</option>
-											<option value="2" <?php echo $level_id == '2' ? 'selected' : 'null' ?>>Pimpinan</option>
-											<option value="3" <?php echo $level_id == '3' ? 'selected' : 'null' ?>>Keuangan</option>
-											<option value="4" <?php echo $level_id == '4' ? 'selected' : 'null' ?>>Karyawan</option>
+											<option value="2" <?php echo $level_id == '2' ? 'selected' : 'null' ?>>Admin Kasir</option>
 										</select>
 									</td>
 								</tr>

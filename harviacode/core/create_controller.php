@@ -118,7 +118,7 @@ $string .= "\n\t    );
         \$this->_rules();
 
         if (\$this->form_validation->run() == FALSE) {
-            \$this->update(\$this->input->post('$pk', TRUE));
+            \$this->update(encrypt_url(\$this->input->post('$pk', TRUE)));
         } else {
             \$data = array(";
 foreach ($non_pk as $row) {

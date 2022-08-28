@@ -110,8 +110,9 @@
 							<span>Transaksi</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>bangunan">Transaksi Gadai</a></li>
-							<li><a href="<?= base_url() ?>tanah">Jurnal</a></li>
+							<li><a href="<?= base_url() ?>barang">Data Barang</a></li>
+							<li><a href="<?= base_url() ?>gadai">Transaksi Gadai</a></li>
+							<li><a href="<?= base_url() ?>jurnal">Jurnal</a></li>
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -134,6 +135,9 @@
 						<ul class="sub-menu">
 							<li><a href="<?= base_url() ?>bangunan">Laporan Buku Besar</a></li>
 							<li><a href="<?= base_url() ?>tanah">Laporan Kas Saldo</a></li>
+							<li><a href="<?= base_url() ?>tanah">Laporan Neraca Saldo</a></li>
+							<li><a href="<?= base_url() ?>tanah">Laporan Laba Rugi</a></li>
+					
 						</ul>
 					</li>
 					<li class="has-sub">
@@ -143,8 +147,9 @@
 							<span>Master Data</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>jenis_barang">Jenis Barang</a></li>
-							<li><a href="<?= base_url() ?>coa">COA</a></li>
+							<li><a href="<?= base_url() ?>jenis_barang">Data Jenis Barang</a></li>
+							<li><a href="<?= base_url() ?>bank">Data Bank</a></li>
+							<li><a href="<?= base_url() ?>coa">Data COA</a></li>
 						</ul>
 					</li>
 					<!-- <li><a href="<?= base_url() ?>pemeliharaan"><i class="fa fa-file"></i> <span>Data Pemeliharaan</span></a></li> -->
