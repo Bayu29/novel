@@ -78,7 +78,7 @@
 								</tr>
 								<tr>
 									<td>Rating <?php echo form_error('rating') ?></td>
-									<td><input type="text" class="form-control" name="rating" id="rating" placeholder="Rating" value="<?php echo $rating; ?>" /></td>
+									<td><input type="number" step="any" class="form-control" name="rating" id="rating" placeholder="Rating" value="<?php echo $rating; ?>" /></td>
 								</tr>
 								<tr>
 									<td>Status <?php echo form_error('status') ?></td>

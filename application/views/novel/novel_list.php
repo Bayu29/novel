@@ -57,7 +57,6 @@
 															<?php } else { ?>
 																<img src="<?= base_url() ?>template/assets/img/novel/<?php echo $novel->thumbnail ?>" width="60px" height="auto" />
 															<?php } ?>
-
 														</td>
 														<td>
 															<?php if ($novel->status == 'Completed') { ?>
@@ -65,7 +64,6 @@
 															<?php } else { ?>
 																<button href="" class="btn btn-warning btn-sm " delete=""> Ongoing</button>
 															<?php } ?>
-
 														</td>
 														<td>
 															<?php $genre = $this->db->query("SELECT * From novel_genre join genre on genre.genre_id=novel_genre.genre_id where novel_id='$novel->novel_id'")->result();
@@ -78,13 +76,13 @@
 														<td><?php echo $novel->tgl_released ?></td>
 														<td><?php echo $novel->total_chapter ?> Chapter</td>
 														<td><?php echo $novel->author ?></td>
-														<td><?php echo $novel->sinopsis ?></td>
-														<td><?php echo $novel->rating ?></td>
+														<td><?php echo substr($novel->sinopsis,0,100) ?> ....</td>
+														<td><i style="color: orange;" class="fa fa-star" aria-hidden="true"></i> <?php echo $novel->rating ?></td>
 														<td><?php echo $novel->nama_type ?></td>
 														<td><?php echo $novel->update_on ?></td>
 
 														<td style="text-align:center" width="120px">
-															<a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i></a>
+															<a href="<?= base_url() ?>novel/chapter/<?= encrypt_url($novel->novel_id) ?>" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i></a>
 															<?php
 															echo anchor(site_url('novel/update/' . encrypt_url($novel->novel_id)), '<i class="fa fa-pencil" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
 															echo '  ';

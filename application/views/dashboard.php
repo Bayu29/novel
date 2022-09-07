@@ -79,47 +79,56 @@
 		</center>
 		<br>
 
-		<!-- <div class="col-md-3 col-sm-6">
+		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-green">
-				<div class="stats-icon"><i class="fa fa-money"></i></div>
+				<div class="stats-icon"><i class="fa fa-book"></i></div>
 				<div class="stats-info">
-					<h4>DATA TRANSAKSI</h4>
-					<p>1 Data</p>
+					<h4>DATA NOVEL</h4>
+					<?php
+					$novel = $this->db->get('novel')->num_rows();
+					?>
+					<p><?= $novel ?> Data</p>
 				</div>
 				<div class="stats-link">
-					<a href="">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+					<a href="<?= base_url() ?>novel">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-red">
-				<div class="stats-icon"><i class="fa fa-check"></i></div>
+				<div class="stats-icon"><i class="fa fa-list"></i></div>
 				<div class="stats-info">
-					<h4>DATA NASABAH</h4>
-					<p>1 Data</p>
+					<h4>DATA GENRE</h4>
+					<?php
+					$genre = $this->db->get('genre')->num_rows();
+					?>
+					<p><?= $genre ?> Data</p>
 				</div>
 				<div class="stats-link">
-					<a href="">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+					<a href="<?= base_url() ?>genre">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-blue">
-				<div class="stats-icon"><i class="fa fa-times"></i></div>
+				<div class="stats-icon"><i class="fa fa-users"></i></div>
 				<div class="stats-info">
-					<h4>DATA NASABAH BLACKLIST</h4>
-					<p>1 Data</p>
+					<h4>DATA MEMBER</h4>
+					<?php
+					$member = $this->db->get('member')->num_rows();
+					?>
+					<p><?= $member ?> Data</p>
 				</div>
 				<div class="stats-link">
 
-					<a href="">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+					<a href="<?= base_url() ?>member">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
 
 				</div>
 			</div>
 		</div>
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-black">
-				<div class="stats-icon"><i class="fa fa-users"></i></div>
+				<div class="stats-icon"><i class="fa fa-user"></i></div>
 				<div class="stats-info">
 					<h4>DATA USER</h4>
 					<?php
@@ -133,6 +142,6 @@
 
 				</div>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </div>

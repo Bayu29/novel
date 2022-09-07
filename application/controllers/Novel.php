@@ -213,6 +213,35 @@ class Novel extends CI_Controller
 			redirect(site_url('novel'));
 		}
 	}
+	public function chapter($id)
+	{
+		$row = $this->Novel_model->get_by_id(decrypt_url($id));
+
+		if ($row) {
+			$data = array(
+				'button' => 'Update',
+				'data_type' => $this->Type_model->get_all(),
+				'data_genre' => $this->Genre_model->get_all(),
+				'action' => site_url('novel/update_action'),
+				'novel_id' => set_value('novel_id', $row->novel_id),
+				'title' => set_value('title', $row->title),
+				'tgl_released' => set_value('tgl_released', $row->tgl_released),
+				'total_chapter' => set_value('total_chapter', $row->total_chapter),
+				'author' => set_value('author', $row->author),
+				'sinopsis' => set_value('sinopsis', $row->sinopsis),
+				'rating' => set_value('rating', $row->rating),
+				'status' => set_value('status', $row->status),
+				'nama_type' => set_value('type_id', $row->nama_type),
+				'thumbnail' => set_value('thumbnail', $row->thumbnail),
+				'update_on' => set_value('update_on', $row->update_on),
+			);
+			$this->template->load('template', 'novel/chapter', $data);
+		} else {
+			$this->session->set_flashdata('message', 'Record Not Found');
+			redirect(site_url('novel'));
+		}
+	}
+
 
 	public function _rules()
 	{
