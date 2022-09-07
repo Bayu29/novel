@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Jenis_barang_model extends CI_Model
+class Genre_model extends CI_Model
 {
 
-    public $table = 'jenis_barang';
-    public $id = 'jenis_barang_id';
+    public $table = 'genre';
+    public $id = 'genre_id';
     public $order = 'DESC';
 
     function __construct()
@@ -31,9 +31,8 @@ class Jenis_barang_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('jenis_barang_id', $q);
-	$this->db->or_like('kode_jenis_barang', $q);
-	$this->db->or_like('nama_jenis_barang', $q);
+        $this->db->like('genre_id', $q);
+	$this->db->or_like('nama_genre', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }

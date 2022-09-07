@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Aplikasi Gadai</title>
+	<title><?= ucfirst($this->fungsi->sett_website()->nama_website) ?> - <?= $this->fungsi->sett_website()->deskripsi ?></title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -64,7 +64,7 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="<?= base_url() ?>dashboard" class="navbar-brand"><span class="navbar-logo"></span> Aplikasi Pegadaian</a>
+					 <a href="<?= base_url() ?>dashboard" class="navbar-brand"><i class="fa fa-book"></i> <?= ucfirst($this->fungsi->sett_website()->nama_website) ?></a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -106,53 +106,19 @@
 					<li class="has-sub">
 						<a href="javascript:;">
 							<b class="caret pull-right"></b>
-							<i class="fa fa-money"></i>
-							<span>Transaksi</span>
-						</a>
-						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>barang">Data Barang</a></li>
-							<li><a href="<?= base_url() ?>gadai">Transaksi Gadai</a></li>
-							<li><a href="<?= base_url() ?>jurnal">Jurnal</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret pull-right"></b>
-							<i class="fa fa-users"></i>
-							<span>Data Nasabah</span>
-						</a>
-						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>nasabah">Nasabah Aktif</a></li>
-							<li><a href="<?= base_url() ?>nasabah/non">Nasabah Blacklist</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret pull-right"></b>
 							<i class="fa fa-book"></i>
-							<span>Laporan</span>
+							<span>Data Novel</span>
 						</a>
 						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>bangunan">Laporan Buku Besar</a></li>
-							<li><a href="<?= base_url() ?>tanah">Laporan Kas Saldo</a></li>
-							<li><a href="<?= base_url() ?>tanah">Laporan Neraca Saldo</a></li>
-							<li><a href="<?= base_url() ?>tanah">Laporan Laba Rugi</a></li>
-					
+							<li><a href="<?= base_url() ?>novel">List Novel</a></li>
+							<li><a href="<?= base_url() ?>genre">Genre Novel</a></li>
+							<li><a href="<?= base_url() ?>type">Type Novel</a></li>
 						</ul>
 					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<b class="caret pull-right"></b>
-							<i class="fa fa-cube"></i>
-							<span>Master Data</span>
-						</a>
-						<ul class="sub-menu">
-							<li><a href="<?= base_url() ?>jenis_barang">Data Jenis Barang</a></li>
-							<li><a href="<?= base_url() ?>bank">Data Bank</a></li>
-							<li><a href="<?= base_url() ?>coa">Data COA</a></li>
-						</ul>
-					</li>
-					<!-- <li><a href="<?= base_url() ?>pemeliharaan"><i class="fa fa-file"></i> <span>Data Pemeliharaan</span></a></li> -->
+					<li><a href="<?= base_url() ?>member"><i class="fa fa-users"></i> <span>Member</span></a></li>
+					<li><a href="<?= base_url() ?>dashboard"><i class="fa fa-money"></i> <span>Transaksi Pembelian Chap</span></a></li>
+					<li><a href="<?= base_url() ?>dashboard"><i class="fa fa-money"></i> <span>Transaksi Topup Saldo</span></a></li>
+					<li><a href="<?= base_url() ?>setting_web/update/Umhxc2ZDeHlpc1JpYWNIUVdzNG1sZz09"><i class="fa fa-globe"></i> <span>Setting Website</span></a></li>
 					<?php if ($this->fungsi->user_login()->level_id == 1) { ?>
 						<li class="has-sub">
 							<a href="javascript:;">

@@ -22,7 +22,7 @@ date_default_timezone_set('Asia/Jakarta');
 			$this->load->dbutil();
 			// Backup your entire database and assign it to a variable
 			$prefs = array(
-		        'tables'        => array('user','history_login','tanah','peralatan','pengadaan_aset','peminjaman_aset','pemeliharaan','kendaraan','bangunan'),   // Array of tables to backup.
+		        'tables'        => array('user','history_login'),   // Array of tables to backup.
 		        'ignore'        => array(),                     // List of tables to omit from the backup
 		        'format'        => 'txt',                       // gzip, zip, txt
 		        'filename'      => date('Ymd-h.i').'.sql',              // File name - NEEDED ONLY WITH ZIP FILES

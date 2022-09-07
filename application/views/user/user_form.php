@@ -50,7 +50,7 @@
 									<td><select name="level_id" class="form-control theSelect" value="<?= $level_id ?>">
 											<option value="">-- Pilih --</option>
 											<option value="1" <?php echo $level_id == '1' ? 'selected' : 'null' ?>>Super Admin</option>
-											<option value="2" <?php echo $level_id == '2' ? 'selected' : 'null' ?>>Admin Kasir</option>
+											<option value="2" <?php echo $level_id == '2' ? 'selected' : 'null' ?>>Admin Website</option>
 										</select>
 									</td>
 								</tr>

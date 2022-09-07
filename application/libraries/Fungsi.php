@@ -16,5 +16,10 @@ class Fungsi
 		return $user_data;
 	}
 
-	
+	function sett_website()
+	{
+		$this->ci->load->model('Setting_web_model');
+		$data = $this->ci->Setting_web_model->get(1)->row();
+		return $data;
+	}
 }

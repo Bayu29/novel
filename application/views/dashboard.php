@@ -79,7 +79,7 @@
 		</center>
 		<br>
 
-		<div class="col-md-3 col-sm-6">
+		<!-- <div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-green">
 				<div class="stats-icon"><i class="fa fa-money"></i></div>
 				<div class="stats-info">
@@ -117,8 +117,6 @@
 				</div>
 			</div>
 		</div>
-
-
 		<div class="col-md-3 col-sm-6">
 			<div class="widget widget-stats bg-black">
 				<div class="stats-icon"><i class="fa fa-users"></i></div>
@@ -135,12 +133,6 @@
 
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
-	<!-- <div class="row">
-		<center>
-			<img src="<?= base_url() ?>temp/assets/baner.png" alt="" style="width: 40%;">
-		</center>
-
-	</div> -->
 </div>

@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Bank_model extends CI_Model
+class Type_model extends CI_Model
 {
 
-    public $table = 'bank';
-    public $id = 'bank_id';
+    public $table = 'type';
+    public $id = 'type_id';
     public $order = 'DESC';
 
     function __construct()
@@ -31,8 +31,8 @@ class Bank_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('bank_id', $q);
-	$this->db->or_like('nama_bank', $q);
+        $this->db->like('type_id', $q);
+	$this->db->or_like('nama_type', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }

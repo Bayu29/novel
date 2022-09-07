@@ -28,12 +28,23 @@ function check_admin()
 	}
 }
 
-function cekChecked($barang_id , $nama_acc)
+function rupiah($angka){
+	
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+}
+
+function cekGenre($novel_id,$genre_id)
 {
+	
 	$ci = &get_instance();
-	$data = $ci->db->query("SELECT * FROM barang_acc  where nama_acc='$nama_acc' and barang_id='$barang_id'");
-	if($data->num_rows() > 0){
-		return 'checked';
+	$query = $ci->db->query("SELECT * FROM novel_genre where novel_id ='$novel_id' and genre_id ='$genre_id'");
+	$jml = $query->num_rows();
+	if($jml > 0){
+		return "checked";
 	}
-} 
+}
+
+
+
 

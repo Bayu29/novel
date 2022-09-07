@@ -38,7 +38,7 @@
 			<div class="login-header">
 				<div class="brand">
 					<span class="logo"></span> Halaman Login
-					<small>Aplikasi Pegadaian</small>
+					<small><?= ucfirst($this->fungsi->sett_website()->nama_website) ?></small>
 				</div>
 				<div class="icon">
 					<i class="fa fa-sign-in"></i>

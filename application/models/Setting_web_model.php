@@ -3,12 +3,11 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
-class Barang_model extends CI_Model
+class Setting_web_model extends CI_Model
 {
 
-	public $table = 'barang';
-	public $table2 = 'barang_pic';
-	public $id = 'barang_id';
+	public $table = 'setting_web';
+	public $id = 'setting_web_id';
 	public $order = 'DESC';
 
 	function __construct()
@@ -19,7 +18,6 @@ class Barang_model extends CI_Model
 	// get all
 	function get_all()
 	{
-		$this->db->join('jenis_barang', 'jenis_barang.jenis_barang_id = barang.jenis_barang_id', 'left');
 		$this->db->order_by($this->id, $this->order);
 		return $this->db->get($this->table)->result();
 	}
@@ -31,13 +29,27 @@ class Barang_model extends CI_Model
 		return $this->db->get($this->table)->row();
 	}
 
+	public function get($id = null)
+	{
+		$this->db->select('*');
+		$this->db->from('setting_web');
+		if ($id != null) {
+			$this->db->where('setting_web_id', $id);
+		}
+		$query = $this->db->get();
+		return $query;
+	}
+
 	// get total rows
 	function total_rows($q = NULL)
 	{
-		$this->db->like('barang_id', $q);
-		$this->db->or_like('kode_barang', $q);
-		$this->db->or_like('nama_barang', $q);
-		$this->db->or_like('detail_kondisi', $q);
+		$this->db->like('setting_web_id', $q);
+		$this->db->or_like('nama_website', $q);
+		$this->db->or_like('logo', $q);
+		$this->db->or_like('telpon', $q);
+		$this->db->or_like('email', $q);
+		$this->db->or_like('deskripsi', $q);
+		$this->db->or_like('is_aktif_website', $q);
 		$this->db->from($this->table);
 		return $this->db->count_all_results();
 	}
@@ -47,11 +59,6 @@ class Barang_model extends CI_Model
 	function insert($data)
 	{
 		$this->db->insert($this->table, $data);
-	}
-
-	function insertPhoto($data)
-	{
-		$this->db->insert($this->table2, $data);
 	}
 
 	// update data
@@ -66,16 +73,5 @@ class Barang_model extends CI_Model
 	{
 		$this->db->where($this->id, $id);
 		$this->db->delete($this->table);
-	}
-
-	function AutoNumbering()
-	{
-		$today = date('Ymd');
-		$data = $this->db->query("SELECT MAX(kode_barang) AS last FROM $this->table ")->row_array();
-		$lastNoFaktur = $data['last'];
-		$lastNoUrut   = substr($lastNoFaktur, 11, 3);
-		$nextNoUrut   = (int)$lastNoUrut + 1;
-		$nextNoTransaksi = 'GE-' . $today . sprintf('%03s', $nextNoUrut);
-		return $nextNoTransaksi;
 	}
 }
