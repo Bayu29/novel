@@ -31,7 +31,7 @@
 										<tr>
 											<td>Thumbnail <?php echo form_error('thumbnail') ?></td>
 											<td>
-												<a href="#modal-dialog" data-bs-toggle="modal"><img src="<?php echo base_url(); ?>temp/assets/img/novel/<?= $thumbnail ?>" style="width: 150px;height: 150px;border-radius: 5%;"></img></a>
+												<a href="#modal-dialog" data-bs-toggle="modal"><img src="<?php echo base_url(); ?>template/assets/img/novel/<?= $thumbnail ?>" style="width: 150px;height: 150px;border-radius: 5%;"></img></a>
 												<input type="hidden" name="thumbnail_lama" value="<?= $thumbnail ?>">
 												<p style="color: red">Note :Pilih thumbnail Jika Ingin Merubahnya</p>
 												<input type="file" class="form-control" name="thumbnail" id="thumbnail" placeholder="thumbnail" value="" onchange="return validasiEkstensi()" />

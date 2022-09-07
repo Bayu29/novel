@@ -55,7 +55,7 @@ class Novel extends CI_Controller
 			$this->create();
 		} else {
 
-			$config['upload_path']      = './temp/assets/img/novel';
+			$config['upload_path']      = './template/assets/img/novel';
 			$config['allowed_types']    = '*';
 			$config['max_size']         = 10048;
 			$config['file_name']        = 'File-' . date('ymd') . '-' . substr(sha1(rand()), 0, 10);
@@ -131,7 +131,7 @@ class Novel extends CI_Controller
 			$this->update(encrypt_url($this->input->post('novel_id', TRUE)));
 		} else {
 			$novel_id = $this->input->post('novel_id');
-			$config['upload_path']      = './temp/assets/img/novel';
+			$config['upload_path']      = './template/assets/img/novel';
 			$config['allowed_types']    = '*';
 			$config['max_size']         = 10048;
 			$config['file_name']        = 'File-' . date('ymd') . '-' . substr(sha1(rand()), 0, 10);
@@ -143,7 +143,7 @@ class Novel extends CI_Controller
 				$thumbnail = $data['file_name'];
 				if ($row->thumbnail == null || $row->thumbnail == '') {
 				} else {
-					$target_file = './temp/assets/img/novel/' . $row->thumbnail;
+					$target_file = './template/assets/img/novel/' . $row->thumbnail;
 					unlink($target_file);
 				}
 			} else {
@@ -200,7 +200,7 @@ class Novel extends CI_Controller
 		if ($row) {
 			if ($row->thumbnail == null || $row->thumbnail == '') {
 			} else {
-				$target_file = './temp/assets/img/novel/' . $row->thumbnail;
+				$target_file = './template/assets/img/novel/' . $row->thumbnail;
 				unlink($target_file);
 			}
 

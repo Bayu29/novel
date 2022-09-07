@@ -71,7 +71,7 @@ class Member extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->create();
 		} else {
-			$config['upload_path']      = './temp/assets/img/member';
+			$config['upload_path']      = './template/assets/img/member';
 			$config['allowed_types']    = '*';
 			$config['max_size']         = 10048;
 			$config['file_name']        = 'File-' . date('ymd') . '-' . substr(sha1(rand()), 0, 10);
@@ -133,7 +133,7 @@ class Member extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->update(encrypt_url($this->input->post('member_id', TRUE)));
 		} else {
-			$config['upload_path']      = './temp/assets/img/member';
+			$config['upload_path']      = './template/assets/img/member';
 			$config['allowed_types']    = '*';
 			$config['max_size']         = 10048;
 			$config['file_name']        = 'File-' . date('ymd') . '-' . substr(sha1(rand()), 0, 10);
@@ -145,7 +145,7 @@ class Member extends CI_Controller
 				$photo = $data['file_name'];
 				if ($row->photo == null || $row->photo == '') {
 				} else {
-					$target_file = './temp/assets/img/member/' . $row->photo;
+					$target_file = './template/assets/img/member/' . $row->photo;
 					unlink($target_file);
 				}
 			} else {
@@ -178,7 +178,7 @@ class Member extends CI_Controller
 		if ($row) {
 			if ($row->photo == null || $row->photo == '') {
 			} else {
-				$target_file = './temp/assets/img/member/' . $row->photo;
+				$target_file = './template/assets/img/member/' . $row->photo;
 				unlink($target_file);
 			}
 

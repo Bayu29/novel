@@ -53,9 +53,9 @@
 														<td><?= $no++ ?></td>
 														<td>
 															<?php if ($novel->thumbnail == '' || $novel->thumbnail == null) { ?>
-																<img src="<?= base_url() ?>temp/assets/img/novel/default.png" width="60px" height="auto" />
+																<img src="<?= base_url() ?>template/assets/img/novel/default.png" width="60px" height="auto" />
 															<?php } else { ?>
-																<img src="<?= base_url() ?>temp/assets/img/novel/<?php echo $novel->thumbnail ?>" width="60px" height="auto" />
+																<img src="<?= base_url() ?>template/assets/img/novel/<?php echo $novel->thumbnail ?>" width="60px" height="auto" />
 															<?php } ?>
 
 														</td>

@@ -52,9 +52,9 @@
 														<td><?= $no++ ?></td>
 														<td>
 															<?php if ($member->photo == '' || $member->photo == null) { ?>
-																<img src="<?= base_url() ?>temp/assets/img/member/default.png" width="60px" height="auto"  />
+																<img src="<?= base_url() ?>template/assets/img/member/default.png" width="60px" height="auto"  />
 															<?php } else { ?>
-																<img src="<?= base_url() ?>temp/assets/img/member/<?php echo $member->photo ?>" width="60px" height="auto"  />
+																<img src="<?= base_url() ?>template/assets/img/member/<?php echo $member->photo ?>" width="60px" height="auto"  />
 															<?php } ?>
 															</a>
 														</td>

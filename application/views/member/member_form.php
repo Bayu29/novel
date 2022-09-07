@@ -31,7 +31,7 @@
 										<tr>
 											<td>Photo <?php echo form_error('photo') ?></td>
 											<td>
-												<a href="#modal-dialog" data-bs-toggle="modal"><img src="<?php echo base_url(); ?>temp/assets/img/member/<?= $photo ?>" style="width: 150px;height: 150px;border-radius: 5%;"></img></a>
+												<a href="#modal-dialog" data-bs-toggle="modal"><img src="<?php echo base_url(); ?>template/assets/img/member/<?= $photo ?>" style="width: 150px;height: 150px;border-radius: 5%;"></img></a>
 												<input type="hidden" name="photo_lama" value="<?= $photo ?>">
 												<p style="color: red">Note :Pilih photo Jika Ingin Merubahnya</p>
 												<input type="file" class="form-control" name="photo" id="photo" placeholder="photo" value="" onchange="return validasiEkstensi()" />

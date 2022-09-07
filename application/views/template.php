@@ -11,17 +11,17 @@
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-	<link href="<?= base_url() ?>temp/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/css/animate.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/css/style.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/css/style-responsive.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/css/theme/default.css" rel="stylesheet" id="theme" />
-	<link href="<?= base_url() ?>temp/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>temp/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-	<script src="<?= base_url() ?>temp/assets/plugins/pace/pace.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<link href="<?= base_url() ?>template/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/css/style.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	<link href="<?= base_url() ?>template/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+	<link href="<?= base_url() ?>template/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+	<script src="<?= base_url() ?>template/assets/plugins/pace/pace.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="<?= base_url() ?>temp/assets/img/user/admins.png" alt="" />
+							<img src="<?= base_url() ?>template/assets/img/user/admins.png" alt="" />
 							<span class="hidden-xs"><?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?></span>
 							<b class="caret"></b>
 						</a>
@@ -92,7 +92,7 @@
 				<ul class="nav">
 					<li class="nav-profile">
 						<div class="image">
-							<a href="javascript:;"><img src="<?= base_url() ?>temp/assets/img/user/admins.png" alt="" /></a>
+							<a href="javascript:;"><img src="<?= base_url() ?>template/assets/img/user/admins.png" alt="" /></a>
 						</div>
 						<div class="info">
 							<?= ucfirst($this->fungsi->user_login()->nama_lengkap) ?>
@@ -151,20 +151,20 @@
 
 	</div>
 
-	<script src="<?= base_url() ?>temp/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>temp/assets/js/sweetalert.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>temp/assets/js/sweetalert.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>template/assets/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>template/assets/js/sweetalert.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="<?= base_url(); ?>temp/assets/js/dataflash.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/js/table-manage-default.demo.min.js"></script>
-	<script src="<?= base_url() ?>temp/assets/js/apps.min.js"></script>
+	<script src="<?= base_url(); ?>template/assets/js/dataflash.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/js/table-manage-default.demo.min.js"></script>
+	<script src="<?= base_url() ?>template/assets/js/apps.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
