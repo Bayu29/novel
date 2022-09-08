@@ -43,7 +43,7 @@ class Setting_web extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->update(encrypt_url($this->input->post('setting_web_id', TRUE)));
 		} else {
-			$config['upload_path']      = './temp/assets/img/website';
+			$config['upload_path']      = './template/assets/img/website';
 			$config['allowed_types']    = '*';
 			$config['max_size']         = 10048;
 			$config['file_name']        = 'File-' . date('ymd') . '-' . substr(sha1(rand()), 0, 10);
@@ -55,7 +55,7 @@ class Setting_web extends CI_Controller
 				$logo = $data['file_name'];
 				if ($row->logo == null || $row->logo == '') {
 				} else {
-					$target_file = './temp/assets/img/website/' . $row->logo;
+					$target_file = './template/assets/img/website/' . $row->logo;
 					unlink($target_file);
 				}
 			} else {

@@ -28,7 +28,7 @@
 									<tr>
 										<td>Logo <?php echo form_error('logo') ?></td>
 										<td>
-											<a href="#modal-dialog" data-bs-toggle="modal"><img src="<?php echo base_url(); ?>temp/assets/img/website/<?= $logo ?>" style="width: 30%;"></img></a>
+											<a href="#modal-dialog" data-bs-toggle="modal"><img src="<?php echo base_url(); ?>template/assets/img/website/<?= $logo ?>" style="width: 30%;"></img></a>
 											<input type="hidden" readonly name="logo_lama" value="<?= $logo ?>">
 											<p style="color: red">Note : Pilih logo Jika Ingin Merubahnya</p>
 											<input type="file" class="form-control" name="logo" id="logo" placeholder="logo" value="" onchange="return validasiEkstensi()" />

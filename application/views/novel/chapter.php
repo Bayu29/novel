@@ -1,11 +1,17 @@
 <div id="content" class="content">
 	<div class="row">
+
 		<div class="col-md-4 ui-sortable">
 			<div class="panel panel-inverse" data-sortable-id="index-1">
 				<div class="panel-heading">
 					<h4 class="panel-title">Detail Novel</h4>
 				</div>
 				<div class="panel-body">
+					<div class='col-md-9'>
+						<div style="padding-bottom: 10px;">
+							<a href="<?= base_url() ?>novel" class="btn btn-warning btn-sm tambah_data"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+						</div>
+					</div>
 					<table class="table">
 						<tr>
 							<td style="width: 30%;"><img src="<?= base_url() ?>template/assets/img/novel/<?php echo $thumbnail ?>" width="150px" height="auto" /></td>
@@ -60,6 +66,7 @@
 													<th>Harga</th>
 													<th>Isi Chapter</th>
 													<th>Tanggal</th>
+													<td>Terjual</td>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -70,6 +77,7 @@
 													<td>Rp.5.0000</td>
 													<td>XXXXXXXXXXXXXXXXXXX</td>
 													<td>2022-09-07</td>
+													<td>100 Kali</td>
 													<td>
 														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -81,6 +89,7 @@
 													<td>Rp.10.0000</td>
 													<td>XXXXXXXXXXXXXXXXXXX</td>
 													<td>2022-09-07</td>
+													<td>100 Kali</td>
 													<td>
 														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -92,6 +101,7 @@
 													<td>Rp.12.0000</td>
 													<td>XXXXXXXXXXXXXXXXXXX</td>
 													<td>2022-09-07</td>
+													<td>100 Kali</td>
 													<td>
 														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -103,6 +113,7 @@
 													<td>Rp.15.0000</td>
 													<td>XXXXXXXXXXXXXXXXXXX</td>
 													<td>2022-09-07</td>
+													<td>100 Kali</td>
 													<td>
 														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
