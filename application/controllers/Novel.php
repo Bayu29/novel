@@ -12,6 +12,7 @@ class Novel extends CI_Controller
 		$this->load->model('Novel_model');
 		$this->load->model('Type_model');
 		$this->load->model('Genre_model');
+		$this->load->model('Novel_chapter_model');
 		$this->load->library('form_validation');
 	}
 
@@ -23,7 +24,6 @@ class Novel extends CI_Controller
 		);
 		$this->template->load('template', 'novel/novel_list', $data);
 	}
-
 
 	public function create()
 	{
@@ -215,7 +215,11 @@ class Novel extends CI_Controller
 	}
 	public function chapter($id)
 	{
+		
 		$row = $this->Novel_model->get_by_id(decrypt_url($id));
+
+		$this->db->where('novel_id', decrypt_url($id));
+		$novel_chapter = $this->db->get('novel_chapter')->result();
 
 		if ($row) {
 			$data = array(
@@ -234,6 +238,7 @@ class Novel extends CI_Controller
 				'nama_type' => set_value('type_id', $row->nama_type),
 				'thumbnail' => set_value('thumbnail', $row->thumbnail),
 				'update_on' => set_value('update_on', $row->update_on),
+				'novel_chapter' => $novel_chapter
 			);
 			$this->template->load('template', 'novel/chapter', $data);
 		} else {

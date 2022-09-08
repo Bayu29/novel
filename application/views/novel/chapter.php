@@ -53,7 +53,7 @@
 									<div class='row'>
 										<div class='col-md-9'>
 											<div style="padding-bottom: 10px;">
-												<a href="" class="btn btn-danger btn-sm tambah_data"><i class="fa fa-plus-square" aria-hidden="true"></i> Tambah Chap</a>
+												<a href="<?= base_url() ?>novel_chapter/create_chapter/<?= encrypt_url($novel_id); ?>" class="btn btn-danger btn-sm tambah_data"><i class="fa fa-plus-square" aria-hidden="true"></i> Tambah Chap</a>
 											</div>
 										</div>
 									</div>
@@ -71,58 +71,23 @@
 												</tr>
 											</thead>
 											<tbody>
+												<?php $no = 1; ?>
+												<?php foreach ($novel_chapter as $data) : ?> 
 												<tr>
-													<td>1</td>
-													<td><button class="btn btn-success btn-sm" style="margin-bottom: 5px;width: 120px;"><i class="fa fa-wpforms" aria-hidden="true"></i> Chapter 1</button></td>
-													<td>Rp.5.0000</td>
-													<td>XXXXXXXXXXXXXXXXXXX</td>
-													<td>2022-09-07</td>
-													<td>100 Kali</td>
+													<td><?= $no++ ?></td>
+													<td><button class="btn btn-success btn-sm" style="margin-bottom: 5px;width: 120px;"><i class="fa fa-wpforms" aria-hidden="true"></i> <?= $data->nama_chapter ?></button></td>
+													<td>Rp. <?= number_format($data->harga,0, '.', '.'); ?></td>
+													<td><?php echo strip_tags(substr($data->isi_chapter, 0, 100)) . '...' ?></td>
+													<td><?= date('Y-m-d', strtotime($data->created_at)) ?></td>
 													<td>
-														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td><button class="btn btn-success btn-sm" style="margin-bottom: 5px;width: 120px;"><i class="fa fa-wpforms" aria-hidden="true"></i> Chapter 100</button></td>
-													<td>Rp.10.0000</td>
-													<td>XXXXXXXXXXXXXXXXXXX</td>
-													<td>2022-09-07</td>
-													<td>100 Kali</td>
-													<td>
-														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td><button class="btn btn-success btn-sm" style="margin-bottom: 5px;width: 120px;"><i class="fa fa-wpforms" aria-hidden="true"></i> Chapter 200</button></td>
-													<td>Rp.12.0000</td>
-													<td>XXXXXXXXXXXXXXXXXXX</td>
-													<td>2022-09-07</td>
-													<td>100 Kali</td>
-													<td>
-														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
-													</td>
-												</tr>
-												<tr>
-													<td>4</td>
-													<td><button class="btn btn-success btn-sm" style="margin-bottom: 5px;width: 120px;"><i class="fa fa-wpforms" aria-hidden="true"></i> Chapter 300</button></td>
-													<td>Rp.15.0000</td>
-													<td>XXXXXXXXXXXXXXXXXXX</td>
-													<td>2022-09-07</td>
-													<td>100 Kali</td>
-													<td>
-														<a href="" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-														<a href="" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+														<a href="<?= base_url() ?>novel_chapter/update/<?= encrypt_url($data->id) ?>" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+														<a href="<?= base_url() ?>novel_chapter/delete/<?= encrypt_url($data->id)?>/<?=encrypt_url($data->novel_id)?>" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
 													</td>
 												</tr>
 
+												<?php endforeach; ?>
 											</tbody>
 										</table>
-
 									</div>
 								</div>
 							</div>
