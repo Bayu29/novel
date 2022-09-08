@@ -23,7 +23,7 @@ class Novel_chapter extends CI_Controller
 
         if ($row) {
             $data = array(
-                'button' => 'Tambah chapter',
+                'button' => 'Create',
                 'novel_id' => $id
             );
             $this->template->load('template', 'novel/chapter/create', $data);
@@ -79,7 +79,7 @@ class Novel_chapter extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->create_chapter($this->input->post('novel_id', true));
         } else {
-			$this->db->where('id', decrypt_url($id));
+			$this->db->where('novel_chapter_id', decrypt_url($id));
 			$this->db->where('novel_id', decrypt_url($this->input->post('novel_id', true)));
 			$row = $this->db->get('novel_chapter')->row();
 
@@ -92,9 +92,7 @@ class Novel_chapter extends CI_Controller
 					'updated_at' => date('y-m-d H:i:s'),
 				);
 				$this->Novel_chapter_model->update(decrypt_url($id), $data);
-				$last_id = $this->db->insert_id();
-
-				$this->session->set_flashdata('message', 'Create Record Success');
+				$this->session->set_flashdata('message', 'Update Record Success');
 				redirect(site_url('novel/chapter/'.$this->input->post('novel_id', true)));
 			} else {
 				$this->session->set_flashdata('message', 'Record Not Found');

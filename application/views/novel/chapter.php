@@ -79,9 +79,11 @@
 													<td>Rp. <?= number_format($data->harga,0, '.', '.'); ?></td>
 													<td><?php echo strip_tags(substr($data->isi_chapter, 0, 100)) . '...' ?></td>
 													<td><?= date('Y-m-d', strtotime($data->created_at)) ?></td>
+													<!-- count dari table pembelian novel where novel_chapter_id -->
+													<td>100</td>
 													<td>
-														<a href="<?= base_url() ?>novel_chapter/update/<?= encrypt_url($data->id) ?>" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-														<a href="<?= base_url() ?>novel_chapter/delete/<?= encrypt_url($data->id)?>/<?=encrypt_url($data->novel_id)?>" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+														<a href="<?= base_url() ?>novel_chapter/update/<?= encrypt_url($data->novel_chapter_id) ?>" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+														<a href="<?= base_url() ?>novel_chapter/delete/<?= encrypt_url($data->novel_chapter_id)?>/<?=encrypt_url($data->novel_id)?>" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>
 													</td>
 												</tr>
 

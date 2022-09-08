@@ -1,7 +1,6 @@
 <div id="content" class="content">
 	<div class="row">
 		<center>
-
 			<script type="text/javascript">
 				//fungsi displayTime yang dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik
 				function tampilkanwaktu() {
@@ -144,4 +143,152 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<!-- begin col-12 -->
+		<div class="col-12 ui-sortable">
+			<!-- begin panel -->
+			<div class="panel panel-inverse" data-sortable-id="form-stuff-5">
+				<div class="panel-heading">
+					<div class="panel-heading-btn">
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+						<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+					</div>
+					<h4 class="panel-title">Data Statistik</h4>
+				</div>
+				<div class="panel-body">
+
+					<div class="col-md-12 col-sm-12" style="margin-bottom: 20px;">
+						<form class="form-inline" action="/" method="POST">
+							<div class="form-group m-r-10">
+								<input type="date" class="form-control" id="exampleInputEmail2" placeholder="">
+							</div>
+							<div class="form-group m-r-10">
+								<input type="date" class="form-control" id="exampleInputPassword2" placeholder="">
+							</div>
+							<button type="submit" class="btn btn-sm btn-primary m-r-5">Filter</button>
+							<button type="submit" class="btn btn-sm btn-warning">Reset</button>
+						</form>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="note note-success">
+							<h4>Topup Saldo : 100 Transakasi </h4>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="note note-success">
+							<h4>Pembelian : 100 Transaksi </h4>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<div class="note note-success">
+							<h4>Margin Keuntungan : <?= rupiah(1000000) ?> </h4>
+						</div>
+					</div>
+
+					<div class="col-md-12 col-sm-12">
+						<script src="https://code.highcharts.com/highcharts.js"></script>
+						<script src="https://code.highcharts.com/modules/data.js"></script>
+						<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+						<script src="https://code.highcharts.com/modules/exporting.js"></script>
+						<script src="https://code.highcharts.com/modules/export-data.js"></script>
+						<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+						<figure class="highcharts-figure">
+							<br>
+							<div id="container"></div>
+						</figure>
+					</div>
+				</div>
+			</div>
+			<!-- end panel -->
+		</div>
+		<!-- end col-6 -->
+	</div>
 </div>
+
+<script>
+	// Create the chart
+	Highcharts.chart('container', {
+		chart: {
+			type: 'column'
+		},
+		title: {
+			align: 'center',
+			text: 'Top 7 Novel Terlaris'
+		},
+		accessibility: {
+			announceNewData: {
+				enabled: true
+			}
+		},
+		xAxis: {
+			type: 'category'
+		},
+		yAxis: {
+			title: {
+				text: 'Jumlah Terbeli'
+			}
+
+		},
+		legend: {
+			enabled: false
+		},
+		plotOptions: {
+			series: {
+				borderWidth: 0,
+				dataLabels: {
+					enabled: true,
+					format: '{point.y:.1f} Terbeli'
+				}
+			}
+		},
+
+		tooltip: {
+			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f} Terbeli</b><br/>'
+		},
+
+		series: [{
+			name: "Browsers",
+			colorByPoint: true,
+			data: [{
+					name: "Chrome",
+					y: 63.06,
+					drilldown: null
+				},
+				{
+					name: "Safari",
+					y: 19.84,
+					drilldown: null
+				},
+				{
+					name: "Firefox",
+					y: 4.18,
+					drilldown: null
+				},
+				{
+					name: "Edge",
+					y: 4.12,
+					drilldown: null
+				},
+				{
+					name: "Opera",
+					y: 2.33,
+					drilldown: null
+				},
+				{
+					name: "Internet Explorer",
+					y: 0.45,
+					drilldown: null
+				},
+				{
+					name: "Other",
+					y: 1.582,
+					drilldown: null
+				}
+			]
+		}],
+	});
+</script>

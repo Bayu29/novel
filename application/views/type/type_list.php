@@ -46,7 +46,7 @@
 															<?php
 															echo anchor(site_url('type/update/' . encrypt_url($type->type_id)), '<i class="fa fa-pencil" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
 															echo '  ';
-															echo anchor(site_url('type/delete/' . encrypt_url($type->type_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+															echo anchor(site_url('type/delete/' . encrypt_url($type->type_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 															?>
 														</td>
 													</tr>

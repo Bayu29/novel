@@ -25,25 +25,23 @@
 				</div>
 				<div class="panel-body">
 
-					<form action="<?= base_url() ?>novel_chapter/update_action/<?= encrypt_url($novel_chapter->id) ?>" method="post" enctype="multipart/form-data">
+					<form action="<?= base_url() ?>novel_chapter/update_action/<?= encrypt_url($novel_chapter->novel_chapter_id) ?>" method="post" enctype="multipart/form-data">
 						<thead>
 							<table id="data-table-default" class="table  table-bordered table-hover table-td-valign-middle">
 								<tr>
-									<td>Nama Chapter <?php echo form_error('nama_chapter') ?></td>
+									<td  style="width: 15%;">Nama Chapter <?php echo form_error('nama_chapter') ?></td>
 									<td><input type="text" class="form-control" name="nama_chapter" id="nama_chapter" placeholder="Nama Chapter" value="<?= $novel_chapter->nama_chapter ?>" /></td>
 								</tr>
 								
 								<tr>
 									<td>Isi Chapter <?php echo form_error('isi_chapter') ?></td>
 									<td>
-										<textarea id="editor" name="isi_chapter" class="form-control isi_chapter_editor">
-										<?php echo $novel_chapter->isi_chapter?>
-										</textarea>
+										<textarea id="editor" name="isi_chapter" class="form-control isi_chapter_editor"><?php echo $novel_chapter->isi_chapter?></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td>Harga <?php echo form_error('harga') ?></td>
-									<td><input type="text" class="form-control" name="harga" id="harga" placeholder="Harga" value="<?= $novel_chapter->harga ?>"/></td>
+									<td><input type="number" class="form-control" name="harga" id="harga" placeholder="Harga" value="<?= $novel_chapter->harga ?>"/></td>
 								</tr>
 								<tr>
 									<td></td>

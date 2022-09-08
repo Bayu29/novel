@@ -29,20 +29,19 @@
 						<thead>
 							<table id="data-table-default" class="table  table-bordered table-hover table-td-valign-middle">
 								<tr>
-									<td>Nama Chapter <?php echo form_error('nama_chapter') ?></td>
+									<td style="width: 15%;">Nama Chapter <?php echo form_error('nama_chapter') ?></td>
 									<td><input type="text" class="form-control" name="nama_chapter" id="nama_chapter" placeholder="Nama Chapter" value="" /></td>
 								</tr>
 								
 								<tr>
 									<td>Isi Chapter <?php echo form_error('isi_chapter') ?></td>
 									<td>
-										<textarea id="editor" name="isi_chapter" class="form-control isi_chapter_editor">
-										</textarea>
+										<textarea id="editor" name="isi_chapter" class="form-control isi_chapter_editor"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td>Harga <?php echo form_error('harga') ?></td>
-									<td><input type="text" class="form-control" name="harga" id="harga" placeholder="Harga" value=""/></td>
+									<td><input type="number" class="form-control" name="harga" id="harga" placeholder="Harga" value=""/></td>
 								</tr>
 								<tr>
 									<td></td>

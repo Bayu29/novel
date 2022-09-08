@@ -7,7 +7,7 @@ if (!defined('BASEPATH')) {
 class Novel_chapter_model extends CI_Model
 {
     public $table = 'novel_chapter';
-    public $id = 'id';
+    public $id = 'novel_chapter_id';
     public $order = 'DESC';
 
     public function __construct()

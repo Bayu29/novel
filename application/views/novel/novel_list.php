@@ -39,7 +39,7 @@
 													<th>Tgl Released</th>
 													<th>Total Chapter</th>
 													<th>Author</th>
-													<th>Sinopsis</th>
+													<!-- <th>Sinopsis</th> -->
 													<th>Rating</th>
 													<th>Type</th>
 													<th>Update On</th>
@@ -76,7 +76,7 @@
 														<td><?php echo $novel->tgl_released ?></td>
 														<td><?php echo $novel->total_chapter ?> Chapter</td>
 														<td><?php echo $novel->author ?></td>
-														<td><?php echo substr($novel->sinopsis,0,100) ?> ....</td>
+														<!-- <td><?php echo substr($novel->sinopsis,0,100) ?> ....</td> -->
 														<td><i style="color: orange;" class="fa fa-star" aria-hidden="true"></i> <?php echo $novel->rating ?></td>
 														<td><?php echo $novel->nama_type ?></td>
 														<td><?php echo $novel->update_on ?></td>
@@ -86,7 +86,7 @@
 															<?php
 															echo anchor(site_url('novel/update/' . encrypt_url($novel->novel_id)), '<i class="fa fa-pencil" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
 															echo '  ';
-															echo anchor(site_url('novel/delete/' . encrypt_url($novel->novel_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+															echo anchor(site_url('novel/delete/' . encrypt_url($novel->novel_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 															?>
 														</td>
 													</tr>
