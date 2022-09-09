@@ -26,7 +26,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/responsive.css">
-
+	<link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/custom.css">
 </head>
 
 
