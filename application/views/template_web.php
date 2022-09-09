@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>NFTOcean - NFT Marketplace Website Template + Light & Dark</title>
+    <title><?= ucfirst($this->fungsi->sett_website()->nama_website) ?> - <?= $this->fungsi->sett_website()->deskripsi ?></title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -61,8 +61,8 @@
                 <div class="row justify-content-between">
                     <div class="col-xl-4 col-lg-4 col-2 align-items-center d-flex">
                         <div class="nav-logo logo-switch d-flex justify-content-between align-items-center">
-                            <a class="logo-dark" href="index.html"><img src="<?= base_url() ?>template/web/assets/images/logo.png" alt="logo"></a>
-                            <a class="logo-light" href="index.html"><img src="<?= base_url() ?>template/web/assets/images/logo-v2.png" alt="logo"></a>
+                            <a class="logo-dark" href="<?= base_url() ?>"><img src="<?php echo base_url(); ?>template/assets/img/website/<?= $this->fungsi->sett_website()->logo ?>" alt="logo"></a>
+                            <a class="logo-light" href="<?= base_url() ?>"><img src="<?php echo base_url(); ?>template/assets/img/website/<?= $this->fungsi->sett_website()->logo ?>" alt="logo"></a>
                         </div>
                         <div class="nav-search-style-one w-100 d-xl-block d-none">
                             <span class="search__icon">
@@ -141,7 +141,7 @@
         <div class="container">
             <div class="row footer__copyright">
                 <div class="col-lg-12">
-                    <p class="text-center">Copyright©2022. Created with love by <a href="#">bacanovelbl.xyz</a></p>
+                    <p class="text-center">Copyright©2022. Created with love by <a href="<?= base_url() ?>">bacanovelbl.xyz</a></p>
                 </div>
             </div>
         </div>
