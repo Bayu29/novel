@@ -72,6 +72,12 @@
 					</button>
 				</div>
 				<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+						<a href="<?= base_url() ?>" target="_blank">
+						<img src="<?= base_url() ?>template/assets/web.png" alt="Halaman Website" height="25px">
+							Halaman Website
+						</a>
+					</li>
 					<li class="dropdown navbar-user">
 						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
 							<img src="<?= base_url() ?>template/assets/img/user/admins.png" alt="" />

@@ -8,7 +8,7 @@ class Pembelian_chapter extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        // is_login();
+        is_login();
         $this->load->model('Pembelian_chapter_model');
         $this->load->library('form_validation');
     }
