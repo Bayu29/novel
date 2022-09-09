@@ -66,4 +66,11 @@ class Novel_chapter_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+
+	public function get_by_novel_id($id)
+	{
+		$this->db->where('novel_id', $id);
+		$this->db->order_by($this->id, $this->order);
+		return $this->db->get($this->table)->result();
+	}
 }
