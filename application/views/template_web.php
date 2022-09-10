@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/swiper-bundle.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/bootstrap.min.css">
+	<!-- Toaster JS -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/responsive.css">
@@ -89,9 +91,14 @@
                                 <li><a href="<?= base_url() ?>">Home</a></li>
                                 <li><a href="<?= base_url() ?>web/apk">APK</a></li>
                                 <li><a href="<?= base_url() ?>web/kontak">Kontak</a></li>
+
+								<?php if(!is_login_member()) { ?>
                                 <li><a href="<?= base_url() ?>web/register">Daftar</a></li>
                                 <li><a href="<?= base_url() ?>web/login">Login</a></li>
-                                <!-- <li><a href="contact.html"> Logout</a></li> -->
+								<?php } else {?>
+									<li><a href="<?= base_url() ?>user_profile">Profile</a></li>
+									<li><a href="<?= base_url() ?>auth_member/logout"> Logout</a></li>
+								<?php } ?>
                             </ul>
                         </nav>
                         <div class="nav-actions d-flex align-items-center">
@@ -164,8 +171,30 @@
     <script src="<?= base_url() ?>template/web/assets/js/dropzone.min.js"></script>
     <!-- fancybox -->
     <script src="<?= base_url() ?>template/web/assets/js/jquery.fancybox.min.js"></script>
+	<!--Toaster JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Custom JavaScript -->
     <script async src="<?= base_url() ?>template/web/assets/js/main.js"></script>
+
+	<script>
+		toastr.options = {
+			closeDuration : 400,
+			closeButton :true,
+			progressBar:true,
+			fadeOut: 5,
+			positionClass : "toast-top-right"
+		};
+
+		<?php if($this->session->flashdata('success')){ ?>
+			toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+		<?php }else if($this->session->flashdata('error')){  ?>
+			toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+		<?php }else if($this->session->flashdata('warning')){  ?>
+			toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+		<?php }else if($this->session->flashdata('info')){  ?>
+			toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+		<?php } ?>
+	</script>
 </body>
 
 </html>
