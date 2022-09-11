@@ -6,15 +6,15 @@
                         <div class="reg_form__top">
                             <img src="<?= base_url() ?>template/web/assets/images/shapes/reg-shapes.png" alt="" class="reg-shapes">
                             <img src="<?= base_url() ?>template/web/assets/images/shapes/reg-fig.png" alt="">
-                            <h4>Login To NFTs</h4>
-                            <p>Don't have an account yet? <a href="register.html">Register</a></p>
+                            <h4>Login To <?=ucfirst($this->fungsi->sett_website()->nama_website)?></h4>
+                            <p>Don't have an account yet? <a href="<?= base_url() ?>web/register">Register</a></p>
                         </div>
 
                         <div class="reg__inputs mt-40 flex-column flex-lg-row">
                             <div class="reg__left order-2 order-lg-0">
-                                <form action="#" id="login__form">
+                                <form action="<?= base_url() ?>auth_member/process_login" id="login__form" method="post">
                                     <div class="custom_input_style__two">
-                                        <input type="email" placeholder="Enter your email" id="email">
+                                        <input type="text" placeholder="Enter your Username" name="username" id="username">
 
                                         <label for="email">
                                             <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,7 @@
 
                                     </div>
                                     <div class="custom_input_style__two mt-3">
-                                        <input type="password" placeholder="Password" id="password">
+                                        <input type="password" placeholder="Password" name="password" id="password">
 
                                         <label for="password">
                                             <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,27 +40,15 @@
 
                                     </div>
                                     
-                                    <div class="form__actions d-flex justify-content-between align-content-between">
+                                    <!-- <div class="form__actions d-flex justify-content-between align-content-between">
                                         <div class="check">
                                             <input type="checkbox" id="remember">
                                             <label for="remember">Remember me</label>
                                         </div>
                                         <a href="#" class="forgot-pass">Forgot Password ?</a>
-                                    </div>
-
-                                    <button type="submit" class="submit-v2">Log In</button>
-
+                                    </div> -->
+                                    <button type="submit" name="login" class="submit-v2">Log In</button>
                                 </form>
-                            </div>
-                            <div class="reg-divider d-flex align-items-center order-1 justify-content-center py-lg-0 py-4">
-                                <span>OR</span>
-                            </div>
-                            <div class="reg__right order-0 order-lg-2">
-                                <ul>
-                                    <li><button class="social_reg__btn"> <img src="<?= base_url() ?>template/web/assets/images/icons/google-full.svg" alt=""> Continue with Google</button></li>
-                                    <li><button class="social_reg__btn"> <img src="<?= base_url() ?>template/web/assets/images/icons/fb-full.svg" alt=""> Continue with Facebook</button></li>
-                                    <li><button class="social_reg__btn"> <img src="<?= base_url() ?>template/web/assets/images/icons/twitter-full.svg" alt=""> Continue with Twitter</button></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
