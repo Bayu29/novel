@@ -6,29 +6,27 @@
                         <div class="reg_form__top">
                             <img src="<?= base_url() ?>template/web/assets/images/shapes/reg-shapes.png" alt="" class="reg-shapes">
                             <img src="<?= base_url() ?>template/web/assets/images/shapes/reg-fig.png" alt="">
-                            <h4>Register To NFTs</h4>
-                            <p>Already have an account? <a href="login.html">Login</a></p>
+                            <h4>Register To <?=ucfirst($this->fungsi->sett_website()->nama_website)?></h4>
+                            <p>Already have an account? <a href="<?= base_url() ?>web/login">Login</a></p>
                         </div>
 
                         <div class="reg__inputs mt-40 flex-column flex-lg-row">
                             <div class="reg__left order-2 order-lg-0">
-                                <form action="#" id="login__form">
+                                <form action="<?= base_url() ?>auth_member/register" id="login__form" method="post">
                                     <div class="custom_input_style__two">
-                                        <input type="text" placeholder="Your full name" id="name">
+                                        <input type="text" placeholder="Your full name" name="nama_lengkap" id="name">
 
                                         <label for="name">
                                             <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M7.53696 8.29268C9.82693 8.29268 11.6833 6.4363 11.6833 4.14634C11.6833 1.85638 9.82693 0 7.53696 0C5.247 0 3.39062 1.85638 3.39062 4.14634C3.39062 6.4363 5.247 8.29268 7.53696 8.29268Z" fill="currentColor"></path>
                                                 <path opacity="0.4" d="M7.53807 10.3658C3.38344 10.3658 0 13.1522 0 16.5854C0 16.8176 0.182439 17 0.414634 17H14.6615C14.8937 17 15.0761 16.8176 15.0761 16.5854C15.0761 13.1522 11.6927 10.3658 7.53807 10.3658Z" fill="currentColor"></path>
                                                 <path d="M15.3585 10.5649C14.6121 9.81855 14.0234 10.059 13.5175 10.5649L10.5819 13.5005C10.4658 13.6166 10.358 13.8322 10.3331 13.9898L10.1755 15.1093C10.1175 15.5156 10.3995 15.7976 10.8058 15.7395L11.9253 15.582C12.0828 15.5571 12.3068 15.4493 12.4146 15.3332L15.3502 12.3976C15.8643 11.9 16.1048 11.3112 15.3585 10.5649Z" fill="currentColor"></path>
-                                                </svg>
-                                                
-
+                                            </svg>
                                         </label>
 
                                     </div>
-                                    <div class="custom_input_style__two mt-3">
-                                        <input type="email" placeholder="Enter your email" id="email">
+									<div class="custom_input_style__two mt-3">
+                                        <input type="email" placeholder="Email" name="email" id="email">
 
                                         <label for="email">
                                             <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +38,29 @@
 
                                     </div>
                                     <div class="custom_input_style__two mt-3">
-                                        <input type="password" placeholder="Password" id="password">
+                                        <input type="text" placeholder="Username" name="username" id="username">
+                                        <label for="email">
+                                            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4" d="M12 13.6H4C1.6 13.6 0 12.4 0 9.6V4C0 1.2 1.6 0 4 0H12C14.4 0 16 1.2 16 4V9.6C16 12.4 14.4 13.6 12 13.6Z" fill="currentColor"></path>
+                                                <path d="M8.0006 7.49604C7.3286 7.49604 6.64861 7.28804 6.12861 6.86404L3.6246 4.86404C3.3686 4.65604 3.32061 4.28004 3.52861 4.02404C3.73661 3.76804 4.11261 3.72005 4.36861 3.92805L6.8726 5.92805C7.4806 6.41605 8.5126 6.41605 9.1206 5.92805L11.6246 3.92805C11.8806 3.72005 12.2646 3.76004 12.4646 4.02404C12.6726 4.28004 12.6326 4.66404 12.3686 4.86404L9.8646 6.86404C9.3526 7.28804 8.6726 7.49604 8.0006 7.49604Z" fill="currentColor"></path>
+                                            </svg>
+
+                                        </label>
+                                    </div>
+									<div class="custom_input_style__two mt-3">
+                                        <input type="text" placeholder="Phone" name="no_hp" id="no_hp">
+
+                                        <label for="no_hp">
+                                            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4" d="M12 13.6H4C1.6 13.6 0 12.4 0 9.6V4C0 1.2 1.6 0 4 0H12C14.4 0 16 1.2 16 4V9.6C16 12.4 14.4 13.6 12 13.6Z" fill="currentColor"></path>
+                                                <path d="M8.0006 7.49604C7.3286 7.49604 6.64861 7.28804 6.12861 6.86404L3.6246 4.86404C3.3686 4.65604 3.32061 4.28004 3.52861 4.02404C3.73661 3.76804 4.11261 3.72005 4.36861 3.92805L6.8726 5.92805C7.4806 6.41605 8.5126 6.41605 9.1206 5.92805L11.6246 3.92805C11.8806 3.72005 12.2646 3.76004 12.4646 4.02404C12.6726 4.28004 12.6326 4.66404 12.3686 4.86404L9.8646 6.86404C9.3526 7.28804 8.6726 7.49604 8.0006 7.49604Z" fill="currentColor"></path>
+                                            </svg>
+
+                                        </label>
+
+                                    </div>
+                                    <div class="custom_input_style__two mt-3">
+                                        <input type="password" placeholder="Password" name="password" id="password">
 
                                         <label for="password">
                                             <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,19 +81,9 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="submit-v2">Log In</button>
+                                    <button type="submit" name="register" class="submit-v2">Log In</button>
 
                                 </form>
-                            </div>
-                            <div class="reg-divider d-flex align-items-center order-1 justify-content-center py-lg-0 py-4">
-                                <span>OR</span>
-                            </div>
-                            <div class="reg__right order-0 order-lg-2">
-                                <ul>
-                                    <li><button class="social_reg__btn"> <img src="<?= base_url() ?>template/web/assets/images/icons/google-full.svg" alt=""> Continue with Google</button></li>
-                                    <li><button class="social_reg__btn"> <img src="<?= base_url() ?>template/web/assets/images/icons/fb-full.svg" alt=""> Continue with Facebook</button></li>
-                                    <li><button class="social_reg__btn"> <img src="<?= base_url() ?>template/web/assets/images/icons/twitter-full.svg" alt=""> Continue with Twitter</button></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
