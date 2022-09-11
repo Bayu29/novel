@@ -22,7 +22,7 @@
                                 <h5>Saldo User</h5>
                                 <span>Rp. <?= number_format($user->saldo,0, '.', '.') ?></span> <br>
 
-								 <a type="button" class="submit-v2 mt-20">
+								 <a type="button" data-bs-toggle="modal" href="#exampleModal" role="button" class="submit-v2 mt-20">
 									Deposit
 								</a>
                             </div>
@@ -481,4 +481,49 @@
             </div>
         </div>
     </div>
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-iN0YJC2kMSOPSgYB"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deposit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-deposit" action="<?= base_url() ?>user_profile/deposit" method="post">
+			<div class="form-group">
+				<input type="text" name="nominal" class="form-control" id="nominal" placeholder="Masukkan Nominal">
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?=$this->fungsi->sett_website()->client_key?>"></script>
+
+<script>
+$('#btn-submit').click(function(){
+	var modalToggle = document.getElementById('exampleModal') // relatedTarget
+	myModal.show(modalToggle)
+	snap.show();
+	let nominal = $('#nominal').val();
+	let base_url = <?php echo "'" . site_url('/') . "'" ?>;
+	$.ajax({
+		type:'post',
+		url:`${base_url}user_profile/deposit`,
+		data: {
+			nominal: nominal	
+		},
+		success:function(result){
+			snap.hide();
+			snap.pay(result.token);
+		}
+	});
+});
+</script>

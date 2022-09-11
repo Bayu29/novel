@@ -29,6 +29,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/responsive.css">
 	<link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/custom.css">
+
+	    <!-- jquery latest -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 </head>
 
 
@@ -154,9 +158,7 @@
         </div>
     </div>
 
-    <!-- jquery latest -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
     <!-- latest bootstarp bundle -->
     <script src="<?= base_url() ?>template/web/assets/js/bootstrap.bundle.min.js"></script>
     <!-- swiper bundle -->
