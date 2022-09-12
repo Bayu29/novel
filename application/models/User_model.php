@@ -85,5 +85,61 @@ class User_model extends CI_Model
         return $this->db->insert('history_login', array('user_id' => $user_id, 'info' => $info,'user_agent' =>$user_agent));
     }
 
+	public function getUserByEmail($email)
+	{
+		$data = $this->db->get_where($this->table, ['email' => $email],1)->row();
+		
+		return $data;
+	}
 
+	public function insertToken($user_id)
+	{
+		$token = substr(sha1(rand()), 0, 30);
+        $date = date('Y-m-d H:i:s');
+
+        $string = array(
+            'token' => $token,
+            'user_id' => $user_id,
+            'created_at' => $date
+        );
+        $query = $this->db->insert_string('token', $string);
+        $this->db->query($query);
+        return $token . $user_id;
+	}
+
+	public function isTokenValid($token)
+	{
+		$tkn = substr($token, 0, 30);
+        $uid = substr($token, 30);
+
+        $q = $this->db->get_where('token', array(
+            'token.token' => $tkn,
+            'token.user_id' => $uid
+        ), 1);
+
+        if ($this->db->affected_rows() > 0) {
+            $row = $q->row();
+
+            $created = date('Y-m-d', strtotime($row->created_at));
+            $createdTS = strtotime($created);
+            $today = date('Y-m-d');
+            $todayTS = strtotime($today);
+
+            if ($createdTS != $todayTS) {
+                return false;
+            }
+
+            $user_info = $this->get_by_id($row->user_id);
+            return $user_info;
+        } else {
+            return false;
+		}
+	}
+
+	public function updatePassword($post)
+    {
+        $this->db->where('user_id', $post['user_id']);
+        $this->db->update('user', array('password' => $post['password']));
+        return true;
+    }
 }

@@ -57,6 +57,11 @@ class Web extends CI_Controller {
 		$this->template->load('template_web','web/register');
 	}
 
+	public function forgot_password()
+	{
+		$this->template->load('template_web', 'web/lupa_password');
+	}
+
 	public function apk()
 	{
 		$this->template->load('template_web','web/apk');

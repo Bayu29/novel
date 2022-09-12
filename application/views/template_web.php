@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/bootstrap.min.css">
 	<!-- Toaster JS -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+	<!-- Custom CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/responsive.css">
 	<link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/custom.css">
@@ -175,6 +176,8 @@
     <script src="<?= base_url() ?>template/web/assets/js/jquery.fancybox.min.js"></script>
 	<!--Toaster JS-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<!-- Datatables -->
+	<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- Custom JavaScript -->
     <script async src="<?= base_url() ?>template/web/assets/js/main.js"></script>
 
