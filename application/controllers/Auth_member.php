@@ -11,10 +11,16 @@ class Auth_member extends CI_Controller {
 		$this->load->model('Genre_model');
 		$this->load->model('Novel_chapter_model');
 		$this->load->model('User_model');
+		$this->load->library('form_validation');
     }
 
 	public function process_login()
 	{	
+		$this->login_rules();
+
+		if ($this->form_validation->run() == false) {
+			redirect(site_url('/web/login'));
+		}
 		$post = $this->input->post(null, TRUE);
 		if (isset($post['login'])) {
 			$query = $this->User_model->login($post);
@@ -38,6 +44,11 @@ class Auth_member extends CI_Controller {
 
 	public function register()
 	{
+		$this->register_rules();
+
+		if ($this->form_validation->run() == false) {
+			redirect(site_url('/web/register'));
+		}
 		$post = $this->input->post(null, TRUE);
 
 		if (isset($post['register'])) {
@@ -69,7 +80,7 @@ class Auth_member extends CI_Controller {
 
 					echo "<script>window.location='" . site_url('/') . "'</script>";
 				} catch (\Exception $e) {
-					$this->session->set_flashdata('gagal', 'Gagal Melakukan Registrasi silahkan hubungi admin');
+					$this->session->set_flashdata('error', 'Gagal Melakukan Registrasi silahkan hubungi admin');
 				}
 				
 			}
@@ -82,4 +93,21 @@ class Auth_member extends CI_Controller {
 		$this->session->unset_userdata($params);
 		redirect('auth');
 	} 
+
+	public function login_rules()
+	{
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+	}
+
+	public function register_rules()
+	{
+		$this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required');
+		$this->form_validation->set_rules('username', 'username', 'trim|required');
+		$this->form_validation->set_rules('no_hp', 'no_hp', 'trim|required');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+	}
 }

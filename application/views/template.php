@@ -123,6 +123,7 @@
 					</li>
 					<li><a href="<?= base_url() ?>member"><i class="fa fa-users"></i> <span>Member</span></a></li>
 					<li><a href="<?= base_url() ?>pembelian_chapter"><i class="fa fa-money"></i> <span>Transaksi Pembelian Chap</span></a></li>
+					<li><a href="<?= base_url() ?>deposit"><i class="fa fa-money"></i> <span>Transaksi Deposit</span></a></li>
 					<li><a href="<?= base_url() ?>dashboard"><i class="fa fa-money"></i> <span>Transaksi Topup Saldo</span></a></li>
 					<li><a href="<?= base_url() ?>setting_web/update/Umhxc2ZDeHlpc1JpYWNIUVdzNG1sZz09"><i class="fa fa-globe"></i> <span>Setting Website</span></a></li>
 					<?php if ($this->fungsi->user_login()->level_id == 1) { ?>

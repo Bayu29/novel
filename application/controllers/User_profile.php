@@ -10,6 +10,7 @@ class User_profile extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+		check_login_member();
 		$this->load->model('Novel_model');
 		$this->load->model('Genre_model');
 		$this->load->model('Novel_chapter_model');
@@ -22,9 +23,26 @@ class User_profile extends CI_Controller {
 	{	
 		$user_id = $this->session->userdata('userid');
 		$user = $this->User_model->get_by_id($user_id);
+		
+		/** Deposit */
+		$this->db->where('user_id', $user->user_id);
+		$deposit = $this->db->get('deposit')->result();
+
+		/**
+		 * Mutasi
+		 */
+		$this->db->where('user_id', $user->user_id);
+		$mutasi = $this->db->get('mutasi_saldo')->result();
+
+		/** Pembelian chapter */
+		$this->db->where('member_id', $user->user_id);
+		$pembelian_chapter = $this->db->get('pembelian_chapter')->result();
 
 		$data['user'] = $user;
-		$this->template->load('template_web','web/profile', $data);
+		$data['deposit'] = $deposit;
+		$data['mutasi'] = $mutasi;
+		$data['pembelian_chapter'] = $pembelian_chapter;
+ 		$this->template->load('template_web','web/profile', $data);
 	} 
 
 	public function deposit()
@@ -43,12 +61,14 @@ class User_profile extends CI_Controller {
 		$nominal = $this->input->post('nominal', true);
 
 		$deposit = $this->Deposit_model->insert([
-			'nominal' => $nominal
+			'user_id' => $user->user_id,
+			'nominal' => $nominal,
+			'expired_at' => date('y-m-d H:i:s'),
 		]);
 
 		$deposit_id = $this->db->insert_id();
 
-		$deposit_reference = $this->Deposit_model->generate_reference($deposit_id, 10);
+		$deposit_reference = $this->Deposit_model->generate_reference($deposit_id, 5);
 
 		$update_deposit = $this->Deposit_model->update($deposit_id, [
 			'deposit_reference' => $deposit_reference,
@@ -68,7 +88,7 @@ class User_profile extends CI_Controller {
 
 		$payload = [
 			'transaction_details' => [
-				"order_id" => $deposit_id,
+				"order_id" => $deposit_reference,
 				'gross_amount' => $nominal
 			],
 			'item_detail' => [
@@ -106,11 +126,13 @@ class User_profile extends CI_Controller {
         $errno  = curl_errno($curl);
         curl_close($curl);
 
+		$result = json_decode($result);
+
 		if ($errno) {
 			echo json_encode(['success' => false, 'message' => 'Gagal melakukan deposit']);
 			exit;
 		} else {
-			echo $result;
+			echo json_encode(['token' => $result->token]);
 		}
 	}
 

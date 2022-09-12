@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Deposit_model extends CI_Model
+class Mutasi_saldo_model extends CI_Model
 {
 
-    public $table = 'deposit';
-    public $id = 'deposit_id';
+    public $table = 'mutasi_saldo';
+    public $id = 'mutasi_saldo_id';
     public $order = 'DESC';
 
     function __construct()
@@ -18,7 +18,6 @@ class Deposit_model extends CI_Model
     // get all
     function get_all()
     {
-		$this->db->join('user', 'user.user_id = deposit.user_id');
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -26,16 +25,21 @@ class Deposit_model extends CI_Model
     // get data by id
     function get_by_id($id)
     {
-		$this->db->join('user', 'user.user_id = deposit.user_id');
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('deposit_id', $q);
-	$this->db->or_like('deposit_reference', $q);
-	$this->db->from($this->table);
+        $this->db->like('user_id', $q);
+		$this->db->or_like('nominal', $q);
+		$this->db->or_like('saldo', $q);
+		$this->db->or_like('catatan', $q);
+		$this->db->or_like('type', $q);
+		$this->db->or_like('trx_id', $q);
+		$this->db->or_like('created_at', $q);
+		$this->db->or_like('updated_at', $q);
+		$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
@@ -59,20 +63,5 @@ class Deposit_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
-
-	function generate_reference($id, $length)
-	{
-		return 'DP'.sprintf('%07d',$id).strtoupper($this->generateRandomString($length));
-	}
-
-	function generateRandomString($length = 10) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$charactersLength = strlen($characters);
-		$randomString = '';
-			for ($i = 0; $i < $length; $i++) {
-				$randomString .= $characters[rand(0, $charactersLength - 1)];
-			}
-		return $randomString;
-	}
 
 }
