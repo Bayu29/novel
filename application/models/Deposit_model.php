@@ -60,7 +60,7 @@ class Deposit_model extends CI_Model
 
 	function generate_reference($id, $length)
 	{
-		return 'DP'.sprintf('%04d',$id).$this->generateRandomString($length);
+		return 'DP'.sprintf('%07d',$id).strtoupper($this->generateRandomString($length));
 	}
 
 	function generateRandomString($length = 10) {

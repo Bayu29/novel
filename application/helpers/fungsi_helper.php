@@ -45,6 +45,16 @@ function cekGenre($novel_id,$genre_id)
 	}
 }
 
+function check_login_member()
+{
+	$ci = &get_instance();
+	$user_session = $ci->session->userdata('userid');
+
+	if (!$user_session) {
+		redirect('/web/login');
+	}
+}
+
 function is_login_member(){
 	$ci = &get_instance();
 	$user_session = $ci->session->userdata('userid');
