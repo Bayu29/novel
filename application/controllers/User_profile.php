@@ -88,7 +88,7 @@ class User_profile extends CI_Controller {
 
 		$payload = [
 			'transaction_details' => [
-				"order_id" => $deposit_id,
+				"order_id" => $deposit_reference,
 				'gross_amount' => $nominal
 			],
 			'item_detail' => [
