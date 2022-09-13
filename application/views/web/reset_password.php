@@ -44,6 +44,7 @@
                                         </label>
 
                                     </div>
+									<br>
                                     <button type="submit" name="reset_password" class="submit-v2">Submit</button>
                                 </form>
                             </div>

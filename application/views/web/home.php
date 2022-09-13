@@ -50,15 +50,15 @@
                     <div class="swiper-slide">
                         <div class="auction_card_style__one">
                             <div class="auction_card__thumb">
-                                <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data->novel_id) ?>"><img src="<?= base_url() ?>template/assets/img/novel/<?= $data->thumbnail ?>" alt=""></a>
+                                <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data->novel_id) ?>"><img style="height:180px ;" src="<?= base_url() ?>template/assets/img/novel/<?= $data->thumbnail ?>" alt=""></a>
                             </div>
-                            <div class="nft__info">
+                            <div class="nft__info" style="height: 80px;">
 								<div class="collection_body">
 									<div class="collection">
 										<span><a href="#"><?= $data->author ?></a></span>
 									</div>
 								</div>
-                                <span class="nft__title">
+                                <span class="nft__title" >
                                     <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data->novel_id) ?>"><?= $data->title ?></a>
                                 </span>
                             </div>
@@ -92,10 +92,10 @@
                             aria-labelledby="nft_pill_1">
                             <div class="row">
 								<?php foreach($list_novel as $data_novel): ?>
-                                <div class="col-lg-3 col-sm-6 mt-20">
+                                <div class="col-lg-3 col-sm-6" style="margin-top: 15px;">
                                     <div class="nft_card_style__one">
                                         <div class="nft__thumb">
-                                            <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><img src="<?= base_url() ?>template/assets/img/novel/<?= $data_novel->thumbnail ?>"
+                                            <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><img style="height: 240px;" src="<?= base_url() ?>template/assets/img/novel/<?= $data_novel->thumbnail ?>"
                                                     alt=""></a>
                                         </div>
                                         <div class="nft__info">
@@ -104,7 +104,7 @@
                                                     <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>" class="col_name"><?= $data_novel->title ?></a>
                                                 </div>
                                             </div>
-                                            <h5 class="nft-title"><a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><?= $data_novel->title ?></a></h5>
+                                            <h5 class="nft-title" style="height: 50px;"><a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><?= $data_novel->title ?></a></h5>
                                         </div>
                                         <div class="nft_card__bottom">
                                             <div class="current__bid">
@@ -140,23 +140,6 @@
                     <!-- </div> -->
                 </div>
                 <div class="col-lg-3">
-                    <!-- sidebar collections filter -->
-                    <div class="accordion-item sidebar_collections__filter sidebar__filter ">
-                        <h2 class="accordion-header sidebar__header" id="filterHeadingThree">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#filter-collapseThree" aria-expanded="true"
-                                aria-controls="filter-collapseThree">
-                                Join Our Dicord Server
-                            </button>
-                        </h2>
-                        <div id="filter-collapseThree" class="accordion-collapse collapse show"
-                            aria-labelledby="filterHeadingThree" style="">
-                            <div class="accordion-body sidebar__body">
-                                <img src="<?= base_url() ?>template\web\assets\images\adasa.png">
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- sidebar category filter -->
                     <div class="accordion-item sidebar_collections__filter sidebar__filter ">
                         <h2 class="accordion-header sidebar__header" id="filterHeadingFour">
@@ -206,10 +189,10 @@
                                                     </svg>
 
                                                 </span>
-                                                <ins class="col__name"><?= $data_genre->nama_genre ?></ins>
+                                                <ins class="col__name"> <a href="#"><?= $data_genre->nama_genre ?></a> </ins>
                                             </span>
-                                            <input type="checkbox">
-                                            <span class="check__circle"></span>
+                                            <!-- <input type="checkbox"> -->
+                                            <!-- <span class="check__circle"></span> -->
                                         </label>
                                     </li> 
 									<?php endforeach; ?>

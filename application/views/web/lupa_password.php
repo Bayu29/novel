@@ -1,7 +1,8 @@
-<div class="reg__wrapper bg-body-2 section_gap_y_bottom__1 section_gap_y_top__1">
+<div class="reg__wrapper bg-body-2">
         <div class="container">
+			<br>
             <div class="row justify-content-center">
-                <div class="col-xl-8">
+                <div class="col-md-6">
                     <div class="reg_form__wrap">
                         <div class="reg_form__top">
                             <img src="<?= base_url() ?>template/web/assets/images/shapes/reg-shapes.png" alt="" class="reg-shapes">
@@ -25,6 +26,7 @@
                                         </label>
 
                                     </div>
+									<br>
                                     <button type="submit" name="forgot_password" class="submit-v2">Submit</button>
                                 </form>
                             </div>

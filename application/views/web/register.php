@@ -1,7 +1,8 @@
-<div class="reg__wrapper bg-body-2 section_gap_y_bottom__1 section_gap_y_top__1">
+<div class="reg__wrapper bg-body-2">
         <div class="container">
+			<br>
             <div class="row justify-content-center">
-                <div class="col-xl-8">
+                <div class="col-md-6">
                     <div class="reg_form__wrap">
                         <div class="reg_form__top">
                             <img src="<?= base_url() ?>template/web/assets/images/shapes/reg-shapes.png" alt="" class="reg-shapes">
@@ -72,16 +73,9 @@
                                             </svg>
                                         </label>
 
-                                    </div>
-                                    
-                                    <div class="form__actions d-flex justify-content-between align-content-between">
-                                        <div class="check">
-                                            <input type="checkbox" id="remember">
-                                            <label for="remember">Remember me</label>
-                                        </div>
-                                    </div>
+                                    </div> <br>
 
-                                    <button type="submit" name="register" class="submit-v2">Log In</button>
+                                    <button type="submit" name="register" class="submit-v2">Register</button>
 
                                 </form>
                             </div>
