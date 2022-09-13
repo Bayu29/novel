@@ -20,6 +20,8 @@
 	<link href="<?= base_url() ?>template/assets/css/theme/default.css" rel="stylesheet" id="theme" />
 	<link href="<?= base_url() ?>template/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>template/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+	<!-- Toaster JS -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 	<script src="<?= base_url() ?>template/assets/plugins/pace/pace.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -172,12 +174,23 @@
 	<script src="<?= base_url() ?>template/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 	<script src="<?= base_url() ?>template/assets/js/table-manage-default.demo.min.js"></script>
 	<script src="<?= base_url() ?>template/assets/js/apps.min.js"></script>
-	
+	<!--Toaster JS-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
 			TableManageDefault.init();
 		});
+
+		<?php if($this->session->flashdata('success')){ ?>
+			toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+		<?php }else if($this->session->flashdata('error')){  ?>
+			toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+		<?php }else if($this->session->flashdata('warning')){  ?>
+			toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+		<?php }else if($this->session->flashdata('info')){  ?>
+			toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+		<?php } ?>
 	</script>
 </body>
 

@@ -27,8 +27,8 @@ class Novel_chapter_model extends CI_Model
     // get data by id
     public function get_by_id($id)
     {
-        // $this->db->join('novel', 'novel.novel_id = novel_chapter.novel_id', 'left');
-		// $this->db->join('type', 'type.type_id = novel.type_id', 'left');
+        $this->db->join('novel', 'novel.novel_id = novel_chapter.novel_id', 'left');
+		$this->db->join('type', 'type.type_id = novel.type_id', 'left');
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }

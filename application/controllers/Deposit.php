@@ -45,7 +45,7 @@ class Deposit extends CI_Controller
 			if ($deposit->status == 'pending' && $status == 'success'){
 				$deposit_update = $this->Deposit_model->update($deposit->deposit_id, [
 					'status' => 'success',
-					'catatan' => 'Deposit #'.$deposit->deposit_reference,
+					'note' => 'Deposit #'.$deposit->deposit_reference,
 				]);
 
 				$saldo = intval($user->saldo) + intval($deposit->nominal);
@@ -64,18 +64,24 @@ class Deposit extends CI_Controller
 					]);
 			} 
 
-			if ($status == 'failed') {
+			if (empty($this->input->post('catatan'))) {
+				$note = 'Deposit #'.$deposit->deposit_reference.' GAGAL';
+			} else {
+				$note = $this->input->post('note');
+			}
+
+			if ($status == 'failed' || $status == 'canceled') {
 				$deposit_update = $this->Deposit_model->update($deposit->deposit_id, [
-					'status' => 'failed',
-					'catatan' => 'Deposit #'.$deposit->deposit_id.' gagal',
+					'status' => $status,
+					'note' => $note,
 				]);
 			} elseif ($status == 'refunded') {
 				$deposit_update = $this->Deposit_model->update($deposit->deposit_id, [
 					'status' => 'refunded',
-					'catatan' => $this->input->post('catatan')
+					'note' => $note
 				]);
 			}
-			$this->session->set_flasdata('success', 'Berhasil mengupdate status deposit');
+			$this->session->set_flashdata('success', 'Berhasil mengupdate status deposit');
 
 			redirect(site_url('deposit/detail/'.$id));
 		} catch(\Exception $e) {
