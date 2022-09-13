@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/swiper-bundle.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/bootstrap.min.css">
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="<?= base_url() ?>template\web\assets\fontawesome-free-6.2.0\css\all.min.css">
 	<!-- Toaster JS -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
@@ -52,7 +54,7 @@
                         </div>
                         <form action="#">
                             <div class="d-flex">
-                                <input type="text" placeholder="Search Item, Creators, Collections etc.">
+                                <input type="text" placeholder="Cari Novel">
                                 <button class="submit-v1 ml-2">Search</button>
                             </div>
                         </form>
@@ -68,7 +70,7 @@
                 <div class="row justify-content-between">
                     <div class="col-xl-4 col-lg-4 col-2 align-items-center d-flex">
                         <div class="nav-logo logo-switch d-flex justify-content-between align-items-center">
-                            <a class="logo-dark" href="index.html"><img src="<?= base_url() ?>template/web/assets/images/logo.png" alt="logo"></a>
+                            <a class="logo-dark" href="<?= site_url(); ?>"><img src="<?= base_url() ?>template/web/assets/images/logo.png" alt="logo"></a>
                             <a class="logo-light" href="index.html"><img src="<?= base_url() ?>template/web/assets/images/logo-v2.png" alt="logo"></a>
                         </div>
                         <div class="nav-search-style-one w-100 d-xl-block d-none">
@@ -176,8 +178,12 @@
     <script src="<?= base_url() ?>template/web/assets/js/jquery.fancybox.min.js"></script>
 	<!--Toaster JS-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<!-- FontAwesome -->
+	<script src="<?= base_url() ?>template\web\assets\fontawesome-free-6.2.0\js\all.min.js"></script>
 	<!-- Datatables -->
 	<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<!-- Sweetalert 2 -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom JavaScript -->
     <script async src="<?= base_url() ?>template/web/assets/js/main.js"></script>
 
@@ -199,6 +205,11 @@
 		<?php }else if($this->session->flashdata('info')){  ?>
 			toastr.info("<?php echo $this->session->flashdata('info'); ?>");
 		<?php } ?>
+
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+			return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
 	</script>
 </body>
 

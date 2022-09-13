@@ -95,16 +95,16 @@
                                 <div class="col-lg-3 col-sm-6 mt-20">
                                     <div class="nft_card_style__one">
                                         <div class="nft__thumb">
-                                            <a href="<?= base_url() ?>detail/<?= encrypt_url($data_novel->novel_id) ?>"><img src="<?= base_url() ?>template/assets/img/novel/<?= $data_novel->thumbnail ?>"
+                                            <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><img src="<?= base_url() ?>template/assets/img/novel/<?= $data_novel->thumbnail ?>"
                                                     alt=""></a>
                                         </div>
                                         <div class="nft__info">
                                             <div class="collection_body">
                                                 <div class="collection">
-                                                    <a href="<?= base_url() ?>detail/<?= encrypt_url($data_novel->novel_id) ?>" class="col_name"><?= $data_novel->title ?></a>
+                                                    <a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>" class="col_name"><?= $data_novel->title ?></a>
                                                 </div>
                                             </div>
-                                            <h5 class="nft-title"><a href="<?= base_url() ?>detail/<?= encrypt_url($data_novel->novel_id) ?>"><?= $data_novel->title ?></a></h5>
+                                            <h5 class="nft-title"><a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><?= $data_novel->title ?></a></h5>
                                         </div>
                                         <div class="nft_card__bottom">
                                             <div class="current__bid">

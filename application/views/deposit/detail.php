@@ -18,6 +18,13 @@
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class='row'>
+								<div class='col-md-9'>
+									<div style="padding-bottom: 10px;">
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false"><i class="fa fa-money" style="margin-right:5px;"></i> Ubah Status Deposit</button>
+									</div>
+								</div>
+							</div>
 							<div class="x_panel">
 								<div class="box-body">
 									<div class="box-body" style="overflow-x: scroll; ">
@@ -82,3 +89,47 @@
 					</div>
 				</div>
 			</div>
+
+			 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Ubah Status</h4>
+                            </div>
+                            <div class="modal-body" style="text-align:center;">
+								<form id="formStatus" action="<?= base_url() ?>Deposit/change_status/<?= $deposit->deposit_id ?>" method="post">
+									<div id="body">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-3">
+												<div class="form-group">
+													<label>Status</label>
+													<select class="form-control" name="status" id="status">
+														<option>Pilih Status</option>
+														<option value="success">Dibayar</option>
+														<option value="failed">Gagal</option>
+														<option value="canceled">Dibatalkan</option>
+														<option value="refunded">Refund</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label>Catatan</label>
+													<textarea id="note" class="form-control" name="note" placeholder="Catatan"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+                            </div>
+                            <div class="modal-footer" style="text-align:center;">
+                                <button type="button" class="btn btn-primary" id="proses_ubahstatus">Ubah Status</button>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+<script>
+	$('#proses_ubahstatus').click(function(){
+		$('#formStatus').submit();
+	})
+</script>

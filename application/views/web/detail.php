@@ -105,12 +105,34 @@
 							<div class="accordion-body sidebar__body">
 								<?php if (count($novel_chapter) > 0) {?>
 									<?php foreach($novel_chapter as $data_chapter) : ?>
-									<div class="bidder__history">
-										<div class="bidder__disc">
-											<h5><?= $data_chapter->nama_chapter ?></h5>
-											<p><?= date('d M Y H:is', strtotime($data_chapter->created_at)) ?></p>
+									
+									<?php 
+										$user_id = $this->session->userdata('userid');
+										$this->db->where('member_id', $user_id);
+										$check_chapter = $this->db->where('novel_chapter_id',$data_chapter->novel_chapter_id)->get('pembelian_chapter')->row();
+									?>
+
+									<?php if($check_chapter) { ?>
+										<div class="bidder__history">
+											<a href="<?= base_url() ?>web/read/<?= encrypt_url($data_chapter->novel_chapter_id)?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Baca chapter">
+												<div class="bidder__disc">
+													<h5><?= $data_chapter->nama_chapter ?></h5>
+													<p><?= date('d M Y H:i:s', strtotime($data_chapter->created_at)) ?></p>
+												</div>
+											</a>
 										</div>
-									</div>
+									<?php } else {?>
+										<div class="bidder__history locked-chapter">
+											<a class="locked-chapter-link" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Unlock chapter" disabled>
+												<div class="bidder__disc mr-3">
+													<h5><?= $data_chapter->nama_chapter ?></h5>
+													<p><?= date('d M Y H:i:s', strtotime($data_chapter->created_at)) ?></p>
+												</div>
+												<button type="button" onclick="unlock('<?= $data_chapter->novel_chapter_id ?>', '<?= $data_chapter->nama_chapter ?>')"  class="btn btn-secondary ml-3"><i class="fa-solid fa-unlock"></i></button>
+											</a>
+										</div>
+									<?php } ?>
+									
 									<?php endforeach; ?>
 								<?php  } else { ?>
 									<div class="bidder__history">
@@ -128,3 +150,67 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function unlock(id, chapter_name)
+	{	
+		let payload = {
+			chapter_id : id
+		}
+		let base_url = <?php echo "'" . site_url('/') . "'" ?>;
+		let url = base_url+'web/unlock_chapter/'+id;
+		Swal.fire({
+			title:"<h5 style='color:black'>Apakah anda yakin?</h5>",
+			color: '#000',
+			text:`Membeli chapter ${chapter_name}`,
+			type:"warning",
+			customClass: 'text-warp',
+			confirmButtonColor:"#0bd915",
+			showCancelButton:true,
+			confirmButtonText:"Beli",
+			showLoaderOnConfirm:true,
+			preConfirm:login=>{
+				return $.ajax({
+					type:"post",
+					data: payload,
+					url:url,
+				}).then(response =>{
+					if (response.success) {
+						Swal.fire({
+							toast: true,
+							title:'Success',
+							text:`Berhasil melakukan pembelian chapter.`,
+							type:"success",
+							animation: true,
+							timer: 4000,
+							timerProgressBar: true,
+						}).then(res=> {
+							window.location.reload()
+						})
+					} else {
+						Swal.fire({
+							toast: true,
+							title:'Error!',
+							text:`Gagal melakukan pembelian chapter.`,
+							type:"error",
+							animation: true,
+							timer: 4000,
+							timerProgressBar: true,
+						});
+					}
+				})
+			}
+        }).then(result => {
+            if(result.value){
+                Swal.fire({
+                    toast: true,
+                    title:"Success",
+                    text:"Berhasil melakukan pembelian chapter.",
+                    type:'success'
+                }).then(res => {
+					window.location.reload();
+				})
+            }
+        })
+	}
+</script>
