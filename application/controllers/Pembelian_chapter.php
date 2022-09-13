@@ -136,14 +136,14 @@ class Pembelian_chapter extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('kode_pembelian', 'kode pembelian', 'trim|required');
-	$this->form_validation->set_rules('member_id', 'member id', 'trim|required');
-	$this->form_validation->set_rules('novel_chapter_id', 'novel chapter id', 'trim|required');
-	$this->form_validation->set_rules('harga', 'harga', 'trim|required');
-	$this->form_validation->set_rules('tanggal_pembelian', 'tanggal pembelian', 'trim|required');
+		$this->form_validation->set_rules('kode_pembelian', 'kode pembelian', 'trim|required');
+		$this->form_validation->set_rules('member_id', 'member id', 'trim|required');
+		$this->form_validation->set_rules('novel_chapter_id', 'novel chapter id', 'trim|required');
+		$this->form_validation->set_rules('harga', 'harga', 'trim|required');
+		$this->form_validation->set_rules('tanggal_pembelian', 'tanggal pembelian', 'trim|required');
 
-	$this->form_validation->set_rules('pembelian_chapter_id', 'pembelian_chapter_id', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+		$this->form_validation->set_rules('pembelian_chapter_id', 'pembelian_chapter_id', 'trim');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
 }
