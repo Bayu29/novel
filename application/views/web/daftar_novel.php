@@ -148,8 +148,8 @@
 								<li class="single__col">
 								<label>
 									<span class="col__right">
-										<img src="assets/images/nft/avater-sm-one.png" alt="" class="col__thumb"> 
-										<ins class="col__name">Tsuki Genesis <img src="assets/images/icons/tick-blue.svg" alt=""></ins>
+										<img src="<?= base_url() ?>assets/images/nft/avater-sm-one.png" alt="" class="col__thumb"> 
+										<ins class="col__name">Tsuki Genesis <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></ins>
 									</span>
 									<input type="checkbox">
 									<span class="check__circle"></span>
@@ -158,7 +158,7 @@
 								<li class="single__col">
 								<label>
 									<span class="col__right">
-										<img src="assets/images/nft/avater-sm-two.png" alt="" class="col__thumb"> 
+										<img src="<? base_url() ?>assets/images/nft/avater-sm-two.png" alt="" class="col__thumb"> 
 										<ins class="col__name">The Other Side </ins>
 									</span>
 									<input type="checkbox">
@@ -168,8 +168,8 @@
 								<li class="single__col">
 								<label>
 									<span class="col__right">
-										<img src="assets/images/nft/avater-sm-three.png" alt="" class="col__thumb"> 
-										<ins class="col__name">Pizza Game Chef <img src="assets/images/icons/tick-blue.svg" alt=""></ins>
+										<img src="<?= base_url() ?>ssets/images/nft/avater-sm-three.png" alt="" class="col__thumb"> 
+										<ins class="col__name">Pizza Game Chef <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></ins>
 									</span>
 									<input type="checkbox">
 									<span class="check__circle"></span>
@@ -178,7 +178,7 @@
 								<li class="single__col">
 								<label>
 									<span class="col__right">
-										<img src="assets/images/nft/avater-sm-two.png" alt="" class="col__thumb"> 
+										<img src="<?= base_url() ?>assets/images/nft/avater-sm-two.png" alt="" class="col__thumb"> 
 										<ins class="col__name">Ida_Chapman </ins>
 									</span>
 									<input type="checkbox">
@@ -306,7 +306,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-nine.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-nine.png" alt="">
 								</a>
 
 								<a href="nft-details.html" class="bid__btn">
@@ -318,11 +318,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Desmond Eagle <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Desmond Eagle <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Abstract Painting</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -346,7 +346,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-six.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-six.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -357,11 +357,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Eric Widget <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Eric Widget <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Sound of Silence</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.76 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.76 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -386,7 +386,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-seven.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-seven.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -397,11 +397,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Tsuki Genesis <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Tsuki Genesis <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Geometrical Figure</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.46 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.46 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -425,7 +425,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-eight.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-eight.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -436,11 +436,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Norman Gordon <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Norman Gordon <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Running Puppets</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -465,7 +465,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-one.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-one.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -476,11 +476,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Beeing Hope <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Beeing Hope <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Geometrical Figure</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -505,7 +505,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-two.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-two.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -516,11 +516,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Weir Doe <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Weir Doe <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Running Puppets</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.76 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.76 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -544,7 +544,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-three.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-three.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -555,11 +555,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Tsuki Genesis <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Tsuki Genesis <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Abstract Painting</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.46 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.46 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -583,7 +583,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-four.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-four.png" alt="">
 								</a>
 								<a href="nft-details.html" class="bid__btn">
 									<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -594,11 +594,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Barry tone <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Barry tone <img src="<?= base_url()?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Running Puppets</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">
@@ -622,7 +622,7 @@
 						<div class="auction_card_style__two">
 							<div class="auction_card__thumb">
 								<a href="nft-details.html">
-									<img src="assets/images/nft/auction-five.png" alt="">
+									<img src="<?= base_url() ?>assets/images/nft/auction-five.png" alt="">
 								</a>
 
 								<a href="nft-details.html" class="bid__btn">
@@ -634,11 +634,11 @@
 								</a>
 							</div>
 							<div class="nft__disc">
-								<a href="author-profile.html" class="nft__creator">Desmond Eagle <img src="assets/images/icons/tick-blue.svg" alt=""></a>
+								<a href="author-profile.html" class="nft__creator">Desmond Eagle <img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 	
 								<div class="nft__title">
 									<h5><a href="nft-details.html">Abstract Painting</a></h5>
-									<ins class="current-price"><img src="assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
+									<ins class="current-price"><img src="<?= base_url() ?>assets/images/icons/tri-flash-blue.svg" alt=""> <span>0.01 ETH</span></ins>
 								</div>
 	
 								<div class="nft__bottom">

@@ -163,4 +163,8 @@ class Web extends CI_Controller {
 		$this->template->load('template_web','web/kontak');
 	}
 
+	public function daftar_novel()
+	{
+		$this->template->load('template_web', 'web/daftar_novel');
+	}
 }

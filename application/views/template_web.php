@@ -90,7 +90,7 @@
 							</div>
 							<ul>
 								<li><a href="<?= base_url() ?>">Home</a></li>
-								<li><a href="">Daftar Novel</a></li>
+								<li><a href="<?= base_url() ?>web/daftar_novel">Daftar Novel</a></li>
 								<li><a href="<?= base_url() ?>web/apk">APK</a></li>
 								<li><a href="<?= base_url() ?>web/kontak">Kontak</a></li>
 								<?php $user = is_login_member(); ?>
