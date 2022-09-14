@@ -14,13 +14,13 @@
                 <div class="col-lg-3">
                     <div class="author_detail__info">
                     
-                        <h3 class="author__name"><?= $user->nama_lengkap ?></h3>
+                        <h3 class="author__name"><?= $user->nama ?></h3>
                         <h6 class="author__username"><?= $user->email ?></h6>
 
                         <div class="followers__wrap">
                             <div class="single__flw">
                                 <h5>Saldo User</h5>
-                                <span>Rp. <?= number_format($user->saldo,0, '.', '.') ?></span> <br>
+                                <span>Rp. <?= number_format($user->saldo_akun,0, '.', '.') ?></span> <br>
 
 								 <a type="button" data-bs-toggle="modal" href="#exampleModal" role="button" class="submit-v2 mt-20">
 									Deposit
@@ -114,13 +114,13 @@
 											<td>Rp. <?= number_format($data_mutasi->nominal,0, '.', '.') ?></td>
 											<td>Rp. <?= number_format($data_mutasi->saldo,0, '.', '.') ?></td>
 											<td>
-												<?php if ($data->type == 'credit') { ?>
+												<?php if ($data_mutasi->type == 'credit') { ?>
 													<label class="label label-success">Credit</label> 
-												<?php } elseif ($data->type == 'debit') {?>
+												<?php } elseif ($data_mutasi->type == 'debit') {?>
 													<label class="label label-danger">Debit</label>
 												<?php }?>
 											</td>
-											<td><?= $data_mutasi->note ?></td>
+											<td><?= $data_mutasi->catatan ?></td>
 											<td><?= date('d M Y H:i:s', strtotime($data_mutasi->created_at)) ?></td>	
 										</tr>
 										<?php endforeach; ?>
@@ -146,7 +146,7 @@
 										<?php foreach($pembelian_chapter as $data_pembelian) : ?>
 										<tr>
 											<th scope="row"><?= $no++ ?></th>
-											<td></td>
+											<td><?= $data_pembelian->kode_pembelian ?></td>
 											<td></td>
 											<td></td>
 											<td>Rp. <?= number_format($data_pembelian->harga, 0, '.', '.') ?></td>

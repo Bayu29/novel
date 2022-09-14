@@ -74,8 +74,8 @@
 									<?php foreach ($novel_chapter as $data_chapter) : ?>
 
 										<?php
-										$user_id = $this->session->userdata('userid');
-										$this->db->where('member_id', $user_id);
+										$user = $this->session->userdata('user');
+										$this->db->where('member_id', $user->user_id);
 										$check_chapter = $this->db->where('novel_chapter_id', $data_chapter->novel_chapter_id)->get('pembelian_chapter')->row();
 										?>
 
@@ -141,7 +141,8 @@
 					data: payload,
 					url: url,
 				}).then(response => {
-					if (response.success) {
+					let result = JSON.parse(response);
+					if (result.success) {
 						Swal.fire({
 							toast: true,
 							title: 'Success',
@@ -150,31 +151,18 @@
 							animation: true,
 							timer: 4000,
 							timerProgressBar: true,
-						}).then(res => {
-							window.location.reload()
 						})
 					} else {
 						Swal.fire({
 							toast: true,
 							title: 'Error!',
-							text: `Gagal melakukan pembelian chapter.`,
+							text: `Gagal melakukan pembelian chapter. ${result.message}`,
 							type: "error",
 							animation: true,
 							timer: 4000,
 							timerProgressBar: true,
 						});
 					}
-				})
-			}
-		}).then(result => {
-			if (result.value) {
-				Swal.fire({
-					toast: true,
-					title: "Success",
-					text: "Berhasil melakukan pembelian chapter.",
-					type: 'success'
-				}).then(res => {
-					window.location.reload();
 				})
 			}
 		})

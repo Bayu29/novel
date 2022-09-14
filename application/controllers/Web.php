@@ -13,6 +13,7 @@ class Web extends CI_Controller {
 		$this->load->model('Novel_chapter_model');
 		$this->load->model('Pembelian_chapter_model');
 		$this->load->model('Mutasi_saldo_model');
+		$this->load->model('Member_model');
     }
 
 	public function index()
@@ -55,12 +56,18 @@ class Web extends CI_Controller {
 		$chapter_id = $this->input->post('chapter_id', true);
 		$chapter = $this->Novel_chapter_model->get_by_id($chapter_id);
 
-		$user_id = $this->session->userdata('userid');
+		$user = $this->session->userdata('user');
 
-		$user = $this->User_model->get_by_id($user_id);
+		if (!$user) {
+			echo json_encode(['success' => false, 'message' => 'Harap login untuk membeli chapter ini']);
+			exit;
+		}
+
+		$user = $this->Member_model->get_by_id($user->member_id);
 		
 		if (!$user) {
 			echo json_encode(['success' => false, 'message' => 'Gagal membeli chapter']);
+			exit;
 		}
 
 		if (intval($user->saldo) < $chapter->harga) {
@@ -70,7 +77,7 @@ class Web extends CI_Controller {
 
 		try {
 			$this->Pembelian_chapter_model->insert([
-				'member_id' => $user->user_id,
+				'member_id' => $user->member_id,
 				'novel_chapter_id' => $chapter->novel_chapter_id,
 				'harga' => $chapter->harga,
 				'tanggal_pembelian' => date('Y-m-d')
@@ -84,14 +91,14 @@ class Web extends CI_Controller {
 				'kode_pembelian' => $pembelian_chapter_reference,
 			]);
 
-			$saldo = intval($user->saldo) - intval($chapter->harga);
+			$saldo = intval($user->saldo_akun) - intval($chapter->harga);
 
-			$this->User_model->update($user_id, [
+			$this->Member_model->update($user->member_id, [
 				'saldo' => $saldo
 			]);
 
 			$this->Mutasi_saldo_model->insert([
-				'user_id' => $user->user_id,
+				'user_id' => $user->member_id,
 				'type' => 'debit',
 				'nominal' => $chapter->harga,
 				'saldo' => $saldo,
@@ -108,6 +115,21 @@ class Web extends CI_Controller {
 
 	public function read($id) 
 	{
+		$is_login = is_login_member();
+
+		if (!$is_login) {
+			$this->session->set_flashdata('error', 'Silahkan login untuk membaca chapter ini');
+			redirect(site_url('/web/detail/'.encrypt_url($id)));
+		}
+
+		$user = $this->session->userdata('user');
+		$check = $this->db->get_where('pembelian_chapter', ['member_id' => $user->member_id, 'novel_chapter_id' => decrypt_url($id)])->row();
+
+		if (!$check) {
+			$this->session->set_flasdata('error', 'Untuk membaca chapter ini silahkan beli chapter ini terlebih dahulu');
+			redirect(site_url('/web/detail/'.encrypt_url($id)));
+		}
+
 		$novel_chapter = $this->Novel_chapter_model->get_by_id(decrypt_url($id));
 
 		$data['novel_chapter'] = $novel_chapter;

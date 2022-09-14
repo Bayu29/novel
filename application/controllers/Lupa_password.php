@@ -9,6 +9,7 @@ class Lupa_password extends CI_Controller
     {
         parent::__construct();
 		$this->load->model('User_model');
+		$this->load->model('Member_model');
 		$this->load->model('Setting_web_model');
         $this->load->library('form_validation');
 		$this->load->library('email');
@@ -25,7 +26,7 @@ class Lupa_password extends CI_Controller
 			$setting = $this->Setting_web_model->get_by_id(1);
             $email = $this->input->post('email');
             $clean = $this->security->xss_clean($email);
-            $userInfo = $this->User_model->getUserByEmail($clean);
+            $userInfo = $this->Member_model->getUserByEmail($clean);
 
             if (!$userInfo) {
                 $this->session->set_flashdata('error', 'email address salah, silakan coba lagi.');
@@ -34,7 +35,7 @@ class Lupa_password extends CI_Controller
 
             //build token   
 
-            $token = $this->User_model->insertToken($userInfo->user_id);
+            $token = $this->Member_model->insertToken($userInfo->member_id);
             $qstring = $this->base64url_encode($token);
 
 			$config = array();
@@ -81,7 +82,7 @@ class Lupa_password extends CI_Controller
         $token = $this->base64url_decode($this->uri->segment(4));
         $cleanToken = $this->security->xss_clean($token);
 
-        $user_info = $this->User_model->isTokenValid($cleanToken); //either false or array();          
+        $user_info = $this->Member_model->isTokenValid($cleanToken); //either false or array();          
 
         if (!$user_info) {
             $this->session->set_flashdata('sukses', 'Token tidak valid atau kadaluarsa');
@@ -90,7 +91,7 @@ class Lupa_password extends CI_Controller
 
         $data = array(
             'title' => 'Reset Password',
-            'nama' => $user_info->nama_lengkap,
+            'nama' => $user_info->nama,
             'email' => $user_info->email,
             'token' => $this->base64url_encode($token)
         );
@@ -117,7 +118,7 @@ class Lupa_password extends CI_Controller
 
 			$cleanToken = $this->security->xss_clean($token);
 
-        	$user_info = $this->User_model->isTokenValid($cleanToken);
+        	$user_info = $this->Member_model->isTokenValid($cleanToken);
 			
             $post = $this->input->post(NULL, TRUE);
             $cleanPost = $this->security->xss_clean($post);
@@ -129,7 +130,7 @@ class Lupa_password extends CI_Controller
 
             unset($cleanPost['passconf']);
             
-			$update = $this->User_model->updatePassword($cleanPost);
+			$update = $this->Member_model->updatePassword($cleanPost);
 
 			if (!$update) {
                 $this->session->set_flashdata('error', 'Update password gagal.');

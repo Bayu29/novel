@@ -9,6 +9,7 @@ class MidtransCallback extends CI_Controller
     {
         parent::__construct();
 		$this->load->model('User_model');
+		$this->load->model('Member_model');
 		$this->load->model('Setting_web_model');
 		$this->load->model('Mutasi_saldo_model');
 		$this->load->model('Deposit_model');
@@ -88,17 +89,17 @@ class MidtransCallback extends CI_Controller
 
 				$this->Deposit_model->update($deposit->deposit_id, $payload_data);
 
-				$user = $this->User_model->get_by_id($deposit->user_id);
+				$user = $this->Member_model->get_by_id($deposit->user_id);
 				
 				if ($status == 'success') {
-					$saldo = intval($user->saldo) + intval($grossAmount);
+					$saldo = intval($user->saldo_akun) + intval($grossAmount);
 
-					$this->User_model->update($user->user_id, [
+					$this->Member_model->update($user->user_id, [
 						'saldo' => $saldo,
 					]);
 
 					$this->Mutasi_saldo_model->insert([
-						'user_id' => $user->user_id,
+						'user_id' => $user->member_id,
 						'nominal' => $grossAmount,
 						'saldo' => $saldo,
 						'catatan' => 'Penambahan saldo dari deposit #'.$deposit->id,

@@ -14,6 +14,7 @@ class Deposit extends CI_Controller
 		$this->load->model('User_model');
 		$this->load->model('Mutasi_saldo_model');
         $this->load->library('form_validation');
+		$this->load->model('Member_model');
     }
 
     public function index()
@@ -37,7 +38,7 @@ class Deposit extends CI_Controller
 	public function change_status($id)
 	{
 		$deposit = $this->Deposit_model->get_by_id($id);
-		$user = $this->User_model->get_by_id($deposit->user_id);
+		$user = $this->Member_model->get_by_id($deposit->user_id);
 
 		$status = $this->input->post('status', true);
 
@@ -48,14 +49,14 @@ class Deposit extends CI_Controller
 					'note' => 'Deposit #'.$deposit->deposit_reference,
 				]);
 
-				$saldo = intval($user->saldo) + intval($deposit->nominal);
+				$saldo = intval($user->saldo_akun) + intval($deposit->nominal);
 
-				$user_update = $this->User_model->update($deposit->user_id, [
+				$user_update = $this->Member_model->update($deposit->user_id, [
 					'saldo' => $saldo,
 				]);
 
 				$mutasi = $this->Mutasi_saldo_model->insert([
-						'user_id' => $user->user_id,
+						'user_id' => $user->member_id,
 						'nominal' => $deposit->nominal,
 						'saldo' => $saldo,
 						'catatan' => 'Penambahan saldo dari deposit #'.$deposit->deposit_id,
