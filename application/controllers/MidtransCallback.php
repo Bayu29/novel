@@ -26,7 +26,7 @@ class MidtransCallback extends CI_Controller
 		$orderId = $data->order_id;
 		$statusCode = $data->status_code;
 		$grossAmount = $data->gross_amount;
-		$serverKey = $setting->server_key_midtrans;
+		$serverKey = $setting->midtrans_server_key;
 		$input = $orderId.$statusCode.$grossAmount.$serverKey;
 		$signature = openssl_digest($input, 'sha512');
 		

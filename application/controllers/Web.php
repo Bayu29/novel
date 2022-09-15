@@ -165,6 +165,46 @@ class Web extends CI_Controller {
 
 	public function daftar_novel()
 	{
-		$this->template->load('template_web', 'web/daftar_novel');
+		$search = $this->input->get('search') ? $this->input->get('search') : null;
+		$status = $this->input->get('status') ? $this->input->get('status') : null;
+		$genre = $this->input->get('genre') ? $this->input->get('genre') : null;
+		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
+		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
+
+		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
+		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
+		
+		if (!empty($status)) {
+			$this->db->where('novel.status', ucwords($status));
+		}
+
+		if (!empty($search)) {
+			$this->db->like('novel.title', $search, 'both');
+		}
+
+		if (!empty($genre)) {
+			$this->db->where_in('novel_genre.genre_id', $genre);
+		}
+
+		if (!empty($from_price) && !empty($to_price)) {
+			$this->db->where('novel_chapter.harga >=', $from_price);
+			$this->db->where('novel_chapter.harga <=', $to_price);
+		}
+
+		$this->db->group_by('novel.novel_id');
+		$this->db->order_by('novel.novel_id', 'desc');
+		$this->db->limit(10);
+		$novels = $this->db->get('novel')->result();
+		
+		$genre = $this->Genre_model->get_all();
+
+		$data['search'] = $search;
+		$data['status'] = $status;
+		$data['genre'] = $genre;
+		$data['from_price'] = $from_price;
+		$data['to_price'] = $to_price;
+		$data['novels'] = $novels;
+		$data['genres'] = $genre;
+		$this->template->load('template_web', 'web/daftar_novel', $data);
 	}
 }

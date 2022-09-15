@@ -186,7 +186,7 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?=$this->fungsi->sett_website()->client_key_midtrans?>"></script>
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?=$this->fungsi->sett_website()->midtrans_client_key?>"></script>
 
 <script>
 $(document).ready(function() {

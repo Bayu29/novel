@@ -84,7 +84,7 @@ class User_profile extends CI_Controller {
 		]);
 
 
-		$auth_string = base64_encode($setting->server_key_midtrans.':');
+		$auth_string = base64_encode($setting->midtrans_server_key.':');
 		
 		$header = [
             'Accept: application/json',
@@ -92,7 +92,12 @@ class User_profile extends CI_Controller {
 			'Authorization: Basic '.$auth_string
         ];
 
-		$url = 'https://app.sandbox.midtrans.com/snap/v1/transactions';
+		if ($setting->midtrans_transaction_mode == 'development') {
+			$url = $setting->midtrans_sandbox_url;
+		} else {
+			$url = $setting->midtrans_production_url;
+		}
+		
 
 		$payload = [
 			'transaction_details' => [
