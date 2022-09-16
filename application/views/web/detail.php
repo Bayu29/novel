@@ -74,9 +74,14 @@
 									<?php foreach ($novel_chapter as $data_chapter) : ?>
 
 										<?php
-										$user = $this->session->userdata('user');
-										$this->db->where('member_id', $user->user_id);
-										$check_chapter = $this->db->where('novel_chapter_id', $data_chapter->novel_chapter_id)->get('pembelian_chapter')->row();
+										if (is_login_member()) {
+											$user = $this->session->userdata('user');
+											$this->db->where('member_id', $user->user_id);
+											$check_chapter = $this->db->where('novel_chapter_id', $data_chapter->novel_chapter_id)->get('pembelian_chapter')->row();
+										} else {
+											$check_chapter = null;
+										}
+										
 										?>
 
 										<?php if ($check_chapter) { ?>

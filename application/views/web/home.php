@@ -65,7 +65,7 @@
 
                             <div class="auction_card__bottom">
                                 <div class="current__bid">
-                                    <span>Ch. </span>
+                                    <span>Total Chapter </span>
                                     <ins><?= $data->total_chapter ?></ins>
                                 </div>
 
