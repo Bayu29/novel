@@ -66,4 +66,71 @@ class Member_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+	public function login ($post)
+    {
+        $this->db->select('*');
+        $this->db->from('member');
+        $this->db->where('email', $post['email']);
+        $this->db->where('password',sha1($post['password']));
+        $query=$this->db->get();
+        return $query;
+    }
+
+	public function getUserByEmail($email)
+	{
+		$data = $this->db->get_where($this->table, ['email' => $email],1)->row();
+		
+		return $data;
+	}
+
+	public function insertToken($user_id)
+	{
+		$token = substr(sha1(rand()), 0, 30);
+        $date = date('Y-m-d H:i:s');
+
+        $string = array(
+            'token' => $token,
+            'user_id' => $user_id,
+            'created_at' => $date
+        );
+        $query = $this->db->insert_string('token', $string);
+        $this->db->query($query);
+        return $token . $user_id;
+	}
+
+	public function isTokenValid($token)
+	{
+		$tkn = substr($token, 0, 30);
+        $uid = substr($token, 30);
+
+        $q = $this->db->get_where('token', array(
+            'token.token' => $tkn,
+            'token.user_id' => $uid
+        ), 1);
+
+        if ($this->db->affected_rows() > 0) {
+            $row = $q->row();
+
+            $created = date('Y-m-d', strtotime($row->created_at));
+            $createdTS = strtotime($created);
+            $today = date('Y-m-d');
+            $todayTS = strtotime($today);
+
+            if ($createdTS != $todayTS) {
+                return false;
+            }
+
+            $user_info = $this->get_by_id($row->user_id);
+            return $user_info;
+        } else {
+            return false;
+		}
+	}
+
+	public function updatePassword($post)
+    {
+        $this->db->where('member_id', $post['user_id']);
+        $this->db->update('member', array('password' => $post['password']));
+        return true;
+    }
 }

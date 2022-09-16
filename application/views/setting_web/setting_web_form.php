@@ -59,6 +59,35 @@
 									</td>
 								</tr>
 								<tr>
+									<td>Mode Transaksi Midtrans <?php echo form_error('midtrans_transaction_mode') ?></td>
+									<td><select name="midtrans_transaction_mode" class="form-control theSelect" value="<?= $midtrans_transaction_mode ?>">
+											<option value="">-- Pilih --</option>
+											<option value="development" <?php echo $midtrans_transaction_mode == 'development' ? 'selected' : 'null' ?>>Development</option>
+											<option value="production" <?php echo $midtrans_transaction_mode == 'production' ? 'selected' : 'null' ?>>Production</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>URL Sandbox Midtrans <?php echo form_error('midtrans_sandbox_url') ?></td>
+									<td><input type="text" class="form-control" name="midtrans_sandbox_url" id="midtrans_sandbox_url" placeholder="URL Sandbox Midtrans" value="<?php echo $midtrans_sandbox_url; ?>" /></td>
+								</tr>
+								<tr>
+									<td>URL Production Midtrans <?php echo form_error('midtrans_production_url') ?></td>
+									<td><input type="text" class="form-control" name="midtrans_production_url" id="midtrans_production_url" placeholder="URL Production Midtrans" value="<?php echo $midtrans_production_url; ?>" /></td>
+								</tr>
+								<tr>
+									<td>Midtrans ID Merchant <?php echo form_error('midtrans_id_merchant') ?></td>
+									<td><input type="text" class="form-control" name="midtrans_id_merchant" id="midtrans_id_merchant" placeholder="Midtrans ID Merchant" value="<?php echo $midtrans_id_merchant; ?>" /></td>
+								</tr>
+								<tr>
+									<td>Midtrans Client Key <?php echo form_error('midtrans_client_key') ?></td>
+									<td><input type="text" class="form-control" name="midtrans_client_key" id="midtrans_client_key" placeholder="Midtrans Client Key" value="<?php echo $midtrans_client_key; ?>" /></td>
+								</tr>
+								<tr>
+									<td>Midtrans Server Key<?php echo form_error('midtrans_server_key') ?></td>
+									<td><input type="text" class="form-control" name="midtrans_server_key" id="midtrans_server_key" placeholder="Midtrans Server Key" value="<?php echo $midtrans_server_key; ?>" /></td>
+								</tr>
+								<tr>
 									<td></td>
 									<td><input type="hidden" name="setting_web_id" value="<?php echo $setting_web_id; ?>" />
 										<button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> <?php echo $button ?></button>

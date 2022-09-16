@@ -11,6 +11,7 @@ class Auth_member extends CI_Controller {
 		$this->load->model('Genre_model');
 		$this->load->model('Novel_chapter_model');
 		$this->load->model('User_model');
+		$this->load->model('Member_model');
 		$this->load->library('form_validation');
     }
 
@@ -23,17 +24,15 @@ class Auth_member extends CI_Controller {
 		}
 		$post = $this->input->post(null, TRUE);
 		if (isset($post['login'])) {
-			$query = $this->User_model->login($post);
+			$query = $this->Member_model->login($post);
 			if ($query->num_rows() > 0) {
-				$row = $query->row();
-				$params = array(
-					'userid' => $row->user_id,
-					'level_id' => $row->level_id
-				);
+				$user = $query->row();
+				$params = [
+					'user' => $user,
+				];
 				$this->session->set_userdata($params);
-				$this->User_model->addHistory($this->fungsi->user_login()->user_id, $this->fungsi->user_login()->username.' Telah melakukan login', $_SERVER['HTTP_USER_AGENT']);
 				
-				$this->session->set_flashdata('success', 'Berhasil Login, Selamat datang '.$row->nama_lengkap);
+				$this->session->set_flashdata('success', 'Berhasil Login, Selamat datang '.$user->nama_lengkap);
 				redirect(site_url('/'));
 			} else {
 				$this->session->set_flashdata('error', 'Login gagal, username atau password salah');
@@ -52,31 +51,32 @@ class Auth_member extends CI_Controller {
 		$post = $this->input->post(null, TRUE);
 
 		if (isset($post['register'])) {
-			$query = $this->User_model->login($post);
+			$query = $this->Member_model->login($post);
 			if ($query->num_rows() > 0) {
 				$this->session->set_flashdata('gagal', 'Login gagal, username atau password sudah digunakan');
+				redirect(site_url('/web/login'));
 			} else {
 				try {
 					$payload = [
-						'nama_lengkap' => $this->input->post('nama_lengkap', true),
+						'nama' => $this->input->post('nama_lengkap', true),
 						'email' => $this->input->post('email', true),
 						'username' => $this->input->post('username', true),
 						'password' => sha1($this->input->post('password', true)),
 						'no_hp' => $this->input->post('no_hp', true),
-						'level_id' => 2,
+						'jk_kelamin' => $this->input->post('jk_kelamin'),
+						'alamat' => $this->input->post('alamat'),
 					];
 
-					$this->User_model->insert($payload);
+					$this->Member_model->insert($payload);
 					$id = $this->db->insert_id();
 
+					$user = $this->Member_model->get_by_id($id);
+
 					$params = [
-						'userid' => $id,
-						'level_id' => 2,
+						'user' => $user,
 					];
 
 					$this->session->set_userdata($params);
-
-					$this->User_model->addHistory($this->fungsi->user_login()->user_id, $this->fungsi->user_login()->username.' Telah melakukan login', $_SERVER['HTTP_USER_AGENT']);
 
 					echo "<script>window.location='" . site_url('/') . "'</script>";
 				} catch (\Exception $e) {
@@ -89,9 +89,9 @@ class Auth_member extends CI_Controller {
 
 	public function logout()
 	{
-		$params = array('userid', 'level_id');
+		$params = array('user');
 		$this->session->unset_userdata($params);
-		redirect('auth');
+		redirect('/');
 	} 
 
 	public function login_rules()

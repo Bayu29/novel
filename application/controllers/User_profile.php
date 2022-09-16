@@ -17,26 +17,34 @@ class User_profile extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->model('Setting_web_model');
 		$this->load->model('Deposit_model');
+		$this->load->model('Member_model');
     }
 
 	public function index()
 	{	
-		$user_id = $this->session->userdata('userid');
-		$user = $this->User_model->get_by_id($user_id);
+		$user = $this->session->userdata('user');
+		$user = $this->Member_model->get_by_id($user->member_id);
 		
 		/** Deposit */
-		$this->db->where('user_id', $user->user_id);
+		$this->db->where('user_id', $user->member_id);
+		$this->db->order_by('deposit_id', 'desc');
 		$deposit = $this->db->get('deposit')->result();
 
 		/**
 		 * Mutasi
 		 */
-		$this->db->where('user_id', $user->user_id);
+		$this->db->where('user_id', $user->member_id);
+		$this->db->order_by('mutasi_saldo_id', 'desc');
 		$mutasi = $this->db->get('mutasi_saldo')->result();
 
 		/** Pembelian chapter */
-		$this->db->where('member_id', $user->user_id);
+		// $this->db->join('member', 'member.member_id = pembelian_chapter.member_id');
+		$this->db->join('novel_chapter', 'novel_chapter.novel_chapter_id = pembelian_chapter.novel_chapter_id');
+		$this->db->join('novel', 'novel.novel_id = novel_chapter.novel_id');
+		$this->db->where('member_id', $user->member_id);
+		$this->db->order_by('pembelian_chapter_id', 'desc');
 		$pembelian_chapter = $this->db->get('pembelian_chapter')->result();
+
 
 		$data['user'] = $user;
 		$data['deposit'] = $deposit;
@@ -49,8 +57,8 @@ class User_profile extends CI_Controller {
 	{
 		$setting = $this->Setting_web_model->get_by_id(1);
 
-		$user_id = $this->session->userdata('userid');
-		$user = $this->User_model->get_by_id($user_id);
+		$user = $this->session->userdata('user');
+		$user = $this->Member_model->get_by_id($user->member_id);
 		
 		if (!$user) {
 			//$this->session->set_flashdata('error', 'Gagal Melakukan deposit');
@@ -61,7 +69,7 @@ class User_profile extends CI_Controller {
 		$nominal = $this->input->post('nominal', true);
 
 		$deposit = $this->Deposit_model->insert([
-			'user_id' => $user->user_id,
+			'user_id' => $user->member_id,
 			'nominal' => $nominal,
 			'expired_at' => date('y-m-d H:i:s'),
 		]);
@@ -76,7 +84,7 @@ class User_profile extends CI_Controller {
 		]);
 
 
-		$auth_string = base64_encode($setting->server_key_midtrans.':');
+		$auth_string = base64_encode($setting->midtrans_server_key.':');
 		
 		$header = [
             'Accept: application/json',
@@ -84,7 +92,12 @@ class User_profile extends CI_Controller {
 			'Authorization: Basic '.$auth_string
         ];
 
-		$url = 'https://app.sandbox.midtrans.com/snap/v1/transactions';
+		if ($setting->midtrans_transaction_mode == 'development') {
+			$url = $setting->midtrans_sandbox_url;
+		} else {
+			$url = $setting->midtrans_production_url;
+		}
+		
 
 		$payload = [
 			'transaction_details' => [
@@ -100,8 +113,8 @@ class User_profile extends CI_Controller {
 				'merchant_name' => $setting->nama_website,
 			],
 			'customer_details' => [
-				'first_name' => $user->nama_lengkap,
-				'last_name' => $user->nama_lengkap,
+				'first_name' => $user->nama,
+				'last_name' => $user->nama,
 				'email' => $user->email,
 				'phone' => $user->no_hp
 			]

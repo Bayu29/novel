@@ -28,6 +28,12 @@ class Setting_web extends CI_Controller
 				'email' => set_value('email', $row->email),
 				'deskripsi' => set_value('deskripsi', $row->deskripsi),
 				'is_aktif_website' => set_value('is_aktif_website', $row->is_aktif_website),
+				'midtrans_transaction_mode' => set_value('midtrans_transaction_mode', $row->midtrans_transaction_mode),
+				'midtrans_sandbox_url' => set_value('midtrans_sandbox_url', $row->midtrans_sandbox_url),
+				'midtrans_production_url' => set_value('midtrans_production_url', $row->midtrans_production_url),
+				'midtrans_id_merchant' => set_value('midtrans_id_merchant', $row->midtrans_id_merchant),
+				'midtrans_client_key' => set_value('midtrans_client_key', $row->midtrans_client_key),
+				'midtrans_server_key' => set_value('midtrans_server_key', $row->midtrans_server_key),
 			);
 			$this->template->load('template', 'setting_web/setting_web_form', $data);
 		} else {
@@ -69,6 +75,12 @@ class Setting_web extends CI_Controller
 				'email' => $this->input->post('email', TRUE),
 				'deskripsi' => $this->input->post('deskripsi', TRUE),
 				'is_aktif_website' => $this->input->post('is_aktif_website', TRUE),
+				'midtrans_transaction_mode' => $this->input->post('midtrans_transaction_mode', true),
+				'midtrans_sandbox_url' => $this->input->post('midtrans_sandbox_url', true),
+				'midtrans_production_url' => $this->input->post('midtrans_production_url', true),
+				'midtrans_id_merchant' => $this->input->post('midtrans_id_merchant', true),
+				'midtrans_client_key' => $this->input->post('midtrans_client_key', true),
+				'midtrans_server_key' => $this->input->post('midtrans_server_key', true)
 			);
 
 			$this->Setting_web_model->update($this->input->post('setting_web_id', TRUE), $data);
@@ -85,7 +97,11 @@ class Setting_web extends CI_Controller
 		$this->form_validation->set_rules('email', 'email', 'trim|required');
 		$this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
 		$this->form_validation->set_rules('is_aktif_website', 'is aktif website', 'trim|required');
-
+		$this->form_validation->set_rules('midtrans_transaction_mode', 'midtrans_transaction_mode', 'trim|required');
+		$this->form_validation->set_rules('midtrans_sandbox_url', 'midtrans_sandbox_url', 'trim|required');
+		$this->form_validation->set_rules('midtrans_production_url', 'midtrans_production_url', 'trim|required');
+		$this->form_validation->set_rules('midtrans_client_key', 'midtrans_client_key', 'trim_required');
+		$this->form_validation->set_rules('midtrans_server_key', 'midtrans_server_key', 'trim|required');
 		$this->form_validation->set_rules('setting_web_id', 'setting_web_id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 	}

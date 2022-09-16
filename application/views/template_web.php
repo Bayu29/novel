@@ -90,19 +90,19 @@
 							</div>
 							<ul>
 								<li><a href="<?= base_url() ?>">Home</a></li>
-								<li><a href="">Daftar Novel</a></li>
+								<li><a href="<?= base_url() ?>web/daftar_novel">Daftar Novel</a></li>
 								<li><a href="<?= base_url() ?>web/apk">APK</a></li>
 								<li><a href="<?= base_url() ?>web/kontak">Kontak</a></li>
-
-								<?php if (!is_login_member()) { ?>
+								<?php $user = is_login_member(); ?>
+								<?php if (!$user) { ?>
 									<li><a href="<?= base_url() ?>web/register">Daftar</a></li>
 									<li><a href="<?= base_url() ?>web/login">Login</a></li>
 								<?php } else { ?>
 									<li class="has-child-menu">
-										<a href="javascript:void(0)">Hello, <?= $user->nama_lengkap ?></a>
+										<a href="javascript:void(0)">Hello, <?= $user->nama ?></a>
 										<i class="fl flaticon-plus">+</i>
 										<ul class="sub-menu">
-											<li><a href="#">Saldo : Rp. <?= number_format($user->saldo, 0, '.', '.') ?> </a></li>
+											<li><a href="#">Saldo : Rp. <?= number_format($user->saldo_akun, 0, '.', '.') ?> </a></li>
 											<li><a href="<?= base_url() ?>user_profile">Profile</a></li>
 											<li><a href="<?= base_url() ?>auth_member/logout">Logout</a></li>
 
@@ -208,6 +208,8 @@
 			return new bootstrap.Tooltip(tooltipTriggerEl)
 		})
 	</script>
+
+	
 </body>
 
 </html>
