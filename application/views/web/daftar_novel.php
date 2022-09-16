@@ -28,6 +28,18 @@
 				<form action="<?= base_url() ?>web/daftar_novel" method="get">
 					<div class="sidebar__searchbar">
 						<input type="text" placeholder="Search here" name="search" value="<?= $search ? $search : '' ?>">
+						<?php if ($status) { ?>
+							<input type="hidden" name="status" value="<?= $status ?>">
+						<?php } ?>
+						<?php if ($from_price) { ?>
+							<input type="hidden" name="from_price" value="<?= $from_price ?>">
+						<?php } ?>
+						<?php if ($to_price) { ?>
+							<input type="hidden" name="to_price" value="<?= $to_price ?>">
+						<?php } ?>
+						<?php if (!empty($genre)) { ?>
+							<input type="hidden" name="genre" value="<?= json_encode($genre) ?>">
+						<?php } ?>
 						<button type="submit" class="submit__btn">
 							<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M7.35992 13.7206C10.8724 13.7206 13.7198 10.873 13.7198 7.36029C13.7198 3.8476 10.8724 1 7.35992 1C3.84743 1 1 3.8476 1 7.36029C1 10.873 3.84743 13.7206 7.35992 13.7206Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -47,6 +59,18 @@
 					<div id="filter-collapseOne" class="accordion-collapse collapse show" aria-labelledby="filterHeadingOne">
 						<div class="accordion-body sidebar__body">
 							<form id="form-filter-status" action="<?= base_url() ?>web/daftar_novel" method="get">
+								<?php if ($from_price) { ?>
+									<input type="hidden" name="from_price" value="<?= $from_price ?>">
+								<?php } ?>
+								<?php if ($to_price) { ?>
+									<input type="hidden" name="to_price" value="<?= $to_price ?>">
+								<?php } ?>
+								<?php if (!empty($genre)) { ?>
+									<input type="hidden" name="genre" value="<?= json_encode($genre) ?>">
+								<?php } ?>
+								<?php if ($search) { ?>
+									<input type="hidden" name="search" value="<?= $search ?>">
+								<?php } ?>
 								<div class="single__status">
 									<label for="status1">
 										<input type="radio" value="ongoing" <?= $status ? ($status == 'ongoing' ? 'checked' : '') : '' ?> name="status" id="status1">
@@ -79,6 +103,15 @@
 					<div id="filter-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="filterHeadingTwo">
 						<div class="accordion-body sidebar__body">
 							<form action="<?= base_url() ?>web/daftar_novel" method="get">
+								<?php if ($status) { ?>
+									<input type="hidden" name="status" value="<?= $status ?>">
+								<?php } ?>
+								<?php if ($search) { ?>
+									<input type="hidden" name="search" value="<?= $search ?>">
+								<?php } ?>
+								<?php if (!empty($genre)) { ?>
+									<input type="hidden" name="genre" value="<?= json_encode($genre) ?>">
+								<?php }?>
 								<span class="currency"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M7.13867 11.1503C7.13867 12.0641 7.83992 12.8008 8.71117 12.8008H10.4891C11.247 12.8008 11.8633 12.1562 11.8633 11.3628C11.8633 10.4987 11.4878 10.1941 10.9283 9.99576L8.07367 9.0041C7.51409 8.80576 7.13867 8.50118 7.13867 7.63701C7.13867 6.84368 7.75492 6.1991 8.51284 6.1991H10.2908C11.162 6.1991 11.8633 6.93576 11.8633 7.84951" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
 								<path d="M9.49707 5.25V13.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -108,6 +141,18 @@
 					<div id="filter-collapseFour" class="accordion-collapse collapse show" aria-labelledby="filterHeadingFour">
 						<div class="accordion-body sidebar__body">
 							<form action="<?= base_url() ?>web/daftar_novel" method="get">
+								<?php if ($from_price) { ?>
+									<input type="hidden" name="from_price" value="<?= $from_price ?>">
+								<?php } ?>
+								<?php if ($to_price) { ?>
+									<input type="hidden" name="to_price" value="<?= $to_price ?>">
+							 	<?php } ?>
+								<?php if ($search) { ?>
+									<input type="hidden" name="search" value="<?= $search ?>">
+								<?php } ?>
+								<?php if ($status) { ?>
+									<input type="hidden" name="status" value="<?= $status ?>">
+								<?php } ?>
 								<ul>
 									<?php foreach($genres as $i => $data):?>
 									<li class="single__col">
@@ -127,7 +172,8 @@
 													</span>
 												<ins class="col__name"><?= $data->nama_genre ?></ins>
 											</span>
-											<input type="checkbox" name="genre[]" <?= $genre[$i] == $data->genre_id ? 'checked' : ''  ?> value="<?= $data->genre_id ?>">
+											
+											<input type="checkbox" onchange="onChecked('<?= $data->genre_id ?>')" name="genre[]" <?= !empty($genre)  ? (genre_check($genre, $data->genre_id) == true ? 'checked' : '') : '' ?> value="<?= $data->genre_id ?>">
 											<span class="check__circle"></span>
 										</label>
 									</li>
@@ -151,7 +197,7 @@
 									</a>
 								</div>
 								<div class="nft__disc">
-									<a href="author-profile.html" class="nft__creator"><?= $novel->author ?><img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
+									<a href="#" class="nft__creator">Author : <?= $novel->author ?><img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 		
 									<div class="nft__title">
 										<h5><a href="<?= base_url() ?>web/detail/<?= encrypt_url($novel->novel_id) ?>"><?= $novel->title ?></a></h5>
@@ -160,13 +206,7 @@
 		
 									<div class="nft__bottom">
 										<ul class="nft__actions d-flex">
-											<li><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M0.0732541 11.2132L6.47058 0.254439C6.65303 -0.0648577 7.10917 -0.0876645 7.32584 0.208825L9.10477 2.59215C9.61793 3.27636 9.65217 4.20003 9.20743 4.92986L5.39865 11.0307C5.02234 11.6351 4.36096 12 3.64254 12H0.518006C0.118885 11.9886 -0.132008 11.5553 0.0732541 11.2132Z" fill="currentColor"></path>
-												<path d="M10.5415 7.55271L8.35206 11.2018C8.1468 11.5439 8.39769 11.9887 8.79681 11.9887H13.1757C13.5748 11.9887 13.8257 11.5553 13.6205 11.2018L11.431 7.55271C11.2372 7.22201 10.7468 7.22201 10.5415 7.55271Z" fill="currentColor"></path>
-												</svg></li>
-											<li><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<path d="M6.6985 1.99765L6.99742 2.1692L7.2962 1.99743C7.50862 1.8753 7.71506 1.74828 7.92067 1.62177C8.31313 1.38029 8.70258 1.14066 9.12479 0.940522C9.75536 0.641607 10.2727 0.531212 10.6931 0.653546C13.0724 1.35159 13.8419 3.69977 13.1616 5.63257L13.1605 5.63569C12.6276 7.17674 11.1864 8.58658 9.76123 9.65606C8.42345 10.66 7.1915 11.297 6.99824 11.3948C6.80115 11.2956 5.58162 10.6685 4.25227 9.67217C2.8336 8.60887 1.38875 7.19728 0.835985 5.63289C0.154691 3.69818 0.922552 1.34972 3.29816 0.653425L3.29875 0.653253C3.73433 0.525103 4.24488 0.633423 4.86272 0.928388C5.27058 1.1231 5.64246 1.35367 6.02504 1.59088C6.24316 1.72612 6.46476 1.86351 6.6985 1.99765Z" stroke="currentColor" stroke-width="1.2"></path>
-												</svg> <span>3</span>
+											<li><i class="fa fa-star" style="color: orange;" aria-hidden="true"></i>  <span><?= $novel->rating ?></span>
 												</li>
 										</ul>
 										<div class="nft__countdown"><?= date('d M Y', strtotime($novel->tgl_released)) ?></div>
@@ -191,3 +231,10 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function onChecked(id)
+	{
+		$(`#checked${id}`).val(true);
+	}
+</script>

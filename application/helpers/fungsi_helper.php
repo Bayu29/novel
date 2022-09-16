@@ -73,3 +73,13 @@ function generateRandomString($length = 10) {
 	return $randomString;
 }
 
+function genre_check($genre, $genre_id) 
+{
+	foreach ($genre as $i => $data_genre) {
+		if ($data_genre == $genre_id) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}

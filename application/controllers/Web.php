@@ -42,7 +42,13 @@ class Web extends CI_Controller {
 
 	public function detail($id)
 	{
+		
 		$novel = $this->Novel_model->get_by_id(decrypt_url($id));
+
+		if (!$novel) {
+			redirect(site_url('/my404'));
+		}
+		
 		$novel_chapter = $this->Novel_chapter_model->get_by_novel_id(decrypt_url($id));
 
 		$data['novel'] = $novel;
@@ -171,9 +177,11 @@ class Web extends CI_Controller {
 		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
 		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
 
+		$this->db->select('novel.novel_id, novel.title, novel.tgl_released, novel.total_chapter, novel.author, novel.sinopsis, novel.rating, novel.thumbnail, novel.update_on, novel.status, novel.type_id')->from('novel');
 		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
 		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
 		
+
 		if (!empty($status)) {
 			$this->db->where('novel.status', ucwords($status));
 		}
@@ -183,6 +191,9 @@ class Web extends CI_Controller {
 		}
 
 		if (!empty($genre)) {
+			if (gettype($genre) == 'string') {
+				$genre = json_decode($genre, true);
+			}
 			$this->db->where_in('novel_genre.genre_id', $genre);
 		}
 
@@ -194,9 +205,9 @@ class Web extends CI_Controller {
 		$this->db->group_by('novel.novel_id');
 		$this->db->order_by('novel.novel_id', 'desc');
 		$this->db->limit(10);
-		$novels = $this->db->get('novel')->result();
-		
-		$genre = $this->Genre_model->get_all();
+		$novels = $this->db->get()->result();
+
+		$genres = $this->Genre_model->get_all();
 
 		$data['search'] = $search;
 		$data['status'] = $status;
@@ -204,7 +215,7 @@ class Web extends CI_Controller {
 		$data['from_price'] = $from_price;
 		$data['to_price'] = $to_price;
 		$data['novels'] = $novels;
-		$data['genres'] = $genre;
+		$data['genres'] = $genres;
 		$this->template->load('template_web', 'web/daftar_novel', $data);
 	}
 }
