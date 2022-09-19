@@ -32,7 +32,10 @@
 									<td  style="width: 15%;">Nama Chapter <?php echo form_error('nama_chapter') ?></td>
 									<td><input type="text" class="form-control" name="nama_chapter" id="nama_chapter" placeholder="Nama Chapter" value="<?= $novel_chapter->nama_chapter ?>" /></td>
 								</tr>
-								
+								<tr>
+									<td style="width: 15%;">Kode Chapter <?php echo form_error('kode_chapter') ?></td>
+									<td><input type="text" class="form-control" name="kode_chapter" id="kode_chapter" placeholder="Kode Chapter" value="<?= $novel_chapter->kode_chapter ?>" /></td>
+								</tr>
 								<tr>
 									<td>Isi Chapter <?php echo form_error('isi_chapter') ?></td>
 									<td>

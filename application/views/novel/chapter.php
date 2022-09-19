@@ -63,6 +63,7 @@
 												<tr>
 													<th>No</th>
 													<th>Chapter</th>
+													<th>Kode Chapter</th>
 													<th>Harga</th>
 													<th>Isi Chapter</th>
 													<th>Tanggal</th>
@@ -76,11 +77,13 @@
 												<tr>
 													<td><?= $no++ ?></td>
 													<td><button class="btn btn-success btn-sm" style="margin-bottom: 5px;width: 120px;"><i class="fa fa-wpforms" aria-hidden="true"></i> <?= $data->nama_chapter ?></button></td>
+													<td><?= $data->kode_chapter ?></td>
 													<td>Rp. <?= number_format($data->harga,0, '.', '.'); ?></td>
 													<td><?php echo strip_tags(substr($data->isi_chapter, 0, 100)) . '...' ?></td>
 													<td><?= date('Y-m-d', strtotime($data->created_at)) ?></td>
 													<!-- count dari table pembelian novel where novel_chapter_id -->
-													<td>100</td>
+													<?php $terjual = $this->db->where('novel_chapter_id', $data->novel_chapter_id)->get('pembelian_chapter')->num_rows(); ?>
+													<td><?= $terjual ?></td>
 													<td>
 														<a href="<?= base_url() ?>novel_chapter/update/<?= encrypt_url($data->novel_chapter_id) ?>" class="btn btn-primary btn-sm update_data"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 														<a href="<?= base_url() ?>novel_chapter/delete/<?= encrypt_url($data->novel_chapter_id)?>/<?=encrypt_url($data->novel_id)?>" class="btn btn-danger btn-sm delete_data" delete=""><i class="fa fa-trash" aria-hidden="true"></i></a>

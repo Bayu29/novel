@@ -1,4 +1,4 @@
-<div class="author_profiler__wrapper bg-body-2 section_gap_y_bottom__1">
+<div class="author_profiler__wrapper bg-body-2 section_gap_y_bottom__1 profile-section">
         <div class="author_profile__cover"></div>
         <div class="container">
 
