@@ -42,6 +42,7 @@ class Novel_chapter extends CI_Controller
         } else {
             $data = array(
                 'nama_chapter' => $this->input->post('nama_chapter', true),
+				'kode_chapter' => $this->input->post('kode_chapter', true),
                 'isi_chapter' => $this->input->post('isi_chapter', true),
                 'harga' => $this->input->post('harga', true),
                 'novel_id' => decrypt_url($this->input->post('novel_id', true)),
@@ -86,6 +87,7 @@ class Novel_chapter extends CI_Controller
 			if ($row) {
 				$data = array(
 					'nama_chapter' => $this->input->post('nama_chapter', true),
+					'kode_chapter' => $this->input->post('kode_chapter', true),
 					'isi_chapter' => $this->input->post('isi_chapter', true),
 					'harga' => $this->input->post('harga', true),
 					'novel_id' => decrypt_url($this->input->post('novel_id', true)),
@@ -119,6 +121,7 @@ class Novel_chapter extends CI_Controller
     public function _rules()
     {
         $this->form_validation->set_rules('nama_chapter', 'nama_chapter', 'trim|required');
+		$this->form_validation->set_rules('kode_chapter', 'kode_chapter', 'trim|required');
         $this->form_validation->set_rules('isi_chapter', 'isi_chapter', 'required');
         $this->form_validation->set_rules('harga', 'harga', 'trim|required');
         $this->form_validation->set_rules('novel_id', 'Novel', 'trim|required');

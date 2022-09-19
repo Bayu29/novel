@@ -42,7 +42,13 @@ class Web extends CI_Controller {
 
 	public function detail($id)
 	{
+		
 		$novel = $this->Novel_model->get_by_id(decrypt_url($id));
+
+		if (!$novel) {
+			redirect(site_url('/my404'));
+		}
+		
 		$novel_chapter = $this->Novel_chapter_model->get_by_novel_id(decrypt_url($id));
 
 		$data['novel'] = $novel;
@@ -70,7 +76,7 @@ class Web extends CI_Controller {
 			exit;
 		}
 
-		if (intval($user->saldo) < $chapter->harga) {
+		if (intval($user->saldo_akun) < $chapter->harga) {
 			echo json_encode(['success' => false, 'message' => 'Saldo anda tidak mencukupi untuk melakukan pembelian!']);
 			exit;
 		}
@@ -94,14 +100,14 @@ class Web extends CI_Controller {
 			$saldo = intval($user->saldo_akun) - intval($chapter->harga);
 
 			$this->Member_model->update($user->member_id, [
-				'saldo' => $saldo
+				'saldo_akun' => $saldo
 			]);
 
 			$this->Mutasi_saldo_model->insert([
 				'user_id' => $user->member_id,
 				'type' => 'debit',
 				'nominal' => $chapter->harga,
-				'saldo' => $saldo,
+				'saldo_akun' => $saldo,
 				'catatan' => 'Pembelian '.$chapter->nama_chapter.' dari novel '.$chapter->title.' sebesar '.$chapter->harga,
 				'trx_id' => $pembelian_chapter_id
 			]);
@@ -117,9 +123,11 @@ class Web extends CI_Controller {
 	{
 		$is_login = is_login_member();
 
+		$novel_chapter = $this->Novel_chapter_model->get_by_id(decrypt_url($id));
+
 		if (!$is_login) {
 			$this->session->set_flashdata('error', 'Silahkan login untuk membaca chapter ini');
-			redirect(site_url('/web/detail/'.encrypt_url($id)));
+			redirect(site_url('/web/detail/'.encrypt_url($novel_chapter->novel_id)));
 		}
 
 		$user = $this->session->userdata('user');
@@ -127,11 +135,10 @@ class Web extends CI_Controller {
 
 		if (!$check) {
 			$this->session->set_flasdata('error', 'Untuk membaca chapter ini silahkan beli chapter ini terlebih dahulu');
-			redirect(site_url('/web/detail/'.encrypt_url($id)));
+			redirect(site_url('/web/detail/'.encrypt_url($novel_chapter->novel_id)));
 		}
 
-		$novel_chapter = $this->Novel_chapter_model->get_by_id(decrypt_url($id));
-
+		
 		$data['novel_chapter'] = $novel_chapter;
 
 
@@ -165,15 +172,18 @@ class Web extends CI_Controller {
 
 	public function daftar_novel()
 	{
+		$this->load->library('pagination');
 		$search = $this->input->get('search') ? $this->input->get('search') : null;
 		$status = $this->input->get('status') ? $this->input->get('status') : null;
 		$genre = $this->input->get('genre') ? $this->input->get('genre') : null;
 		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
 		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
 
+		$this->db->select('novel.novel_id, novel.title, novel.tgl_released, novel.total_chapter, novel.author, novel.sinopsis, novel.rating, novel.thumbnail, novel.update_on, novel.status, novel.type_id');
 		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
 		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
 		
+
 		if (!empty($status)) {
 			$this->db->where('novel.status', ucwords($status));
 		}
@@ -183,6 +193,9 @@ class Web extends CI_Controller {
 		}
 
 		if (!empty($genre)) {
+			if (gettype($genre) == 'string') {
+				$genre = json_decode($genre, true);
+			}
 			$this->db->where_in('novel_genre.genre_id', $genre);
 		}
 
@@ -193,10 +206,23 @@ class Web extends CI_Controller {
 
 		$this->db->group_by('novel.novel_id');
 		$this->db->order_by('novel.novel_id', 'desc');
-		$this->db->limit(10);
-		$novels = $this->db->get('novel')->result();
 		
-		$genre = $this->Genre_model->get_all();
+		$config['enable_query_string'] = true;
+		$config['page_query_string'] = true;
+		$config['per_page'] = 9;
+		$from = html_escape($this->input->get('start'));;
+
+		$jumlah_data = $this->db->get('novel')->num_rows();
+
+		$novels = $this->db->get('novel', $config['per_page'], $from);
+		$novels = $novels->result();
+		
+		$config['base_url'] = base_url().'web/daftar_novel';
+		$config['total_rows'] = $jumlah_data;
+	
+		$this->pagination->initialize($config);
+
+		$genres = $this->Genre_model->get_all();
 
 		$data['search'] = $search;
 		$data['status'] = $status;
@@ -204,7 +230,8 @@ class Web extends CI_Controller {
 		$data['from_price'] = $from_price;
 		$data['to_price'] = $to_price;
 		$data['novels'] = $novels;
-		$data['genres'] = $genre;
+		$data['genres'] = $genres;
+		
 		$this->template->load('template_web', 'web/daftar_novel', $data);
 	}
 }

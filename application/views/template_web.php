@@ -51,9 +51,9 @@
 						<div class="pb-3 d-flex align-items-center justify-content-between">
 							<h5>What are you looking for?</h5> <span class="close__search" id="closeSearch">Close</span>
 						</div>
-						<form action="#">
+						<form action="<?= base_url() ?>web/daftar_novel" method="get">
 							<div class="d-flex">
-								<input type="text" placeholder="Cari Novel">
+								<input type="text" placeholder="Cari Novel" name="search" value="<?= isset($search) ? (!empty($search) ? $search : '' ) : '' ?>">
 								<button class="submit-v1 ml-2">Search</button>
 							</div>
 						</form>
@@ -73,13 +73,15 @@
 							<a class="logo-light" href="<?= base_url() ?>"><img src="<?php echo base_url(); ?>template/assets/img/website/<?= $this->fungsi->sett_website()->logo ?>" alt="logo"></a>
 						</div>
 						<div class="nav-search-style-one w-100 d-xl-block d-none">
-							<span class="search__icon">
-								<svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M8.26847 16.0378C12.2827 16.0378 15.5369 12.7834 15.5369 8.7689C15.5369 4.7544 12.2827 1.5 8.26847 1.5C4.2542 1.5 1 4.7544 1 8.7689C1 12.7834 4.2542 16.0378 8.26847 16.0378Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-									<path d="M17.0002 17.5L13.4023 13.9025" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-								</svg>
-							</span>
-							<input type="text" placeholder="Cari Novel">
+							<form action="<?= base_url() ?>web/daftar_novel" method="get">
+								<span class="search__icon">
+									<svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M8.26847 16.0378C12.2827 16.0378 15.5369 12.7834 15.5369 8.7689C15.5369 4.7544 12.2827 1.5 8.26847 1.5C4.2542 1.5 1 4.7544 1 8.7689C1 12.7834 4.2542 16.0378 8.26847 16.0378Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+										<path d="M17.0002 17.5L13.4023 13.9025" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+									</svg>
+								</span>
+								<input type="text" placeholder="Cari Novel" name="search" value="<?= isset($search) ? (!empty($search) ? $search : '' ) : '' ?>">
+							</form>	
 						</div>
 					</div>
 					<div class="col-xxl-8 col-lg-8 col-10  d-flex justify-content-end">
