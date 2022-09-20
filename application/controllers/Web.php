@@ -28,7 +28,8 @@ class Web extends CI_Controller {
 		/**
 		 * Novel List
 		 */
-		$this->db->reset_query();	
+		$this->db->reset_query();
+		$this->db->order_by('novel_id', 'desc');	
 		$this->db->limit(10);
 		$list_novel = $this->db->get('novel')->result();
 
@@ -216,12 +217,31 @@ class Web extends CI_Controller {
 		$this->template->load('template_web', 'web/daftar_novel', $data);
 	}
 
+	public function tes() {
+		$this->load->view('web/tes');
+	}
+
 	public function cari_novel()
 	{
-		$filter = $this->input->get();
+		$search = $this->input->get('search') ? $this->input->get('search') : null;
 
-		$novel = $this->Novel_model->get_by_filter($filter);
+		
+		$this->db->like('novel.title', $search, 'both');
+		$this->db->order_by('novel.novel_id', 'desc');
+		$novel = $this->db->get('novel')->result();
 
-		print_r($novel);exit;
+		$result = [];
+
+		foreach ($novel as $data) {
+			$result[] = [
+				'id' => $data->novel_id,
+				'text' => $data->title,
+			];
+		}
+
+		//return $result;
+		echo json_encode($result);
+
+		//print_r($novel);exit;
 	}
 }
