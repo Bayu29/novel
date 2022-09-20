@@ -25,6 +25,7 @@ class Auth_member extends CI_Controller {
 		$post = $this->input->post(null, TRUE);
 		if (isset($post['login'])) {
 			$query = $this->Member_model->login($post);
+	
 			if ($query->num_rows() > 0) {
 				$user = $query->row();
 				$params = [
