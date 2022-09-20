@@ -100,7 +100,7 @@ class Setting_web extends CI_Controller
 		$this->form_validation->set_rules('midtrans_transaction_mode', 'midtrans_transaction_mode', 'trim|required');
 		$this->form_validation->set_rules('midtrans_sandbox_url', 'midtrans_sandbox_url', 'trim|required');
 		$this->form_validation->set_rules('midtrans_production_url', 'midtrans_production_url', 'trim|required');
-		$this->form_validation->set_rules('midtrans_client_key', 'midtrans_client_key', 'trim_required');
+		$this->form_validation->set_rules('midtrans_client_key', 'midtrans_client_key', 'trim|required');
 		$this->form_validation->set_rules('midtrans_server_key', 'midtrans_server_key', 'trim|required');
 		$this->form_validation->set_rules('setting_web_id', 'setting_web_id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
