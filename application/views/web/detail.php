@@ -94,7 +94,7 @@
 												<a href="<?= base_url() ?>web/read/<?= encrypt_url($data_chapter->novel_chapter_id) ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Baca chapter">
 													<div class="bidder__disc">
 														<h5><?= $data_chapter->nama_chapter ?></h5>
-														<p><?= date('d M Y H:i:s', strtotime($data_chapter->created_at)) ?></p>
+														<p>Rp. <?= number_format($data_chapter->harga, 0, '.', '.') ?> ( <?= date('d M Y H:i:s', strtotime($data_chapter->created_at)) ?> )</p>
 													</div>
 												</a>
 											</div>
@@ -103,7 +103,7 @@
 												<a class="locked-chapter-link" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Unlock chapter" disabled>
 													<div class="bidder__disc mr-3">
 														<h5><button type="button" onclick="unlock('<?= $data_chapter->novel_chapter_id ?>', '<?= $data_chapter->nama_chapter ?>')" class="btn btn-secondary ml-3"><i class="fa-solid fa-unlock"></i></button> <?= $data_chapter->nama_chapter ?></h5>
-														<p><?= date('d M Y H:i:s', strtotime($data_chapter->created_at)) ?></p>
+														<p>Rp. <?= number_format($data_chapter->harga, 0, '.', '.') ?> ( <?= date('d M Y H:i:s', strtotime($data_chapter->created_at)) ?> )</p>
 													</div>
 												</a>
 											</div>
