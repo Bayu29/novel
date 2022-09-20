@@ -34,6 +34,7 @@
 													<th>No</th>
 													<th>Photo</th>
 													<th>Nama</th>
+													<th>Username</th>
 													<th>Email</th>
 													<th>No Hp</th>
 													<th>Jk Kelamin</th>
@@ -52,13 +53,14 @@
 														<td><?= $no++ ?></td>
 														<td>
 															<?php if ($member->photo == '' || $member->photo == null) { ?>
-																<img src="<?= base_url() ?>template/assets/img/member/default.png" width="60px" height="auto"  />
+																<img src="<?= base_url() ?>template/assets/img/member/default.png" width="60px" height="auto" />
 															<?php } else { ?>
-																<img src="<?= base_url() ?>template/assets/img/member/<?php echo $member->photo ?>" width="60px" height="auto"  />
+																<img src="<?= base_url() ?>template/assets/img/member/<?php echo $member->photo ?>" width="60px" height="auto" />
 															<?php } ?>
 															</a>
 														</td>
 														<td><?php echo $member->nama ?></td>
+														<td><?php echo $member->username ?></td>
 														<td><?php echo $member->email ?></td>
 														<td><?php echo $member->no_hp ?></td>
 														<td><?php echo $member->jk_kelamin ?></td>
@@ -67,7 +69,7 @@
 														<td><?php echo $member->is_aktif ?></td>
 														<td><a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
 														<td><a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
-														
+
 														<td style="text-align:center" width="100px">
 															<?php
 															echo anchor(site_url('member/update/' . encrypt_url($member->member_id)), '<i class="fa fa-pencil" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');

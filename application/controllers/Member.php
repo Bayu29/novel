@@ -29,6 +29,7 @@ class Member extends CI_Controller
 			$data = array(
 				'member_id' => $row->member_id,
 				'nama' => $row->nama,
+				'username' => $row->username,
 				'email' => $row->email,
 				'no_hp' => $row->no_hp,
 				'jk_kelamin' => $row->jk_kelamin,
@@ -52,6 +53,7 @@ class Member extends CI_Controller
 			'action' => site_url('member/create_action'),
 			'member_id' => set_value('member_id'),
 			'nama' => set_value('nama'),
+			'username' => set_value('username'),
 			'email' => set_value('email'),
 			'no_hp' => set_value('no_hp'),
 			'jk_kelamin' => set_value('jk_kelamin'),
@@ -84,13 +86,14 @@ class Member extends CI_Controller
 			$data = array(
 				'nama' => $this->input->post('nama', TRUE),
 				'email' => $this->input->post('email', TRUE),
+				'username' => $this->input->post('username', TRUE),
 				'no_hp' => $this->input->post('no_hp', TRUE),
 				'jk_kelamin' => $this->input->post('jk_kelamin', TRUE),
 				'alamat' => $this->input->post('alamat', TRUE),
 				'saldo_akun' => $this->input->post('saldo_akun', TRUE),
 				'is_aktif' => $this->input->post('is_aktif', TRUE),
 				'photo' => $photo,
-				'password' => $this->input->post('password', TRUE),
+				'password' => sha1($this->input->post('password', TRUE)),
 			);
 
 			$this->Member_model->insert($data);
@@ -111,6 +114,7 @@ class Member extends CI_Controller
 				'member_id' => set_value('member_id', $row->member_id),
 				'nama' => set_value('nama', $row->nama),
 				'email' => set_value('email', $row->email),
+				'username' => set_value('username', $row->username),
 				'no_hp' => set_value('no_hp', $row->no_hp),
 				'jk_kelamin' => set_value('jk_kelamin', $row->jk_kelamin),
 				'alamat' => set_value('alamat', $row->alamat),
@@ -152,18 +156,32 @@ class Member extends CI_Controller
 				$photo = $this->input->post('photo_lama');
 			}
 
-			
-			$data = array(
-				'nama' => $this->input->post('nama', TRUE),
-				'email' => $this->input->post('email', TRUE),
-				'no_hp' => $this->input->post('no_hp', TRUE),
-				'jk_kelamin' => $this->input->post('jk_kelamin', TRUE),
-				'alamat' => $this->input->post('alamat', TRUE),
-				'saldo_akun' => $this->input->post('saldo_akun', TRUE),
-				'is_aktif' => $this->input->post('is_aktif', TRUE),
-				'photo' => $photo,
-				'password' => $this->input->post('password', TRUE),
-			);
+			if ($this->input->post('password') == '' || $this->input->post('password') == null) {
+				$data = array(
+					'nama' => $this->input->post('nama', TRUE),
+					'email' => $this->input->post('email', TRUE),
+					'username' => $this->input->post('username', TRUE),
+					'no_hp' => $this->input->post('no_hp', TRUE),
+					'jk_kelamin' => $this->input->post('jk_kelamin', TRUE),
+					'alamat' => $this->input->post('alamat', TRUE),
+					'saldo_akun' => $this->input->post('saldo_akun', TRUE),
+					'is_aktif' => $this->input->post('is_aktif', TRUE),
+					'photo' => $photo,
+				);
+			} else {
+				$data = array(
+					'nama' => $this->input->post('nama', TRUE),
+					'email' => $this->input->post('email', TRUE),
+					'username' => $this->input->post('username', TRUE),
+					'no_hp' => $this->input->post('no_hp', TRUE),
+					'jk_kelamin' => $this->input->post('jk_kelamin', TRUE),
+					'alamat' => $this->input->post('alamat', TRUE),
+					'saldo_akun' => $this->input->post('saldo_akun', TRUE),
+					'is_aktif' => $this->input->post('is_aktif', TRUE),
+					'photo' => $photo,
+					'password' => sha1($this->input->post('password', TRUE)),
+				);
+			}
 
 			$this->Member_model->update($this->input->post('member_id', TRUE), $data);
 			$this->session->set_flashdata('message', 'Update Record Success');
@@ -198,6 +216,7 @@ class Member extends CI_Controller
 		}
 		$this->form_validation->set_rules('nama', 'nama', 'trim|required');
 		$this->form_validation->set_rules('email', 'email', 'trim|required');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('no_hp', 'no hp', 'trim|required');
 		$this->form_validation->set_rules('jk_kelamin', 'jk kelamin', 'trim|required');
 		$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');

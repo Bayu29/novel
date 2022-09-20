@@ -70,7 +70,7 @@ class Member_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('member');
-        $this->db->where('email', $post['email']);
+        $this->db->where('username', $post['username']);
         $this->db->where('password',sha1($post['password']));
         $query=$this->db->get();
         return $query;

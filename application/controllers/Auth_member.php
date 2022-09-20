@@ -66,6 +66,7 @@ class Auth_member extends CI_Controller {
 						'jk_kelamin' => $this->input->post('jk_kelamin'),
 						'alamat' => $this->input->post('alamat'),
 						'created_at' => date('Y-m-d H:i:s'),
+						'is_aktif' => 'Aktif',
 					];
 
 					$this->Member_model->insert($payload);

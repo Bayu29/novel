@@ -30,13 +30,13 @@
 										<span class="label-radio">Jenis Kelamin</span><br>
 										<div class="d-flex">
 											<div class="d-flex mr-3">
-												<input class="form-radio" type="radio" name="jk_kelamin">
+												<input class="form-radio" type="radio" value="Laki Laki" name="jk_kelamin">
 												<label class="label-form-radio">
 													Laki laki
 												</label>
 											</div>
 											<div class="d-flex">
-												<input class="form-radio" type="radio" name="jk_kelamin">
+												<input class="form-radio" type="radio" value="Perempuan" name="jk_kelamin">
 												<label class="label-form-radio" >
 													Perempuan
 												</label>
@@ -44,8 +44,8 @@
 										</div>
                                     </div>
 									<div class="custom_input_style__two mt-3">
-                                        <textarea name="alamat" id="alamat" placeholder="Alamat" autocomplete="off"></textarea>
-									</div>
+                                        <input type="alamat" placeholder="Alamat" name="alamat" id="alamat" autocomplete="off">
+                                    </div>
                                     <div class="custom_input_style__two mt-3">
                                         <input type="password" placeholder="Password" name="password" id="password" autocomplete="off">
                                     </div> <br>

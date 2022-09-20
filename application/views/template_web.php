@@ -122,7 +122,7 @@
 							<?php if (is_login_member()) { ?>
 								<div class="profile-switch-one mr-2">
 									<div class="profile-switch-avater">
-										<a href="author-profile.html"><img src="<?= base_url() ?>template/web/assets/images/profil-avater.png" alt=""></a>
+										<a href="<?= base_url() ?>user_profile"><img src="<?= base_url() ?>template/web/assets/images/profil-avater.png" alt=""></a>
 									</div>
 								</div>
 							<?php }  ?>
