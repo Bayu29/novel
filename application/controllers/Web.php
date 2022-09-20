@@ -244,4 +244,15 @@ class Web extends CI_Controller {
 
 		//print_r($novel);exit;
 	}
+
+	function get_autocomplete(){
+        if (isset($_GET['term'])) {
+            $result = $this->Novel_model->search_blog($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = $row->title;
+                echo json_encode($arr_result);
+            }
+        }
+    }
 }
