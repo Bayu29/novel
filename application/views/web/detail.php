@@ -28,6 +28,11 @@
 						<div class="nd__title">
 							<span>Author : <?= $novel->author ?></span>
 							<h3 class="nft__title"><?= $novel->title ?> <span><?= $novel->status ?></span></h3>
+							<div class="d-flex">
+								<?php foreach ($novel_genre as $genre) :  ?>
+									<span class="genre-badge"><?= $genre->nama_genre ?></span>
+								<?php endforeach; ?>
+							</div>
 						</div>
 						<ul class="nd_header__actions">
 							<li class="like__btn">

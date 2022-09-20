@@ -28,7 +28,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Toaster JS -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<!-- Datatables -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+	<!-- Select2 -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/style.css">
 	<link rel="stylesheet" href="<?= base_url() ?>template/web/assets/css/responsive.css">
@@ -36,6 +39,8 @@
 
 	<!-- jquery latest -->
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<!-- Select2 -->
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
 
@@ -94,7 +99,7 @@
 								<li><a href="<?= base_url() ?>">Home</a></li>
 								<li><a href="<?= base_url() ?>web/daftar_novel">Daftar Novel</a></li>
 								<li><a href="<?= base_url() ?>web/apk">APK</a></li>
-								<li><a href="<?= base_url() ?>web/kontak">Kontak</a></li>
+								<!-- <li><a href="<?= base_url() ?>web/kontak">Kontak</a></li> -->
 								<?php $user = is_login_member(); ?>
 								<?php if (!$user) { ?>
 									<li><a href="<?= base_url() ?>web/register">Daftar</a></li>

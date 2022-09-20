@@ -69,11 +69,11 @@
 								</tr>
 								<tr>
 									<td>URL Sandbox Midtrans <?php echo form_error('midtrans_sandbox_url') ?></td>
-									<td><input type="text" class="form-control" name="midtrans_sandbox_url" id="midtrans_sandbox_url" placeholder="URL Sandbox Midtrans" value="<?php echo $midtrans_sandbox_url; ?>" /></td>
+									<td><input type="text" class="form-control" name="midtrans_sandbox_url" readonly id="midtrans_sandbox_url" placeholder="URL Sandbox Midtrans" value="<?php echo $midtrans_sandbox_url; ?>" /></td>
 								</tr>
 								<tr>
 									<td>URL Production Midtrans <?php echo form_error('midtrans_production_url') ?></td>
-									<td><input type="text" class="form-control" name="midtrans_production_url" id="midtrans_production_url" placeholder="URL Production Midtrans" value="<?php echo $midtrans_production_url; ?>" /></td>
+									<td><input type="text" class="form-control" name="midtrans_production_url" readonly id="midtrans_production_url" placeholder="URL Production Midtrans" value="<?php echo $midtrans_production_url; ?>" /></td>
 								</tr>
 								<tr>
 									<td>Midtrans ID Merchant <?php echo form_error('midtrans_id_merchant') ?></td>

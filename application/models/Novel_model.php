@@ -67,4 +67,92 @@ class Novel_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+	function get_by_filter($filter, $limit = null, $offset = null) 
+	{	
+		$search =  isset($filter['search']) ? $filter['search']  : null;
+		$status =  isset($filter['status']) ? $filter['status']  : null;
+		$genre = isset($filter['genre']) ? $filter['genre'] : null;
+		$from_price = isset($filter['from_price']) ? $filter['from_price'] : null;
+		$to_price = isset($filter['to_price']) ? $filter['from_price'] : null;
+
+		$this->db->select('novel.novel_id, novel.title, novel.tgl_released, novel.total_chapter, novel.author, novel.sinopsis, novel.rating, novel.thumbnail, novel.update_on, novel.status, novel.type_id');
+		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
+		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
+		
+
+		if (!empty($status)) {
+			$this->db->where('novel.status', ucwords($status));
+		}
+
+		if (!empty($search)) {
+			$this->db->like('novel.title', $search, 'both');
+		}
+
+		if (!empty($genre)) {
+			if (gettype($genre) == 'string') {
+				$genre = json_decode($genre, true);
+			}
+			$this->db->where_in('novel_genre.genre_id', $genre);
+		}
+
+		if (!empty($from_price) && !empty($to_price)) {
+			$this->db->where('novel_chapter.harga >=', $from_price);
+			$this->db->where('novel_chapter.harga <=', $to_price);
+		}
+
+		$this->db->group_by('novel.novel_id');
+		$this->db->order_by('novel.novel_id', 'desc');
+
+		if (!is_null($limit) && !is_null($offset)) {
+			$novels = $this->db->get('novel', $limit, $offset);
+		} elseif (!is_null($limit) && is_null($offset)) {
+			$novels = $this->db->get('novel', $limit);
+		} else {
+			$novels = $this->db->get('novel');
+		}
+		
+		$novels = $novels->result();
+
+		return $novels;
+	}
+
+	function row_by_filter($filter) 
+	{
+		$search =  isset($filter['search']) ? $filter['search']  : null;
+		$status =  isset($filter['status']) ? $filter['status']  : null;
+		$genre = isset($filter['genre']) ? $filter['genre'] : null;
+		$from_price = isset($filter['from_price']) ? $filter['from_price'] : null;
+		$to_price = isset($filter['to_price']) ? $filter['from_price'] : null;
+
+		$this->db->select('novel.novel_id, novel.title, novel.tgl_released, novel.total_chapter, novel.author, novel.sinopsis, novel.rating, novel.thumbnail, novel.update_on, novel.status, novel.type_id');
+		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
+		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
+		
+
+		if (!empty($status)) {
+			$this->db->where('novel.status', ucwords($status));
+		}
+
+		if (!empty($search)) {
+			$this->db->like('novel.title', $search, 'both');
+		}
+
+		if (!empty($genre)) {
+			if (gettype($genre) == 'string') {
+				$genre = json_decode($genre, true);
+			}
+			$this->db->where_in('novel_genre.genre_id', $genre);
+		}
+
+		if (!empty($from_price) && !empty($to_price)) {
+			$this->db->where('novel_chapter.harga >=', $from_price);
+			$this->db->where('novel_chapter.harga <=', $to_price);
+		}
+
+		$this->db->group_by('novel.novel_id');
+		$this->db->order_by('novel.novel_id', 'desc');
+
+		return $this->db->get('novel')->num_rows();
+	}
+
 }

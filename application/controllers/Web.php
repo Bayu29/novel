@@ -50,9 +50,11 @@ class Web extends CI_Controller {
 		}
 		
 		$novel_chapter = $this->Novel_chapter_model->get_by_novel_id(decrypt_url($id));
+		$novel_genre = $this->db->join('genre', 'genre.genre_id = novel_genre.genre_id')->where('novel_id', $novel->novel_id)->get('novel_genre')->result();
 
 		$data['novel'] = $novel;
 		$data['novel_chapter'] = $novel_chapter;
+		$data['novel_genre'] = $novel_genre;
 
 		$this->template->load('template_web', 'web/detail', $data);
 	}
@@ -173,53 +175,32 @@ class Web extends CI_Controller {
 	public function daftar_novel()
 	{
 		$this->load->library('pagination');
+		$filter = $this->input->get();
+
 		$search = $this->input->get('search') ? $this->input->get('search') : null;
 		$status = $this->input->get('status') ? $this->input->get('status') : null;
 		$genre = $this->input->get('genre') ? $this->input->get('genre') : null;
 		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
 		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
 
-		$this->db->select('novel.novel_id, novel.title, novel.tgl_released, novel.total_chapter, novel.author, novel.sinopsis, novel.rating, novel.thumbnail, novel.update_on, novel.status, novel.type_id');
-		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
-		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
-		
-
-		if (!empty($status)) {
-			$this->db->where('novel.status', ucwords($status));
+		if (empty($filter)) {
+			$url = base_url().'web/daftar_novel';
+		} else {
+			$currentURL = current_url(); //for simple URL
+			$params = $_SERVER['QUERY_STRING']; //for parameters
+			$url = $currentURL . '?' . $params; //full URL with parameter
 		}
 
-		if (!empty($search)) {
-			$this->db->like('novel.title', $search, 'both');
-		}
-
-		if (!empty($genre)) {
-			if (gettype($genre) == 'string') {
-				$genre = json_decode($genre, true);
-			}
-			$this->db->where_in('novel_genre.genre_id', $genre);
-		}
-
-		if (!empty($from_price) && !empty($to_price)) {
-			$this->db->where('novel_chapter.harga >=', $from_price);
-			$this->db->where('novel_chapter.harga <=', $to_price);
-		}
-
-		$this->db->group_by('novel.novel_id');
-		$this->db->order_by('novel.novel_id', 'desc');
-		
 		$config['enable_query_string'] = true;
 		$config['page_query_string'] = true;
 		$config['per_page'] = 9;
-		$from = html_escape($this->input->get('start'));;
+		$config['base_url'] = $url;
+		$config['total_rows'] = $this->Novel_model->row_by_filter($filter);
 
-		$jumlah_data = $this->db->get('novel')->num_rows();
+		$from = $this->input->get('start') ? html_escape($this->input->get('start')) : 0;
 
-		$novels = $this->db->get('novel', $config['per_page'], $from);
-		$novels = $novels->result();
-		
-		$config['base_url'] = base_url().'web/daftar_novel';
-		$config['total_rows'] = $jumlah_data;
-	
+		$novels = $this->Novel_model->get_by_filter($filter, $config['per_page'], $from);
+				
 		$this->pagination->initialize($config);
 
 		$genres = $this->Genre_model->get_all();
@@ -233,5 +214,14 @@ class Web extends CI_Controller {
 		$data['genres'] = $genres;
 		
 		$this->template->load('template_web', 'web/daftar_novel', $data);
+	}
+
+	public function cari_novel()
+	{
+		$filter = $this->input->get();
+
+		$novel = $this->Novel_model->get_by_filter($filter);
+
+		print_r($novel);exit;
 	}
 }
