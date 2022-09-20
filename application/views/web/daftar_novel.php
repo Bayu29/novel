@@ -18,10 +18,10 @@
 			<div class="col-lg-3">
 
 				<!-- sidebar searchbar -->
-				<form action="<?= base_url() ?>web/daftar_novel" method="get">
+				<form action="<?= base_url() ?>web/daftar_novel" method="get" id="form-search">
 					<div class="sidebar__searchbar">
-						<select class="js-data-example-ajax" id="search-select" multiple="multiple"></select>
-						<!-- <input type="text" placeholder="Search here" name="search" value="<?= $search ? $search : '' ?>"> -->
+						<select class="js-data-example-ajax" id="search-select"></select>
+						<!-- <input type="text" placeholder="Search here" id="search" name="search" value="<?= $search ? $search : '' ?>"> -->
 						<?php if ($status) { ?>
 							<input type="hidden" name="status" value="<?= $status ?>">
 						<?php } ?>
@@ -225,22 +225,32 @@
 
 <script>
 
+$("#search").focus(function () {    
+   $("#searcch-select").select2("open");
+});
+
 let url = '<?= base_url(); ?>'
 
 $('#search-select').select2({
+  placeholder: 'Cari Novel',
   ajax: {
     url: url+'web/cari_novel',
     data: function (params) {
-      var query = {
-        search: params.term,
-      }
-      // Query parameters will be ?search=[term]&type=public
-      //return query;
-    },success: function(result) {
-		console.log(result);
-	}
+      return {
+		search: params.term,
+	  } 
+    },processResults: function(data) {
+		return {
+			results: JSON.parse(data)	
+		}
+	},
+	cache: true,
   }
 });
 
-
+$('#search-select').change(function(){
+	let novel_title = $('#search-select :selected').text();
+	$('#search').val(novel_title);
+	$('#form-search').submit();
+});
 </script>
