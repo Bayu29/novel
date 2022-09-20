@@ -20,8 +20,6 @@
 				<!-- sidebar searchbar -->
 				<form action="<?= base_url() ?>web/daftar_novel" method="get" id="form-search">
 					<div class="sidebar__searchbar">
-						<select class="js-data-example-ajax" id="search-select"></select>
-						<!-- <input type="text" placeholder="Search here" id="search" name="search" value="<?= $search ? $search : '' ?>"> -->
 						<?php if ($status) { ?>
 							<input type="hidden" name="status" value="<?= $status ?>">
 						<?php } ?>
@@ -187,13 +185,13 @@
 							<div class="auction_card_style__two">
 								<div class="auction_card__thumb">
 									<a href="<?= base_url() ?>web/detail/<?= encrypt_url($novel->novel_id) ?>">
-										<img src="<?= base_url() ?>template/assets/img/novel/<?= $novel->thumbnail ?>" alt="">
+										<img src="<?= base_url() ?>template/assets/img/novel/<?= $novel->thumbnail ?>" alt="" >
 									</a>
 								</div>
 								<div class="nft__disc">
 									<a href="#" class="nft__creator">Author : <?= $novel->author ?><img src="<?= base_url() ?>assets/images/icons/tick-blue.svg" alt=""></a>
 		
-									<div class="nft__title">
+									<div class="nft__title" style="height: 60px;">
 										<h5><a href="<?= base_url() ?>web/detail/<?= encrypt_url($novel->novel_id) ?>"><?= $novel->title ?></a></h5>
 										<ins class="current-price"><span><?= $novel->status ?></span></ins>
 									</div>
@@ -222,35 +220,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-
-$("#search").focus(function () {    
-   $("#searcch-select").select2("open");
-});
-
-let url = '<?= base_url(); ?>'
-
-$('#search-select').select2({
-  placeholder: 'Cari Novel',
-  ajax: {
-    url: url+'web/cari_novel',
-    data: function (params) {
-      return {
-		search: params.term,
-	  } 
-    },processResults: function(data) {
-		return {
-			results: JSON.parse(data)	
-		}
-	},
-	cache: true,
-  }
-});
-
-$('#search-select').change(function(){
-	let novel_title = $('#search-select :selected').text();
-	$('#search').val(novel_title);
-	$('#form-search').submit();
-});
-</script>

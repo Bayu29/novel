@@ -144,9 +144,9 @@
                             Grup Telegram
                           </button>
                         </h2>
-                        <div id="filter-collapseOne" class="accordion-collapse collapse show" aria-labelledby="filterHeadingOne" style="">
+                        <div id="filter-collapseOne" class="accordion-collapse collapse show" aria-labelledby="filterHeadingOne">
                           <div class="accordion-body sidebar__body">
-							                  
+							     <a href="https://t.me/bacanovelblbype" target="_blank"><img src="<?= base_url() ?>template/web/assets/images/tele.png" alt=""></a>         
                           </div>
                         </div>
                     </div>

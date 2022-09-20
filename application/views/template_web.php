@@ -43,10 +43,11 @@
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 
-
-<body class="theme-dark-active">
-
-
+<?php if($this->uri->segment(1) == "web" && $this->uri->segment(2) == "read"){ ?>
+	<body class="theme-dark-active"  onmousedown="return false" onselectstart="return false" >
+<?php }else{ ?>
+	<body class="theme-dark-active" >
+<?php } ?>
 	<!-- mobil__searchbar style -->
 	<div class="mobil__searchbar" id="mobilSearch">
 		<div class="input__wrapper">
