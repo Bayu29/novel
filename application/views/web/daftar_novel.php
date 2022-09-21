@@ -20,6 +20,7 @@
 				<!-- sidebar searchbar -->
 				<form action="<?= base_url() ?>web/daftar_novel" method="get" id="form-search">
 					<div class="sidebar__searchbar">
+
 						<form action="<?= base_url() ?>web/daftar_novel" method="get">
 							<div class="sidebar__searchbar">
 								<input type="text" name="search" placeholder="Cari Novel" id="title" value="<?= isset($search) ? (!empty($search) ? $search : '') : '' ?>">
@@ -31,8 +32,6 @@
 								</button>							
 							</div>
 						</form>
-
-
 						<?php if ($status) { ?>
 							<input type="hidden" name="status" value="<?= $status ?>">
 						<?php } ?>

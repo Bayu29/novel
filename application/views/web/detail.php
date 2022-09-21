@@ -28,7 +28,7 @@
 						<div class="nd__title">
 							<span>Author : <?= $novel->author ?></span>
 							<h3 class="nft__title"><?= $novel->title ?> <span><?= $novel->status ?></span></h3>
-							<div class="d-flex">
+							<div class="d-flex mt-2">
 								<?php foreach ($novel_genre as $genre) :  ?>
 									<span class="genre-badge"><?= $genre->nama_genre ?></span>
 								<?php endforeach; ?>
@@ -161,6 +161,8 @@
 							animation: true,
 							timer: 4000,
 							timerProgressBar: true,
+						}).then( res => {
+							window.location.reload();
 						})
 					} else {
 						Swal.fire({

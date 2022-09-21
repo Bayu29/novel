@@ -110,7 +110,7 @@ class Web extends CI_Controller {
 				'user_id' => $user->member_id,
 				'type' => 'debit',
 				'nominal' => $chapter->harga,
-				'saldo_akun' => $saldo,
+				'saldo' => $saldo,
 				'catatan' => 'Pembelian '.$chapter->nama_chapter.' dari novel '.$chapter->title.' sebesar '.$chapter->harga,
 				'trx_id' => $pembelian_chapter_id
 			]);
@@ -184,7 +184,7 @@ class Web extends CI_Controller {
 		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
 		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
 
-		if (empty($filter)) {
+		if (empty($filter) || (isset($filter['start']) && count($filter) == 1 )) {
 			$url = base_url().'web/daftar_novel';
 		} else {
 			$currentURL = current_url(); //for simple URL
@@ -215,10 +215,6 @@ class Web extends CI_Controller {
 		$data['genres'] = $genres;
 		
 		$this->template->load('template_web', 'web/daftar_novel', $data);
-	}
-
-	public function tes() {
-		$this->load->view('web/tes');
 	}
 
 	public function cari_novel()
