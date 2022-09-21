@@ -95,7 +95,7 @@ class MidtransCallback extends CI_Controller
 					$saldo = intval($user->saldo_akun) + intval($grossAmount);
 
 					$this->Member_model->update($user->user_id, [
-						'saldo' => $saldo,
+						'saldo_akun' => $saldo,
 					]);
 
 					$this->Mutasi_saldo_model->insert([
