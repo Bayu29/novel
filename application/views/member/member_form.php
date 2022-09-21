@@ -46,6 +46,10 @@
 									<td><input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" /></td>
 								</tr>
 								<tr>
+									<td>Username <?php echo form_error('username') ?></td>
+									<td><input type="username" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" /></td>
+								</tr>
+								<tr>
 									<td>Email <?php echo form_error('email') ?></td>
 									<td><input type="email" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" /></td>
 								</tr>

@@ -110,7 +110,7 @@ class Web extends CI_Controller {
 				'user_id' => $user->member_id,
 				'type' => 'debit',
 				'nominal' => $chapter->harga,
-				'saldo_akun' => $saldo,
+				'saldo' => $saldo,
 				'catatan' => 'Pembelian '.$chapter->nama_chapter.' dari novel '.$chapter->title.' sebesar '.$chapter->harga,
 				'trx_id' => $pembelian_chapter_id
 			]);
@@ -184,7 +184,7 @@ class Web extends CI_Controller {
 		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
 		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
 
-		if (empty($filter)) {
+		if (empty($filter) || (isset($filter['start']) && count($filter) == 1 )) {
 			$url = base_url().'web/daftar_novel';
 		} else {
 			$currentURL = current_url(); //for simple URL
@@ -240,4 +240,15 @@ class Web extends CI_Controller {
 
 		//print_r($novel);exit;
 	}
+
+	function get_autocomplete(){
+        if (isset($_GET['term'])) {
+            $result = $this->Novel_model->search_blog($_GET['term']);
+            if (count($result) > 0) {
+            foreach ($result as $row)
+                $arr_result[] = $row->title;
+                echo json_encode($arr_result);
+            }
+        }
+    }
 }

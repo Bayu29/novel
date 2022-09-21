@@ -23,7 +23,7 @@
 <div class="nft_details__style pt-60 bg-body-2 section_gap_y_bottom__1">
 	<div class="container">
 		<div class="row gx-7 gy-4 position-relative justify-content-between">
-			<div class="chapter-novel-content">
+			<div class="chapter-novel-content" style="text-align: justify;">
 				<?= $novel_chapter->isi_chapter ?>
 			</div>
 		</div>

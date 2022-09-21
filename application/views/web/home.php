@@ -138,6 +138,19 @@
 				</div>
 			</div>
 			<div class="col-lg-3">
+			<div class="accordion-item sidebar_status__filter sidebar__filter ">
+                        <h2 class="accordion-header sidebar__header" id="filterHeadingOne">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filter-collapseOne" aria-expanded="true" aria-controls="filter-collapseOne">
+                            Grup Telegram
+                          </button>
+                        </h2>
+                        <div id="filter-collapseOne" class="accordion-collapse collapse show" aria-labelledby="filterHeadingOne">
+                          <div class="accordion-body sidebar__body">
+							     <a href="https://t.me/bacanovelblbype" target="_blank"><img src="<?= base_url() ?>template/web/assets/images/tele.png" alt=""></a>         
+                          </div>
+                        </div>
+                    </div>
+
 				<!-- sidebar category filter -->
 				<div class="accordion-item sidebar_collections__filter sidebar__filter ">
 					<h2 class="accordion-header sidebar__header" id="filterHeadingFour">

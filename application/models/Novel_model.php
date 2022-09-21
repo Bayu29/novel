@@ -155,4 +155,11 @@ class Novel_model extends CI_Model
 		return $this->db->get('novel')->num_rows();
 	}
 
+	function search_blog($title){
+        $this->db->like('title', $title , 'both');
+        $this->db->order_by('title', 'ASC');
+        $this->db->limit(10);
+        return $this->db->get('novel')->result();
+    }
+
 }
