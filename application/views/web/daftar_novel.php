@@ -20,8 +20,23 @@
 				<!-- sidebar searchbar -->
 				<form action="<?= base_url() ?>web/daftar_novel" method="get" id="form-search">
 					<div class="sidebar__searchbar">
-						<select class="js-data-example-ajax" id="search-select"></select>
-						<!-- <input type="text" placeholder="Search here" id="search" name="search" value="<?= $search ? $search : '' ?>"> -->
+						<!-- <select class="js-data-example-ajax" id="search-select"></select> -->
+						<input type="text" placeholder="Search here" id="search" name="search" value="<?= $search ? $search : '' ?>">
+						<div class="card novel-list mt-1">
+							<ul class="nav-novel-list">
+								<li class="novel-list-item">
+									<div class="row">
+										<div class="d-flex">
+											<img class="search-img-list" src="http://localhost/novel/template/assets/img/novel/File-220913-e62e9c9b83.jpg" alt="">
+											<div class="description-section">
+												<div class="search-novel-title">Pijaki Langit Mengetuk Pintu surga</div>
+												<div class="search-novel-author">Kim jong un</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
 						<?php if ($status) { ?>
 							<input type="hidden" name="status" value="<?= $status ?>">
 						<?php } ?>

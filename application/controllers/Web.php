@@ -217,10 +217,6 @@ class Web extends CI_Controller {
 		$this->template->load('template_web', 'web/daftar_novel', $data);
 	}
 
-	public function tes() {
-		$this->load->view('web/tes');
-	}
-
 	public function cari_novel()
 	{
 		$search = $this->input->get('search') ? $this->input->get('search') : null;
