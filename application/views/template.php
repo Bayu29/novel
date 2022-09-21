@@ -12,8 +12,9 @@
 	<meta content="" name="author" />
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 	<link href="<?= base_url() ?>template/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-	<link href="<?= base_url() ?>template/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?= base_url() ?>template/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<link href="<?= base_url() ?>template/assets/css/animate.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>template/assets/css/style.min.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>template/assets/css/style-responsive.min.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
 	<!-- Toaster JS -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 	<script src="<?= base_url() ?>template/assets/plugins/pace/pace.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -161,7 +162,7 @@
 
 	<script src="<?= base_url() ?>template/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 	<script src="<?= base_url() ?>template/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-	<script src="<?= base_url() ?>template/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script src="<?= base_url() ?>template/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<?= base_url() ?>template/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>template/assets/js/sweetalert.min.js"></script>

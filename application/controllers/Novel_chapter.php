@@ -14,7 +14,7 @@ class Novel_chapter extends CI_Controller
         $this->load->model('Type_model');
         $this->load->model('Genre_model');
         $this->load->model('Novel_chapter_model');
-        $this->load->library('form_validation');
+        $this->load->library(['form_validation', 'upload']);
     }
 
     public function create_chapter($id)
@@ -43,7 +43,7 @@ class Novel_chapter extends CI_Controller
             $data = array(
                 'nama_chapter' => $this->input->post('nama_chapter', true),
 				'kode_chapter' => $this->input->post('kode_chapter', true),
-                'isi_chapter' => $this->input->post('isi_chapter', true),
+                'isi_chapter' => $this->input->post('isi_chapter'),
                 'harga' => $this->input->post('harga', true),
                 'novel_id' => decrypt_url($this->input->post('novel_id', true)),
                 'created_at' => date('y-m-d H:i:s'),
@@ -88,7 +88,7 @@ class Novel_chapter extends CI_Controller
 				$data = array(
 					'nama_chapter' => $this->input->post('nama_chapter', true),
 					'kode_chapter' => $this->input->post('kode_chapter', true),
-					'isi_chapter' => $this->input->post('isi_chapter', true),
+					'isi_chapter' => $this->input->post('isi_chapter'),
 					'harga' => $this->input->post('harga', true),
 					'novel_id' => decrypt_url($this->input->post('novel_id', true)),
 					'updated_at' => date('y-m-d H:i:s'),
@@ -115,6 +115,47 @@ class Novel_chapter extends CI_Controller
             redirect(site_url('novel/chapter/'.$novel_id));
         }
     }
+
+	public function upload_image()
+	{
+		if (isset($_FILES["image"]['name'])) {
+			
+			$config["upload_path"] = "./template/assets/img/chapter-image";
+			$config["allowed_types"] = 'jpg|jpeg|png';
+			$config['file_name'] = $_FILES["image"]["name"];
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload('image')) {
+				$error = array('error' => $this->upload->display_errors());
+				
+				print_r($error);
+				return false;
+			} else {
+				$data = $this->upload->data();
+
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './template/assets/img/chapter-image/'.$data['file_name'];
+				$config['create_thumb'] = false;
+				$config['maintain_ration'] = true;
+				$config['quality'] = '60%';
+				$config['new_image'] = './template/assets/img/chapter-image/' . $data['file_name']; 
+
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+				echo base_url(). '/template/assets/img/chapter-image/'.$data['file_name'];
+				exit;
+			}
+		}
+	}
+
+	public function delete_image()
+	{
+		$src = $this->input->post('src');
+		$file_name = str_replace(base_url(), '', $src);
+
+		if (unlink($file_name)) {
+			echo 'File Delete Successfully';
+		}
+	}
   
 
 

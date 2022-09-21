@@ -1,5 +1,5 @@
-<link href="<?= base_url() ?>template/assets/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" id="theme" />
-
+<!-- <link href="<?= base_url() ?>template/assets/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" id="theme" /> -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <style>
 	.wysihtml5-sandbox {
 		height: 400px !important;
@@ -61,8 +61,10 @@
 	</div>
 </div>
 
-<script src="<?= base_url() ?>template/assets/js/bootstrap3-wysihtml5.all.min.js"></script>
-
+<!-- <script src="<?= base_url() ?>template/assets/js/bootstrap3-wysihtml5.all.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script type="text/javascript">
-	$("#editor").wysihtml5();
+$(document).ready(function() {
+  $('#editor').summernote();
+});
 </script>

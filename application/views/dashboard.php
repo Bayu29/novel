@@ -173,17 +173,17 @@
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<div class="note note-success">
-							<h4>Topup Saldo : 100 Transakasi </h4>
+							<h4>Topup Saldo : <?= $jumlah_deposit ?> Transakasi </h4>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<div class="note note-success">
-							<h4>Pembelian : 100 Transaksi </h4>
+							<h4>Pembelian : <?= $jumlah_pembelian_chapter ?> Transaksi </h4>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
 						<div class="note note-success">
-							<h4>Margin Keuntungan : <?= rupiah(1000000) ?> </h4>
+							<h4>Margin Keuntungan : <?= rupiah($margin_keuntungan->harga) ?> </h4>
 						</div>
 					</div>
 
@@ -227,61 +227,33 @@
 
 		},
 		legend: {
-			enabled: false
+			enabled: true
 		},
 		plotOptions: {
 			series: {
 				borderWidth: 0,
 				dataLabels: {
 					enabled: true,
-					format: '{point.y:.1f} Terbeli'
+					format: '{point.y:.0f} Terbeli'
 				}
 			}
 		},
 
 		tooltip: {
 			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f} Terbeli</b><br/>'
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f} Terbeli</b><br/>'
 		},
 
 		series: [{
-			name: "Browsers",
+			name: "Novel",
 			colorByPoint: true,
-			data: [{
-					name: "Chrome",
-					y: 63.06,
-					drilldown: null
-				},
-				{
-					name: "Safari",
-					y: 19.84,
-					drilldown: null
-				},
-				{
-					name: "Firefox",
-					y: 4.18,
-					drilldown: null
-				},
-				{
-					name: "Edge",
-					y: 4.12,
-					drilldown: null
-				},
-				{
-					name: "Opera",
-					y: 2.33,
-					drilldown: null
-				},
-				{
-					name: "Internet Explorer",
-					y: 0.45,
-					drilldown: null
-				},
-				{
-					name: "Other",
-					y: 1.582,
-					drilldown: null
-				}
+			data: [
+				<?php foreach ($novel_terlaris as $i => $data) { ?>
+					{
+						name : '<?php echo $data['judul'] ?>',
+						y : <?php echo $data['jumlah'] ?>
+					},
+				<?php } ?>
 			]
 		}],
 	});
