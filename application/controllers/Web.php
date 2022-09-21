@@ -87,6 +87,7 @@ class Web extends CI_Controller {
 		try {
 			$this->Pembelian_chapter_model->insert([
 				'member_id' => $user->member_id,
+				'novel_id' => $chapter->novel_id,
 				'novel_chapter_id' => $chapter->novel_chapter_id,
 				'harga' => $chapter->harga,
 				'tanggal_pembelian' => date('Y-m-d')
@@ -137,7 +138,7 @@ class Web extends CI_Controller {
 		$check = $this->db->get_where('pembelian_chapter', ['member_id' => $user->member_id, 'novel_chapter_id' => decrypt_url($id)])->row();
 
 		if (!$check) {
-			$this->session->set_flasdata('error', 'Untuk membaca chapter ini silahkan beli chapter ini terlebih dahulu');
+			$this->session->set_flashdata('error', 'Untuk membaca chapter ini silahkan beli chapter ini terlebih dahulu');
 			redirect(site_url('/web/detail/'.encrypt_url($novel_chapter->novel_id)));
 		}
 

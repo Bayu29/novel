@@ -16,6 +16,7 @@ class Pembelian_chapter extends CI_Controller
     public function index()
     {
         $pembelian_chapter = $this->Pembelian_chapter_model->get_all();
+		
         $data = array(
             'pembelian_chapter_data' => $pembelian_chapter,
         );

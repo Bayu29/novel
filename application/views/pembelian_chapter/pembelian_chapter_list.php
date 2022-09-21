@@ -41,7 +41,7 @@
 														<td><?php echo $pembelian_chapter->kode_pembelian ?></td>
 														<td><?php echo $pembelian_chapter->nama ?></td>
 														<td><?php echo $pembelian_chapter->title ?></td>
-														<td>Chapter <?php echo $pembelian_chapter->chapter ?> </td>
+														<td><?php echo $pembelian_chapter->nama_chapter ?> </td>
 														<td><?php echo $pembelian_chapter->harga ?></td>
 														<td><?php echo $pembelian_chapter->tanggal_pembelian ?></td>
 													</tr>

@@ -114,6 +114,7 @@
 											<a href="javascript:void(0)">Hello, <?= $user->nama ?></a>
 											<i class="fl flaticon-plus">+</i>
 											<ul class="sub-menu">
+												<?php $user = $this->db->where('member_id', $user->member_id)->get('member')->row(); ?>
 												<li><a href="#">Saldo : Rp. <?= number_format($user->saldo_akun, 0, '.', '.') ?> </a></li>
 												<li><a href="<?= base_url() ?>user_profile">Profile</a></li>
 												<li><a href="<?= base_url() ?>auth_member/logout">Logout</a></li>

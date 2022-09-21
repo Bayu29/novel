@@ -1,5 +1,5 @@
-<link href="<?= base_url() ?>template/assets/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" id="theme" />
-
+<!-- <link href="<?= base_url() ?>template/assets/css/bootstrap3-wysihtml5.min.css" rel="stylesheet" id="theme" /> -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <style>
 	.wysihtml5-sandbox {
 		height: 400px !important;
@@ -61,8 +61,51 @@
 	</div>
 </div>
 
-<script src="<?= base_url() ?>template/assets/js/bootstrap3-wysihtml5.all.min.js"></script>
-
+<!-- <script src="<?= base_url() ?>template/assets/js/bootstrap3-wysihtml5.all.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script type="text/javascript">
-	$("#editor").wysihtml5();
+$(document).ready(function() {
+  $('#editor').summernote({
+	callbacks: {
+		onImageUpload: function(image) {
+			console.log(image);
+			uploadImage(image[0]);
+		},
+		onMediaDelete: function(target) {
+			deleteImage(target[0].src);
+		}
+	}
+  });
+});
+
+let base_url = <?php echo "'" . site_url('/') . "'" ?>;
+let url_upload = base_url + 'novel_chapter/upload_image';
+let url_delete = base_url + 'novel_chapter/delete_image'
+function uploadImage(image) {
+	var data = new FormData();
+	data.append("image", image);
+	$.ajax({
+		url: url_upload ,
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: data,
+		type: "POST",
+		success: function (url) {
+			console.log(url)
+			$('#editor').summernote("insertImage", url);
+		}
+	})
+}
+
+function deleteImage(src) {
+	$.ajax({
+		data: {src: src},
+		type:"POST",
+		url: url_delete,
+		success: function(response) {
+			console.log(response);
+		}
+	})
+}
 </script>
