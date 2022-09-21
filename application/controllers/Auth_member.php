@@ -33,7 +33,7 @@ class Auth_member extends CI_Controller {
 				];
 				$this->session->set_userdata($params);
 				
-				$this->session->set_flashdata('success', 'Berhasil Login, Selamat datang '.$user->nama_lengkap);
+				$this->session->set_flashdata('success', 'Berhasil Login, Selamat datang '.$user->nama);
 				redirect(site_url('/'));
 			} else {
 				$this->session->set_flashdata('error', 'Login gagal, username atau password salah');
@@ -59,7 +59,7 @@ class Auth_member extends CI_Controller {
 			} else {
 				try {
 					$payload = [
-						'nama' => $this->input->post('nama_lengkap', true),
+						'nama' => $this->input->post('nama', true),
 						'email' => $this->input->post('email', true),
 						'username' => $this->input->post('username', true),
 						'password' => sha1($this->input->post('password', true)),
@@ -106,7 +106,7 @@ class Auth_member extends CI_Controller {
 
 	public function register_rules()
 	{
-		$this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
+		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required');
 		$this->form_validation->set_rules('username', 'username', 'trim|required');

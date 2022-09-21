@@ -41,8 +41,8 @@
 													<th>Alamat</th>
 													<th>Saldo Akun</th>
 													<th>Is Aktif</th>
-													<th>History Pembelian</th>
-													<th>History Topup</th>
+													<!-- <th>History Pembelian</th> -->
+													<!-- <th>History Topup</th> -->
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -67,8 +67,8 @@
 														<td><?php echo $member->alamat ?></td>
 														<td><?php echo rupiah($member->saldo_akun) ?></td>
 														<td><?php echo $member->is_aktif ?></td>
-														<td><a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
-														<td><a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
+														<!-- <td><a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i> View</a></td> -->
+														<!-- <td><a href="" class="btn btn-success btn-sm " delete=""><i class="fa fa-eye" aria-hidden="true"></i> View</a></td> -->
 
 														<td style="text-align:center" width="100px">
 															<?php

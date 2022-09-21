@@ -15,7 +15,7 @@
                             <div class="reg__left order-2 order-lg-0">
                                 <form action="<?= base_url() ?>auth_member/register" id="login__form" method="post" autocomplete="off">
                                     <div class="custom_input_style__two">
-                                        <input type="text" placeholder="Your full name" name="nama_lengkap" id="name" autocomplete="off">
+                                        <input type="text" placeholder="Your full name" name="nama" id="name" autocomplete="off">
                                     </div>
 									<div class="custom_input_style__two mt-3">
                                         <input type="email" placeholder="Email" name="email" id="email" autocomplete="off">
