@@ -67,6 +67,7 @@
 											<th scope="col">Status</th>
 											<th scope="col">Tanggal Kadaluarsa</th>
 											<th scope="col">Tanggal Request</th>
+											<th scope="col">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -88,6 +89,7 @@
 												</td>
 												<td><?= date('d M Y H:i:s', strtotime($data->expired_at)) ?></td>
 												<td><?= date('d M Y H:i:s', strtotime($data->created_at)) ?></td>
+												<td><button type="button" class="btn-deposit btn-xs" onclick="bayarTransaksi('<?= $data->token ?>')">Bayar Deposit</button></td>
 											</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -219,25 +221,89 @@
 			},
 			success: function(result) {
 				let res = JSON.parse(result);
-				snap.hide();
-				snap.pay(res.token, {
-					onSuccess: function(result) {
-						console.log('success');
-						console.log(result);
-					},
-					onPending: function(result) {
-						console.log('pending');
-						console.log(result);
-					},
-					onError: function(result) {
-						console.log('error');
-						console.log(result);
-					},
-					onClose: function() {
-						console.log('customer closed the popup without finishing the payment');
-					}
-				});
+				if (res.success) {
+					snap.hide();
+					snap.pay(res.token, {
+						onSuccess: function(result) {
+							console.log('success');
+							console.log(result);
+						},
+						onPending: function(result) {
+							console.log('pending');
+							console.log(result);
+						},
+						onError: function(result) {
+							Swal.fire({
+								toast: true,
+								title: 'Error!',
+								text: `Gagal melakukan permintaan deposit`,
+								type: "error",
+								animation: true,
+								timer: 4000,
+								timerProgressBar: true,
+							});
+						},
+						onClose: function() {
+							Swal.fire({
+								toast: true,
+								title: 'Error!',
+								text: `Gagal melakukan permintaan deposit`,
+								type: "error",
+								animation: true,
+								timer: 4000,
+								timerProgressBar: true,
+							});
+						}
+					});
+				} else {
+					snap.hide();
+					Swal.fire({
+						toast: true,
+						title: 'Error!',
+						text: res.message,
+						type: "error",
+						animation: true,
+						timer: 4000,
+						timerProgressBar: true,
+					});
+				}
 			}
 		});
 	});
+
+	function bayarTransaksi(token) {
+		snap.hide();
+		snap.pay(token, {
+			onSuccess: function(result) {
+				console.log('success');
+				console.log(result);
+			},
+			onPending: function(result) {
+				console.log('pending');
+				console.log(result);
+			},
+			onError: function(result) {
+				Swal.fire({
+					toast: true,
+					title: 'Error!',
+					text: `Gagal melakukan permintaan deposit`,
+					type: "error",
+					animation: true,
+					timer: 4000,
+					timerProgressBar: true,
+				});
+			},
+			onClose: function() {
+				Swal.fire({
+					toast: true,
+					title: 'Error!',
+					text: `Gagal melakukan permintaan deposit`,
+					type: "error",
+					animation: true,
+					timer: 4000,
+					timerProgressBar: true,
+				});
+			}
+		});
+	}
 </script>
