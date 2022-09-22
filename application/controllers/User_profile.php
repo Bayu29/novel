@@ -68,6 +68,11 @@ class User_profile extends CI_Controller {
 		
 		$nominal = $this->input->post('nominal', true);
 
+		if ($nominal <= 10000) {
+			echo json_encode(['success' => false, 'message' => 'Deposit Gagal, Minimal nominal deposit Rp. 10.000']);
+			exit;
+		}
+
 		$deposit = $this->Deposit_model->insert([
 			'user_id' => $user->member_id,
 			'nominal' => $nominal,
@@ -141,11 +146,15 @@ class User_profile extends CI_Controller {
 
 		$result = json_decode($result);
 
+		$this->Deposit_model->update($deposit_id, [
+			'token' => $result->token,
+		]);
+
 		if ($errno) {
 			echo json_encode(['success' => false, 'message' => 'Gagal melakukan deposit']);
 			exit;
 		} else {
-			echo json_encode(['token' => $result->token]);
+			echo json_encode(['success' => true,'token' => $result->token]);
 		}
 	}
 
