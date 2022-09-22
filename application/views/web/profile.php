@@ -194,7 +194,15 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="<?= $this->fungsi->sett_website()->midtrans_client_key ?>"></script>
+<?php 
+	if ($this->fungsi->sett_website()->midtrans_transaction_mode == 'development') {
+		$endpoint = $this->fungsi->sett_website()->midtrans_sandbox_url.'/snap.js'; 
+	} else {
+		$endpoint = $this->fungsi->sett_website()->midtrans_production_url.'/snap.js';
+	}
+?>
+
+<script type="text/javascript" src="<?= $endpoint ?>" data-client-key="<?= $this->fungsi->sett_website()->midtrans_client_key ?>"></script>
 
 <script>
 	$(document).ready(function() {
