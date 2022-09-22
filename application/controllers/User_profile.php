@@ -98,9 +98,9 @@ class User_profile extends CI_Controller {
         ];
 
 		if ($setting->midtrans_transaction_mode == 'development') {
-			$url = $setting->midtrans_sandbox_url;
+			$url = $setting->midtrans_sandbox_url.'/v1/transactions';
 		} else {
-			$url = $setting->midtrans_production_url;
+			$url = $setting->midtrans_production_url.'/v1/transactions';
 		}
 		
 
@@ -146,14 +146,14 @@ class User_profile extends CI_Controller {
 
 		$result = json_decode($result);
 
-		$this->Deposit_model->update($deposit_id, [
-			'token' => $result->token,
-		]);
-
-		if ($errno) {
+		if ($errno || isset($result->error_messages)) {
 			echo json_encode(['success' => false, 'message' => 'Gagal melakukan deposit']);
 			exit;
 		} else {
+			$this->Deposit_model->update($deposit_id, [
+				'token' => $result->token,
+			]);
+
 			echo json_encode(['success' => true,'token' => $result->token]);
 		}
 	}
