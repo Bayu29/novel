@@ -18,7 +18,7 @@ class Deposit_model extends CI_Model
     // get all
     function get_all()
     {
-		$this->db->join('user', 'user.user_id = deposit.user_id');
+		$this->db->join('member', 'member.member_id = deposit.user_id');
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -26,7 +26,7 @@ class Deposit_model extends CI_Model
     // get data by id
     function get_by_id($id)
     {
-		$this->db->join('user', 'user.user_id = deposit.user_id');
+		$this->db->join('member', 'member.user_id = deposit.user_id');
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }

@@ -47,7 +47,7 @@
 
 <?php if ($this->uri->segment(1) == "web" && $this->uri->segment(2) == "read") { ?>
 
-	<body class="theme-dark-active" onmousedown="return false" onselectstart="return false">
+	<body class="theme-dark-active">
 	<?php } else { ?>
 
 		<body class="theme-dark-active">
