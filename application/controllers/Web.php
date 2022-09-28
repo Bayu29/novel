@@ -14,6 +14,7 @@ class Web extends CI_Controller {
 		$this->load->model('Pembelian_chapter_model');
 		$this->load->model('Mutasi_saldo_model');
 		$this->load->model('Member_model');
+		$this->load->model('Comment_model');
     }
 
 	public function index()
@@ -142,12 +143,104 @@ class Web extends CI_Controller {
 			redirect(site_url('/web/detail/'.encrypt_url($novel_chapter->novel_id)));
 		}
 
-		
-		$data['novel_chapter'] = $novel_chapter;
+		$parent_comments = $this->Comment_model->parent_comment();
 
+		$data['novel_chapter'] = $novel_chapter;
+		$data['parent_comments'] = $parent_comments;
 
 		$this->template->load('template_web', 'web/baca', $data);
  	}
+
+	public function comment()
+	{
+		$is_login = is_login_member();
+		$parent_id = $this->input->post('parent_id', true);
+		$user = $this->session->userdata('user');
+		$novel_id = $this->input->post('novel_id', true);
+		$novel_chapter_id = $this->input->post('novel_chapter_id', true);
+		$reply_to = $this->input->post('reply_to', true) ? $this->input->post('reply_to') : null; 
+		$message = $this->input->post('message', true);
+
+		if (empty($message)) {
+			$this->session->set_flashdata('error', 'Harap masukkan komentar');
+		}
+
+		$this->Comment_model->insert([
+			'parent_id' => $parent_id,
+			'user_id_parent' => $user->member_id,
+			'user_id_sender' => $user->member_id,
+			'reply_to' => $reply_to,
+			'novel_id' => $novel_id,
+			'novel_chapter_id' => $novel_chapter_id,
+			'message' => $message
+		]);
+
+		redirect('web/read/'.encrypt_url($novel_chapter_id));
+	}
+
+	public function load_more_comment()
+	{
+		$novel_chapter_id = $this->input->post('novel_chapter_id', true);
+		
+		$offset = $this->input->post('offset_comment', true) ;
+
+		$this->db->where('novel_chapter_id', $novel_chapter_id);
+		$this->db->order_by('comment_id', 'desc');
+		$jumlah_comment = $this->db->get('comments')->row();
+
+		$offset_comment = intval($jumlah_comment->comment_id) - intval($offset) - 3;
+
+		//print_r($offset_comment);exit;
+		$parent_comments = $this->db->query("SELECT 
+							C.comment_id,
+							C.parent_id,
+							C.user_id_parent,
+							C.user_id_sender,
+							C.reply_to,
+							C.novel_id,
+							C.novel_chapter_id,
+							C.message,
+							C.created_at,
+							(SELECT member.nama FROM comments CM LEFT JOIN member ON CM.reply_to = member.member_id WHERE CM.novel_chapter_id = ".$novel_chapter_id." AND CM.comment_id = C.comment_id ) AS user_reply,
+							member.nama as user_sender
+							FROM comments C
+							LEFT JOIN member ON C.user_id_sender = member.member_id
+							WHERE C.novel_chapter_id = ".$novel_chapter_id."
+							AND C.parent_id IS NULL
+							ORDER BY C.comment_id ASC
+							LIMIT 2 OFFSET ".$offset_comment."
+							")->result();
+		$child = [];
+		
+		foreach ($parent_comments as $i => $parent_comment) {
+			$child_comment = $this->db->query("SELECT 
+							C.comment_id,
+							C.parent_id,
+							C.user_id_parent,
+							C.user_id_sender,
+							C.reply_to,
+							C.novel_id,
+							C.novel_chapter_id,
+							C.message,
+							C.created_at,
+							(SELECT member.nama FROM comments CM LEFT JOIN member ON CM.reply_to = member.member_id WHERE CM.novel_chapter_id = ".$novel_chapter_id." AND CM.comment_id = C.comment_id ) AS user_reply,
+							member.nama as user_sender
+							FROM comments C
+							LEFT JOIN member ON C.user_id_sender = member.member_id
+							WHERE C.novel_chapter_id = ".$novel_chapter_id."
+							AND C.parent_id = ".$parent_comment->comment_id."
+							ORDER BY C.comment_id ASC
+							LIMIT 2 OFFSET ".$offset_comment."
+							")->result();
+
+			array_push($child, $child_comment);
+		}
+		
+		$data['parent_comments'] = $parent_comments;
+		$data['child_comment'] = $child;
+
+		echo json_encode($data);
+	}
 
 	public function login()
 	{
@@ -236,10 +329,7 @@ class Web extends CI_Controller {
 			];
 		}
 
-		//return $result;
 		echo json_encode($result);
-
-		//print_r($novel);exit;
 	}
 
 	function get_autocomplete(){

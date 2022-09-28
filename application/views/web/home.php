@@ -100,11 +100,17 @@
 										<h5 class="nft-title novel-title" style="height: 50px;"><a href="<?= base_url() ?>web/detail/<?= encrypt_url($data_novel->novel_id) ?>"><?php echo strlen($data_novel->title) > 20 ? substr($data_novel->title, 0, 20) . '...' : $data_novel->title ?></a></h5>
 
 										<ul class="nav-chapter-list">
-											<?php $chapters = $this->db->where('novel_id', $data_novel->novel_id)->get('novel_chapter', 5)->result(); ?>
+											<?php $chapters = $this->db->where('novel_id', $data_novel->novel_id)->order_by('novel_chapter_id', 'desc')->get('novel_chapter', 5)->result(); ?>
 											<?php if (count($chapters) > 0) { ?>
 												<?php foreach ($chapters as $chapter) : ?>
 												<li class="list-chapter">
 													<a class="list-chapter-link" href="<?= base_url() ?>web/read/<?= encrypt_url($chapter->novel_chapter_id) ?>"><?= $chapter->kode_chapter ?></a>
+													<?php 
+														$date = date('Y-m-d', strtotime('-5 days', strtotime(date('Y-m-d H:i:s'))));
+														if ($chapter->created_at >= $date) {
+													?>
+													<span class="badge badge-danger badge-chapter">New</span>
+													<?php } ?>
 													<span class="chapter-released"><?= time_elapsed_string($chapter->created_at) ?></span>
 												</li>
 												<?php endforeach; ?>
