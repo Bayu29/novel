@@ -21,11 +21,11 @@
 							<div class="x_panel">
 								<div class="box-body">
 									<div class='row'>
-										<div class='col-md-9'>
+										<!-- <div class='col-md-9'>
 											<div style="padding-bottom: 10px;">
 												<?php echo anchor(site_url('type/create'), '<i class="fa fa-plus-square" aria-hidden="true"></i> Tambah Data', 'class="btn btn-danger btn-sm tambah_data"'); ?>
 											</div>
-										</div>
+										</div> -->
 									</div>
 									<div class="box-body" style="overflow-x: scroll; ">
 										<table id="data-table" class="table table-bordered table-hover table-td-valign-middle">
@@ -43,11 +43,11 @@
 														<td><?= $no++ ?></td>
 														<td><?php echo $type->nama_type ?></td>
 														<td style="text-align:center" width="200px">
-															<?php
+															<!-- <?php
 															echo anchor(site_url('type/update/' . encrypt_url($type->type_id)), '<i class="fa fa-pencil" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
 															echo '  ';
 															echo anchor(site_url('type/delete/' . encrypt_url($type->type_id)), '<i class="fa fa-trash" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-															?>
+															?> -->
 														</td>
 													</tr>
 												<?php } ?>

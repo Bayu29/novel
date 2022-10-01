@@ -16,7 +16,6 @@
 	<div class="container">
 		<div class="row pt-40 gy-4">
 			<div class="col-lg-3">
-
 				<!-- sidebar searchbar -->
 				<form action="<?= base_url() ?>web/daftar_novel" method="get" id="form-search">
 					<div class="sidebar__searchbar">
@@ -129,6 +128,63 @@
 					</div>
 				</div>
 
+				<!-- sidebar Type filter -->
+				<div class="accordion-item sidebar_collections__filter sidebar__filter ">
+					<h2 class="accordion-header sidebar__header" id="filterHeadingFour">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#filter-collapseFour" aria-expanded="true" aria-controls="filter-collapseFour">
+							Type
+						</button>
+					</h2>
+					<div id="filter-collapseFour" class="accordion-collapse collapse show" aria-labelledby="filterHeadingFour">
+						<div class="accordion-body sidebar__body">
+							<form action="<?= base_url() ?>web/daftar_novel" method="get">
+								<?php if ($from_price) { ?>
+									<input type="hidden" name="from_price" value="<?= $from_price ?>">
+								<?php } ?>
+								<?php if ($to_price) { ?>
+									<input type="hidden" name="to_price" value="<?= $to_price ?>">
+								<?php } ?>
+								<?php if ($search) { ?>
+									<input type="hidden" name="search" value="<?= $search ?>">
+								<?php } ?>
+								<?php if ($status) { ?>
+									<input type="hidden" name="status" value="<?= $status ?>">
+								<?php } ?>
+								<?php if (!empty($genre)) { ?>
+									<input type="hidden" name="genre" value="<?= json_encode($genre) ?>">
+								<?php } ?>
+								<ul>
+									<?php foreach ($types as $i => $data_type) : ?>
+										<li class="single__col">
+											<label>
+												<span class="col__right">
+													<span class="cate_icon">
+														<svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<path d="M7.49907 17.0003H9.42618C10.1603 17.0003 10.6345 16.4803 10.4968 15.8455L10.1833 14.4614H6.742L6.42845 15.8455C6.2908 16.442 6.81082 17.0003 7.49907 17.0003Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M10.1834 14.4537L11.5064 13.276C12.2482 12.6183 12.2788 12.1595 11.6899 11.4177L9.35751 8.45822C8.86809 7.8388 8.06512 7.8388 7.5757 8.45822L5.24328 11.4177C4.65444 12.1595 4.65444 12.6413 5.42681 13.276L6.74979 14.4537" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M8.46289 8.29736V10.2321" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M7.80551 3.76259L7.20902 3.16608C6.8496 2.80665 6.8496 2.2255 7.20902 1.86608L7.80551 1.26957C8.16493 0.910145 8.74612 0.910145 9.10554 1.26957L9.70203 1.86608C10.0614 2.2255 10.0614 2.80665 9.70203 3.16608L9.10554 3.76259C8.74612 4.12201 8.16493 4.12201 7.80551 3.76259Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M14.154 7.29541H14.9952C15.4999 7.29541 15.9129 7.70837 15.9129 8.21309V9.05427C15.9129 9.55899 15.4999 9.972 14.9952 9.972H14.154C13.6493 9.972 13.2363 9.55899 13.2363 9.05427V8.21309C13.2363 7.70837 13.6493 7.29541 14.154 7.29541Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M2.75888 7.29541H1.91767C1.41295 7.29541 1 7.70837 1 8.21309V9.05427C1 9.55899 1.41295 9.972 1.91767 9.972H2.75888C3.2636 9.972 3.67655 9.55899 3.67655 9.05427V8.21309C3.67655 7.70837 3.2636 7.29541 2.75888 7.29541Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M13.4564 7.5174L9.40332 3.46436" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+															<path d="M3.45508 7.5174L7.50814 3.46436" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+														</svg>
+													</span>
+													<ins class="col__name"><?= $data_type->nama_type ?></ins>
+												</span>
+
+												<input type="checkbox" name="type[]" <?= !empty($type)  ? (type_check($types, $data_type->type_id) == true ? 'checked' : '') : '' ?> value="<?= $data_type->type_id ?>">
+												<span class="check__circle"></span>
+											</label>
+										</li>
+									<?php endforeach;  ?>
+								</ul>
+								<button type="submit" class="filter__apply">Apply</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
 				<!-- sidebar category filter -->
 				<div class="accordion-item sidebar_collections__filter sidebar__filter ">
 					<h2 class="accordion-header sidebar__header" id="filterHeadingFour">
@@ -186,6 +242,7 @@
 
 			<div class="col-lg-9">
 				<div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 gy-4">
+					<?php if (count($novels) > 0) { ?>
 					<?php foreach ($novels as $novel) : ?>
 						<div class="col pt-lg-0 pt-3">
 							<div class="auction_card_style__two">
@@ -216,6 +273,14 @@
 							</div>
 						</div>
 					<?php endforeach; ?>
+					<?php } else { ?>
+						<div class="mx-auto">
+							<center>
+								<img height="200px" width="200px" src="<?= base_url()?>template\web\assets\images\shapes\notfound.png" alt="">
+								<h4 class="novel-title-notfound mt-2">Novel Tidak Ditemukan</h4>
+							</center>
+						</div>
+					<?php }?>
 				</div>
 
 				<div class="d-flex justify-content-center more-load-wrap text-center mt-50">
