@@ -72,13 +72,13 @@ class Novel_model extends CI_Model
 		$search =  isset($filter['search']) ? $filter['search']  : null;
 		$status =  isset($filter['status']) ? $filter['status']  : null;
 		$genre = isset($filter['genre']) ? $filter['genre'] : null;
+		$type = isset($filter['type']) ? $filter['type'] : null;
 		$from_price = isset($filter['from_price']) ? $filter['from_price'] : null;
 		$to_price = isset($filter['to_price']) ? $filter['from_price'] : null;
 
 		$this->db->select('novel.novel_id, novel.title, novel.tgl_released, novel.total_chapter, novel.author, novel.sinopsis, novel.rating, novel.thumbnail, novel.update_on, novel.status, novel.type_id');
 		$this->db->join('novel_genre', 'novel_genre.novel_id = novel.novel_id', 'left');
 		$this->db->join('novel_chapter', 'novel_chapter.novel_id = novel.novel_id', 'left');
-		
 
 		if (!empty($status)) {
 			$this->db->where('novel.status', ucwords($status));
@@ -93,6 +93,13 @@ class Novel_model extends CI_Model
 				$genre = json_decode($genre, true);
 			}
 			$this->db->where_in('novel_genre.genre_id', $genre);
+		}
+
+		if (!empty($type)) {
+			if (gettype($type) == 'string') {
+				$type = json_decode($type, true);
+			}
+			$this->db->where_in('novel.type_id', $type);
 		}
 
 		if (!empty($from_price) && !empty($to_price)) {
@@ -121,6 +128,7 @@ class Novel_model extends CI_Model
 		$search =  isset($filter['search']) ? $filter['search']  : null;
 		$status =  isset($filter['status']) ? $filter['status']  : null;
 		$genre = isset($filter['genre']) ? $filter['genre'] : null;
+		$type = isset($filter['type']) ? $filter['type'] : null;
 		$from_price = isset($filter['from_price']) ? $filter['from_price'] : null;
 		$to_price = isset($filter['to_price']) ? $filter['from_price'] : null;
 
@@ -143,6 +151,14 @@ class Novel_model extends CI_Model
 			}
 			$this->db->where_in('novel_genre.genre_id', $genre);
 		}
+
+		if (!empty($type)) {
+			if (gettype($type) == 'string') {
+				$type = json_decode($type, true);
+			}
+			$this->db->where_in('novel.type_id', $type);
+		}
+
 
 		if (!empty($from_price) && !empty($to_price)) {
 			$this->db->where('novel_chapter.harga >=', $from_price);

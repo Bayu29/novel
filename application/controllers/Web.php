@@ -15,6 +15,7 @@ class Web extends CI_Controller {
 		$this->load->model('Mutasi_saldo_model');
 		$this->load->model('Member_model');
 		$this->load->model('Comment_model');
+		$this->load->model('Type_model');
     }
 
 	public function index()
@@ -22,10 +23,47 @@ class Web extends CI_Controller {
 		/**
 		 * Novel Terbaru
 		 */
-		$this->db->order_by('novel_id', 'desc');
-		$this->db->limit(10);
-		$novel = $this->db->get('novel')->result();
+		
+		$novel = $this->db->query("
+			SELECT
+				novel_chapter.novel_chapter_id,
+				novel_chapter.created_at,
+				novel.title,
+				novel.rating,
+				novel.novel_id,
+				novel.thumbnail
+			FROM `novel_chapter`
+			JOIN novel ON novel_chapter.novel_id=novel.novel_id 
+			GROUP BY novel_chapter.novel_id 
+			ORDER BY novel_chapter.created_at DESC 
+			LIMIT 10;")->result();
 
+		//Novel terpopuler
+		$novel_fav = $this->db->query("
+			SELECT 
+				pembelian_chapter.novel_id,
+				novel.novel_id,
+				novel.title,
+				novel.rating,
+				novel.thumbnail,
+				count(pembelian_chapter.novel_id) as jumlah 
+			FROM `pembelian_chapter` 
+			INNER JOIN novel 
+			ON pembelian_chapter.novel_id = novel.novel_id
+			GROUP BY pembelian_chapter.novel_id
+			ORDER BY jumlah DESC
+			LIMIT 10;
+		")->result();
+
+		//Novel Bahasa Indonesia
+		$novel_ori = $this->db->where('type_id', 1)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
+		//Novel Bahasa China
+		$novel_china = $this->db->where('type_id', 2)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
+		//Novel Bahasa Jepang
+		$novel_jepang = $this->db->where('type_id', 3)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
+		//Novel Bahasa Korea
+		$novel_korea = $this->db->where('type_id', 4)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
+		
 		/**
 		 * Novel List
 		 */
@@ -36,8 +74,16 @@ class Web extends CI_Controller {
 
 		$genre = $this->Genre_model->get_all();
 
+		$type_novel = $this->Type_model->get_all();
+
 		$data['novel'] = $novel;
+		$data['novel_fav'] = $novel_fav;
+		$data['novel_ori'] = $novel_ori;
+		$data['novel_china'] = $novel_china;
+		$data['novel_jepang'] = $novel_jepang;
+		$data['novel_korea'] = $novel_korea;
 		$data['list_novel'] = $list_novel;
+		$data['type_novel'] = $type_novel;
 		$data['genre'] = $genre;
 		$this->template->load('template_web','web/home', $data);
 	} 
@@ -277,12 +323,16 @@ class Web extends CI_Controller {
 		$genre = $this->input->get('genre') ? $this->input->get('genre') : null;
 		$from_price = $this->input->get('from_price') ? $this->input->get('from_price') : null;
 		$to_price = $this->input->get('to_price') ? $this->input->get('to_price') : null;
+		$type = $this->input->get('type') ? $this->input->get('type') : null;
 
-		if (empty($filter) || (isset($filter['start']) && count($filter) == 1 )) {
+		
+
+		if (empty($filter) || (isset($filter['start']) && count($filter) <= 1 )) {
 			$url = base_url().'web/daftar_novel';
 		} else {
 			$currentURL = current_url(); //for simple URL
 			$params = $_SERVER['QUERY_STRING']; //for parameters
+			$params = preg_replace("/&[start]+=\d/m",'', $params);
 			$url = $currentURL . '?' . $params; //full URL with parameter
 		}
 
@@ -299,14 +349,17 @@ class Web extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		$genres = $this->Genre_model->get_all();
+		$types = $this->Type_model->get_all();
 
 		$data['search'] = $search;
 		$data['status'] = $status;
 		$data['genre'] = $genre;
+		$data['type'] = $type;
 		$data['from_price'] = $from_price;
 		$data['to_price'] = $to_price;
 		$data['novels'] = $novels;
 		$data['genres'] = $genres;
+		$data['types'] = $types;
 		
 		$this->template->load('template_web', 'web/daftar_novel', $data);
 	}

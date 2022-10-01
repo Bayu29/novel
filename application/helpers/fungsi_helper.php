@@ -84,6 +84,17 @@ function genre_check($genre, $genre_id)
 	}
 }
 
+function type_check($types, $type_id)
+{
+	foreach ($types as $i => $data_type) {
+		if ($data_type == $type_id) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
 function time_elapsed_string($datetime, $full = false) 
 {
 	$now = new DateTime;
