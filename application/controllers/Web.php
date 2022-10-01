@@ -25,18 +25,7 @@ class Web extends CI_Controller {
 		 */
 		
 		$novel = $this->db->query("
-			SELECT
-				novel_chapter.novel_chapter_id,
-				novel_chapter.created_at,
-				novel.title,
-				novel.rating,
-				novel.novel_id,
-				novel.thumbnail
-			FROM `novel_chapter`
-			JOIN novel ON novel_chapter.novel_id=novel.novel_id 
-			GROUP BY novel_chapter.novel_id 
-			ORDER BY novel_chapter.created_at DESC 
-			LIMIT 10;")->result();
+		SELECT max(novel_chapter.novel_chapter_id) as max, novel_chapter.created_at, novel.title, novel.rating, novel.novel_id, novel.thumbnail FROM `novel_chapter` JOIN novel ON novel_chapter.novel_id=novel.novel_id GROUP BY novel_chapter.novel_id ORDER BY max DESC LIMIT 10")->result();
 
 		//Novel terpopuler
 		$novel_fav = $this->db->query("
@@ -60,9 +49,9 @@ class Web extends CI_Controller {
 		//Novel Bahasa China
 		$novel_china = $this->db->where('type_id', 2)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
 		//Novel Bahasa Jepang
-		$novel_jepang = $this->db->where('type_id', 3)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
+		$novel_jepang = $this->db->where('type_id', 5)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
 		//Novel Bahasa Korea
-		$novel_korea = $this->db->where('type_id', 4)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
+		$novel_korea = $this->db->where('type_id', 6)->order_by('novel_id', 'desc')->limit(10)->get('novel')->result();
 		
 		/**
 		 * Novel List

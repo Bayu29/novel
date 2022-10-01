@@ -128,7 +128,7 @@
 								<?php if (is_login_member()) { ?>
 									<div class="profile-switch-one mr-2">
 										<div class="profile-switch-avater">
-											<a href="<?= base_url() ?>user_profile"><img src="<?= base_url() ?>template/web/assets/images/profil-avater.png" alt=""></a>
+											<a href="<?= base_url() ?>user_profile"><img src="https://xsgames.co/randomusers/avatar.php?g=pixel" alt="" style="border-radius: 50%;"></a>
 										</div>
 									</div>
 								<?php }  ?>

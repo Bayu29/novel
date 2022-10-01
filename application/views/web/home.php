@@ -466,7 +466,7 @@
 					<div class="tab-pane fade show active" id="nft_tab_1" role="tabpanel"
 						aria-labelledby="nft_pill_1">
 						<div class="row">
-							<?php foreach($novel_fav as $data_novel): ?>
+							<?php foreach($novel as $data_novel): ?>
 							<?php 
 							$chapter = $this->db->where('novel_id', $data_novel->novel_id)->get('novel_chapter')->result();
 							?>

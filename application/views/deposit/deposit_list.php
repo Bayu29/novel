@@ -44,7 +44,7 @@
 													<tr>
 														<td><?= $no++ ?></td>
 														<td><?= $deposit->deposit_reference ?></td>
-														<td><?= $deposit->nama_lengkap ?></td>
+														<td><?= $deposit->nama ?></td>
 														<td><?= number_format($deposit->nominal, 0, '.', '.') ?></td>
 														<td><?= $deposit->metode_pembayaran ?></td>
 														<td><?= $deposit->kode_bayar ?></td>

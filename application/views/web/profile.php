@@ -5,7 +5,7 @@
 		<div class="author_profiler__details">
 			<div class="ap__header d-flex align-items-center justify-content-between flex-wrap gap-3">
 				<div class="author_image">
-					<img src="<?= base_url() ?>template/web/assets/images/nft/author__xxl.png" alt="">
+					<img src="https://xsgames.co/randomusers/avatar.php?g=pixel" alt="" style="border-radius: 50%;">
 				</div>
 			</div>
 		</div>
